@@ -1,14 +1,15 @@
 export default defineNuxtConfig({
-	modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt'],
+	modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt', '@nuxtjs/google-fonts'],
+	...{
+		googleFonts: {
+			families: {
+				Poppins: true,
+			},
+		},
+	},
 	shadcn: {
-		/**
-		 * Prefix for all the imported component
-		 */
 		prefix: '',
-		/**
-		 * Directory that the component lives in.
-		 * @default "./components/ui"
-		 */
 		componentDir: './components/ui',
 	},
+	compatibilityDate: '2024-07-17',
 })

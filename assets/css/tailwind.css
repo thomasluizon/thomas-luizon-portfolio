@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body {
+	@apply font-sans font-normal;
+}
+
 @layer base {
 	:root {
 		--background: 0 0% 100%;
