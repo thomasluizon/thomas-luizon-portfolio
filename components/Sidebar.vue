@@ -1,5 +1,7 @@
 <template>
-	<aside class="py-4 px-8">
+	<Container tag="aside" class="flex flex-col justify-between">
 		<h1 class="text-2xl">Portfolio</h1>
-	</aside>
+		<div>a</div>
+		<div>b</div>
+	</Container>
 </template>

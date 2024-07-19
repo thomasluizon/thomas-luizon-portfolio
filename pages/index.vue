@@ -1,7 +1,6 @@
 <template>
-	<div class="flex h-100vh">
+	<div class="flex h-screen">
 		<Sidebar />
-		<div>abc</div>
 	</div>
 </template>
 
@@ -10,5 +9,6 @@ useHead({
 	bodyAttrs: {
 		class: 'dark',
 	},
+	title: 'Portfolio - Thomas Luizon',
 })
 </script>
