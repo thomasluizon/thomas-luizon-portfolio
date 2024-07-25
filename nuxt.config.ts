@@ -1,10 +1,18 @@
+const defaultLocale = 'pt'
+
 export default defineNuxtConfig({
-	modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt', '@nuxtjs/google-fonts'],
-	...{
-		googleFonts: {
-			families: {
-				Poppins: true,
-			},
+	modules: [
+		'@nuxtjs/i18n',
+		'@nuxtjs/tailwindcss',
+		'shadcn-nuxt',
+		'@nuxtjs/google-fonts',
+	],
+	i18n: {
+		vueI18n: './i18n.config.ts',
+	},
+	googleFonts: {
+		families: {
+			Poppins: true,
 		},
 	},
 	shadcn: {
