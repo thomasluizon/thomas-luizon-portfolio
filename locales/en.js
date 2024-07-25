@@ -1,5 +1,5 @@
 export default {
-	home: 'Home',
-	test: 'Test',
-	about: 'About',
+	portfolio: 'Portfolio',
+	projects: 'Projects',
+	contact: 'Contact',
 }

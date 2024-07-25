@@ -1,5 +1,5 @@
 export default {
-	home: 'Início',
-	test: 'Teste',
-	about: 'Sobre',
+	portfolio: 'Portfólio',
+	projects: 'Projetos',
+	contact: 'Contato',
 }

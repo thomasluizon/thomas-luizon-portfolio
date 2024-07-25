@@ -1,7 +1,7 @@
 <template>
-	<Container>
-		<h1>{{ $t('portfolio') }}</h1>
-	</Container>
+	<NuxtLayout>
+		<NuxtPage />
+	</NuxtLayout>
 </template>
 
 <script setup lang="ts">

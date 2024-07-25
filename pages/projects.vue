@@ -1,6 +1,6 @@
 <template>
 	<Container>
-		<h1>{{ $t('portfolio') }}</h1>
+		<h1>{{ $t('projects') }}</h1>
 	</Container>
 </template>
 
@@ -8,6 +8,6 @@
 const { t } = useI18n()
 
 useHead({
-	title: `${t('portfolio')} - Thomas Luizon`,
+	title: `${t('projects')} - Thomas Luizon`,
 })
 </script>
