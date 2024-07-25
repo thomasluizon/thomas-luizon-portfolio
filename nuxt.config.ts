@@ -1,5 +1,3 @@
-const defaultLocale = 'pt'
-
 export default defineNuxtConfig({
 	modules: [
 		'@nuxtjs/i18n',
@@ -9,6 +7,8 @@ export default defineNuxtConfig({
 	],
 	i18n: {
 		vueI18n: './i18n.config.ts',
+		locales: ['en', 'pt'],
+		defaultLocale: 'en',
 	},
 	googleFonts: {
 		families: {
