@@ -20,4 +20,8 @@ export default defineNuxtConfig({
 		componentDir: './components/shadcn',
 	},
 	compatibilityDate: '2024-07-17',
+	runtimeConfig: {
+		github: process.env.GITHUB_LINK,
+		linkedin: process.env.LINKEDIN_LINK,
+	},
 })

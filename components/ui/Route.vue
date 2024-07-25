@@ -1,5 +1,9 @@
 <template>
-	<NuxtLink :to="localePath(path)">{{ translatedText }}</NuxtLink>
+	<NuxtLink
+		class="hover:bg-slate-200 dark:hover:bg-slate-800 p-3 rounded-lg transition-colors"
+		:to="localePath(path)"
+		>{{ translatedText }}</NuxtLink
+	>
 </template>
 
 <script setup lang="ts">

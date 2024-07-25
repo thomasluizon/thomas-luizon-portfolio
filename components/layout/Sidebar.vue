@@ -6,7 +6,8 @@
 			<UiRoute text="projects" path="projects" />
 			<UiRoute text="contact" path="contact" />
 		</div>
-		<div class="sidebar-section">
+		<div class="sidebar-section gap-4">
+			<LayoutSocials />
 			<button @click="setLocale('en')">en</button>
 			<button @click="setLocale('pt')">pt</button>
 		</div>
