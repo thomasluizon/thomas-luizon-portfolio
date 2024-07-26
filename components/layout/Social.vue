@@ -1,6 +1,11 @@
 <template>
 	<a :href="url" target="_blank">
-		<img :src="img" :alt="alt" width="30px" class="dark:invert" />
+		<img
+			:src="img"
+			:alt="alt"
+			width="30px"
+			class="dark:invert transition-transform hover:scale-110"
+		/>
 	</a>
 </template>
 
