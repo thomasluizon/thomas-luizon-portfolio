@@ -4,4 +4,6 @@ export default {
 	projects: 'Projects',
 	contact: 'Contact',
 	language: 'Language',
+	sunAlt: 'An image of the sun.',
+	moonAlt: 'An image of the moon.',
 }

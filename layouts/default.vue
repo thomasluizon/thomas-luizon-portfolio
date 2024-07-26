@@ -8,7 +8,7 @@
 <script setup lang="ts">
 useHead({
 	bodyAttrs: {
-		class: 'dark',
+		class: 'transition-colors duration-100',
 	},
 })
 </script>

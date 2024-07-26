@@ -8,6 +8,7 @@
 		<div class="sidebar-section gap-6">
 			<LayoutSocials />
 			<LayoutLanguageSelector />
+			<LayoutThemeSwitch />
 		</div>
 	</UtilsContainer>
 </template>
