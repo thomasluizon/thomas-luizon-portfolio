@@ -3,4 +3,5 @@ export default {
 	home: 'Home',
 	projects: 'Projects',
 	contact: 'Contact',
+	language: 'Language',
 }

@@ -17,7 +17,7 @@ export default defineNuxtConfig({
 	},
 	shadcn: {
 		prefix: '',
-		componentDir: './components/shadcn',
+		componentDir: './components/ui',
 	},
 	compatibilityDate: '2024-07-17',
 	runtimeConfig: {

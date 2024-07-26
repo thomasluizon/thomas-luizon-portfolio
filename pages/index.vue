@@ -1,7 +1,7 @@
 <template>
-	<UiContainer tag="main">
+	<UtilsContainer tag="main">
 		<h1>{{ $t('portfolio') }}</h1>
-	</UiContainer>
+	</UtilsContainer>
 </template>
 
 <script setup lang="ts">

@@ -1,7 +1,7 @@
 <template>
-	<UiContainer tag="main">
+	<UtilsContainer tag="main">
 		<h1>{{ $t('contact') }}</h1>
-	</UiContainer>
+	</UtilsContainer>
 </template>
 
 <script setup lang="ts">

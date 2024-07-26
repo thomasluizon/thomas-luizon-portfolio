@@ -1,19 +1,13 @@
 <template>
-	<UiContainer tag="aside" class="flex flex-col justify-between items-center">
+	<UtilsContainer
+		tag="aside"
+		class="flex flex-col justify-between items-center"
+	>
 		<h1 class="text-2xl">{{ $t('portfolio') }}</h1>
-		<div class="sidebar-section">
-			<UiRoute text="home" path="index" />
-			<UiRoute text="projects" path="projects" />
-			<UiRoute text="contact" path="contact" />
-		</div>
-		<div class="sidebar-section gap-4">
+		<LayoutRoutes />
+		<div class="sidebar-section gap-6">
 			<LayoutSocials />
-			<button @click="setLocale('en')">en</button>
-			<button @click="setLocale('pt')">pt</button>
+			<LayoutLanguageSelector />
 		</div>
-	</UiContainer>
+	</UtilsContainer>
 </template>
-
-<script setup lang="ts">
-const { setLocale } = useI18n()
-</script>

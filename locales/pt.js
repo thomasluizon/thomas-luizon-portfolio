@@ -3,4 +3,5 @@ export default {
 	home: 'Início',
 	projects: 'Projetos',
 	contact: 'Contato',
+	language: 'Idioma',
 }
