@@ -13,11 +13,6 @@ let isThrottled = false
 const handleScroll = event => {
 	if (isThrottled) return
 
-	isThrottled = true
-	setTimeout(() => {
-		isThrottled = false
-	}, 500)
-
 	const underscoreIndex = route.name.indexOf('_')
 	let routeName = route.name
 
@@ -31,12 +26,22 @@ const handleScroll = event => {
 
 	if (event.deltaY > 0) {
 		if (currentRouteIndex < routes.length - 1) {
+			isThrottled = true
+			setTimeout(() => {
+				isThrottled = false
+			}, 500)
+
 			const nextRoute = routes[currentRouteIndex + 1]
 			const nextRoutePath = localePath(nextRoute)
 			router.push(nextRoutePath)
 		}
 	} else {
 		if (currentRouteIndex > 0) {
+			isThrottled = true
+			setTimeout(() => {
+				isThrottled = false
+			}, 500)
+
 			let prevRoute = routes[currentRouteIndex - 1]
 
 			if (prevRoute === 'home') prevRoute = 'index'
