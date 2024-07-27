@@ -6,6 +6,9 @@ export default defineNuxtConfig({
 		'@nuxtjs/google-fonts',
 		'@nuxtjs/color-mode',
 	],
+	app: {
+		pageTransition: { name: 'rotate', mode: 'out-in' },
+	},
 	i18n: {
 		vueI18n: './i18n.config.ts',
 		locales: ['en', 'pt'],

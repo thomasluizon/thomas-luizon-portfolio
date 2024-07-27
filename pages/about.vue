@@ -1,11 +1,11 @@
 <template>
-	<h1>{{ $t('contact') }}</h1>
+	<h1>{{ $t('about') }}</h1>
 </template>
 
 <script setup lang="ts">
 const { t } = useI18n()
 
 useHead({
-	title: `${t('contact')} - Thomas Luizon`,
+	title: `${t('about')} - Thomas Luizon`,
 })
 </script>

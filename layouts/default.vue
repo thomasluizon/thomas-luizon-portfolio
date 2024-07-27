@@ -1,6 +1,8 @@
 <template>
-	<div class="flex h-screen">
+	<UtilsScrollRouter>
 		<LayoutSidebar />
-		<slot />
-	</div>
+		<UtilsContainer tag="main">
+			<slot />
+		</UtilsContainer>
+	</UtilsScrollRouter>
 </template>
