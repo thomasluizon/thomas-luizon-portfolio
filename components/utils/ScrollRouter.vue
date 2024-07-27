@@ -5,8 +5,6 @@
 </template>
 
 <script setup>
-import { useRouter, useRoute } from 'vue-router'
-
 const route = useRoute()
 const router = useRouter()
 const localePath = useLocalePath()
