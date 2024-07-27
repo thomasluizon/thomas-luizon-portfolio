@@ -1,6 +1,8 @@
 <template>
 	<UtilsScrollRouter>
 		<LayoutSidebar />
-		<slot />
+		<UtilsContainer tag="main">
+			<slot />
+		</UtilsContainer>
 	</UtilsScrollRouter>
 </template>
