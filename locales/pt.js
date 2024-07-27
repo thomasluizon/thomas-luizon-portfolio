@@ -1,9 +1,15 @@
 export default {
-	portfolio: 'Portfólio',
+	// Routes
 	home: 'Início',
+	about: 'Sobre',
 	projects: 'Projetos',
 	contact: 'Contato',
-	language: 'Idioma',
+
+	// Image alts
 	sunAlt: 'An image of the sun.',
 	moonAlt: 'An image of the moon.',
+
+	// General
+	portfolio: 'Portfólio',
+	language: 'Idioma',
 }
