@@ -10,16 +10,15 @@
 import moon from '~/assets/images/moon.svg'
 import sun from '~/assets/images/sun.svg'
 
-const isDark = ref(true)
+const { t } = useI18n()
+const colorMode = useColorMode()
+const isDark = ref(colorMode.preference == 'dark')
 
 watch(isDark, () => {
 	if (isDark.value) {
-		colorMode.value = 'dark'
+		colorMode.preference = 'dark'
 	} else {
-		colorMode.value = 'light'
+		colorMode.preference = 'light'
 	}
 })
-
-const { t } = useI18n()
-const colorMode = useColorMode()
 </script>

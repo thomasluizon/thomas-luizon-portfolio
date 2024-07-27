@@ -7,8 +7,8 @@ body {
 	@apply font-sans font-normal;
 }
 
-* {
-	@apply transition-colors duration-75;
+body {
+	@apply transition-colors duration-500;
 }
 
 .sidebar-section {
@@ -16,12 +16,7 @@ body {
 }
 
 .menu-hover {
-	@apply hover:bg-slate-200 dark:hover:bg-slate-800 p-3 rounded-lg transition-colors;
-}
-
-.transition-social {
-	transition-property: filter, transform;
-	transition-duration: 2s, 250ms;
+	@apply hover:bg-slate-200 dark:hover:bg-slate-800 p-3 rounded-lg;
 }
 
 @layer base {

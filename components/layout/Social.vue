@@ -4,7 +4,7 @@
 			:src="img"
 			:alt="alt"
 			width="30px"
-			class="dark:invert transition-social hover:scale-110 cursor-pointer"
+			class="dark:invert hover:scale-110 cursor-pointer"
 		/>
 	</a>
 </template>
