@@ -8,6 +8,7 @@ export default {
 	// Image alts
 	sunAlt: 'An image of the sun.',
 	moonAlt: 'An image of the moon.',
+	profileAlt: 'A drawing of me.',
 
 	// General
 	portfolio: 'Portfolio',

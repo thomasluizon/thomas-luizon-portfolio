@@ -7,7 +7,7 @@ export default defineNuxtConfig({
 		'@nuxtjs/color-mode',
 	],
 	app: {
-		pageTransition: { name: 'rotate', mode: 'out-in' },
+		pageTransition: { name: 'rotate', mode: 'out-in', appear: true },
 	},
 	i18n: {
 		vueI18n: './i18n.config.ts',

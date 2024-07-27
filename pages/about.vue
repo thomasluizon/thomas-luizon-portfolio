@@ -1,5 +1,7 @@
 <template>
-	<h1>{{ $t('about') }}</h1>
+	<UtilsContainer tag="main" class="w-full">
+		<h1>{{ $t('about') }}</h1>
+	</UtilsContainer>
 </template>
 
 <script setup lang="ts">

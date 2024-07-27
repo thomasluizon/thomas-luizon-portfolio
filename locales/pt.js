@@ -6,8 +6,9 @@ export default {
 	contact: 'Contato',
 
 	// Image alts
-	sunAlt: 'An image of the sun.',
-	moonAlt: 'An image of the moon.',
+	sunAlt: 'Um desenho do sol.',
+	moonAlt: 'Um desenho da lua.',
+	profileAlt: 'Um desenho meu.',
 
 	// General
 	portfolio: 'Portfólio',
