@@ -1,5 +1,5 @@
 <template>
-	<div class="flex gap-3 items-center">
+	<div class="flex gap-3 items-center justify-center">
 		<img
 			:src="sun"
 			:alt="t('sunAlt')"
