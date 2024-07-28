@@ -15,7 +15,6 @@ const router = useRouter()
 const localePath = useLocalePath()
 let isThrottled = false
 
-// Variables to store touch positions
 let touchStartX = 0
 let touchStartY = 0
 let touchEndX = 0
@@ -30,8 +29,6 @@ const handleScroll = event => {
 	if (underscoreIndex >= 0) {
 		routeName = routeName.substring(0, underscoreIndex)
 	}
-
-	if (routeName === 'index') routeName = 'home'
 
 	const currentRouteIndex = routes.indexOf(routeName)
 
@@ -53,9 +50,7 @@ const handleScroll = event => {
 				isThrottled = false
 			}, 500)
 
-			let prevRoute = routes[currentRouteIndex - 1]
-
-			if (prevRoute === 'home') prevRoute = 'index'
+			const prevRoute = routes[currentRouteIndex - 1]
 
 			const prevRoutePath = localePath(prevRoute)
 			router.push(prevRoutePath)
@@ -90,11 +85,8 @@ const handleGesture = () => {
 		routeName = routeName.substring(0, underscoreIndex)
 	}
 
-	if (routeName === 'index') routeName = 'home'
-
 	const currentRouteIndex = routes.indexOf(routeName)
 
-	// Swipe right or down to go to next route
 	if (deltaX > 50 || deltaY > 50) {
 		if (currentRouteIndex < routes.length - 1) {
 			isThrottled = true
@@ -106,18 +98,14 @@ const handleGesture = () => {
 			const nextRoutePath = localePath(nextRoute)
 			router.push(nextRoutePath)
 		}
-	}
-	// Swipe left or up to go to previous route
-	else if (deltaX < -50 || deltaY < -50) {
+	} else if (deltaX < -50 || deltaY < -50) {
 		if (currentRouteIndex > 0) {
 			isThrottled = true
 			setTimeout(() => {
 				isThrottled = false
 			}, 500)
 
-			let prevRoute = routes[currentRouteIndex - 1]
-
-			if (prevRoute === 'home') prevRoute = 'index'
+			const prevRoute = routes[currentRouteIndex - 1]
 
 			const prevRoutePath = localePath(prevRoute)
 			router.push(prevRoutePath)
