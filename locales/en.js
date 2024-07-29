@@ -13,4 +13,5 @@ export default {
 	// General
 	portfolio: 'Portfolio',
 	language: 'Language',
+	fullStackDev: 'Full-Stack Developer.',
 }
