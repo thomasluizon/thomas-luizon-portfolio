@@ -13,6 +13,11 @@ export default defineNuxtConfig({
 		vueI18n: './i18n.config.ts',
 		locales: ['en', 'pt'],
 		defaultLocale: 'en',
+		detectBrowserLanguage: {
+			useCookie: true,
+			cookieKey: 'i18n_redirected',
+			redirectOn: 'root',
+		},
 	},
 	googleFonts: {
 		families: {
