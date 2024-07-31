@@ -5,11 +5,12 @@
 		@touchend="handleTouchEnd"
 		class="h-screen flex overflow-hidden"
 	>
+		<UtilsScrollIndicator />
 		<slot />
 	</div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const route = useRoute()
 const router = useRouter()
 const localePath = useLocalePath()
@@ -20,11 +21,12 @@ let touchStartY = 0
 let touchEndX = 0
 let touchEndY = 0
 
-const handleScroll = event => {
+const handleScroll = (event: WheelEvent) => {
 	if (isThrottled) return
 
-	const underscoreIndex = route.name.indexOf('_')
-	let routeName = route.name
+	let routeName = route.name as string
+
+	const underscoreIndex = routeName.indexOf('_')
 
 	if (underscoreIndex >= 0) {
 		routeName = routeName.substring(0, underscoreIndex)
@@ -58,13 +60,13 @@ const handleScroll = event => {
 	}
 }
 
-const handleTouchStart = event => {
+const handleTouchStart = (event: TouchEvent) => {
 	const touch = event.touches[0]
 	touchStartX = touch.clientX
 	touchStartY = touch.clientY
 }
 
-const handleTouchEnd = event => {
+const handleTouchEnd = (event: TouchEvent) => {
 	const touch = event.changedTouches[0]
 	touchEndX = touch.clientX
 	touchEndY = touch.clientY
@@ -73,13 +75,13 @@ const handleTouchEnd = event => {
 }
 
 const handleGesture = () => {
+	if (isThrottled) return
+
 	const deltaX = touchEndX - touchStartX
 	const deltaY = touchEndY - touchStartY
 
-	if (isThrottled) return
-
-	const underscoreIndex = route.name.indexOf('_')
-	let routeName = route.name
+	let routeName = route.name as string
+	const underscoreIndex = routeName.indexOf('_')
 
 	if (underscoreIndex >= 0) {
 		routeName = routeName.substring(0, underscoreIndex)
