@@ -12,8 +12,7 @@
 
 <script setup lang="ts">
 const route = useRoute()
-const router = useRouter()
-const localePath = useLocalePath()
+const { navigateToRoute } = useNavigation()
 let isThrottled = false
 
 let touchStartX = 0
@@ -41,9 +40,7 @@ const handleScroll = (event: WheelEvent) => {
 				isThrottled = false
 			}, 500)
 
-			const nextRoute = routes[currentRouteIndex + 1]
-			const nextRoutePath = localePath(nextRoute)
-			router.push(nextRoutePath)
+			navigateToRoute(currentRouteIndex + 1, routes)
 		}
 	} else {
 		if (currentRouteIndex > 0) {
@@ -52,10 +49,7 @@ const handleScroll = (event: WheelEvent) => {
 				isThrottled = false
 			}, 500)
 
-			const prevRoute = routes[currentRouteIndex - 1]
-
-			const prevRoutePath = localePath(prevRoute)
-			router.push(prevRoutePath)
+			navigateToRoute(currentRouteIndex - 1, routes)
 		}
 	}
 }
@@ -96,9 +90,7 @@ const handleGesture = () => {
 				isThrottled = false
 			}, 500)
 
-			const nextRoute = routes[currentRouteIndex + 1]
-			const nextRoutePath = localePath(nextRoute)
-			router.push(nextRoutePath)
+			navigateToRoute(currentRouteIndex + 1, routes)
 		}
 	} else if (deltaX < -50 || deltaY < -50) {
 		if (currentRouteIndex > 0) {
@@ -107,10 +99,7 @@ const handleGesture = () => {
 				isThrottled = false
 			}, 500)
 
-			const prevRoute = routes[currentRouteIndex - 1]
-
-			const prevRoutePath = localePath(prevRoute)
-			router.push(prevRoutePath)
+			navigateToRoute(currentRouteIndex - 1, routes)
 		}
 	}
 }
