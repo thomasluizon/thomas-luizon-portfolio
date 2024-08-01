@@ -5,6 +5,7 @@ export default defineNuxtConfig({
 		'shadcn-nuxt',
 		'@nuxtjs/google-fonts',
 		'@nuxtjs/color-mode',
+		'@pinia/nuxt',
 	],
 	app: {
 		pageTransition: { name: 'rotate', mode: 'out-in', appear: true },

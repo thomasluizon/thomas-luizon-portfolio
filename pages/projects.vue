@@ -1,29 +1,36 @@
 <template>
 	<UtilsContainer tag="main" class="w-full flex justify-center items-center">
-		<Carousel class="">
-			<CarouselContent>
-				<CarouselItem>Project 1</CarouselItem>
-			</CarouselContent>
-			<CarouselPrevious />
-			<CarouselNext />
-		</Carousel>
+		<UtilsSpinner v-if="!projectsStore.hasLoaded" />
+		<div
+			v-else-if="
+				projectsStore.hasLoaded && projectsStore.projects.length === 0
+			"
+		>
+			No momento não há projetos... Aguarde enquanto trabalho em novos!
+		</div>
+		<div class="p-12" v-else>
+			<Carousel>
+				<CarouselContent>
+					<CarouselItem
+						v-for="project in projectsStore.projects"
+						:key="project.repo"
+						class="flex flex-col items-center"
+					>
+						{{ project.desc }}
+					</CarouselItem>
+				</CarouselContent>
+				<CarouselPrevious />
+				<CarouselNext />
+			</Carousel>
+		</div>
 	</UtilsContainer>
 </template>
 
 <script setup lang="ts">
+import { useProjectsStore } from '~/stores/projectsStore'
+const projectsStore = useProjectsStore()
+
 const { t } = useI18n()
-
-const data = ref(null)
-
-onMounted(async () => {
-	try {
-		const response = await fetch('/api/githubProjects')
-		data.value = await response.json()
-		console.log(data.value)
-	} catch (error) {
-		console.error(error)
-	}
-})
 
 useHead({
 	title: `${t('projects')} - Thomas Luizon`,
