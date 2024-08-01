@@ -9,7 +9,7 @@
 			No momento não há projetos... Aguarde enquanto trabalho em novos!
 		</div>
 		<div class="p-12" v-else>
-			<Carousel>
+			<Carousel class="max-w-lg">
 				<CarouselContent>
 					<CarouselItem
 						v-for="project in projectsStore.projects"
