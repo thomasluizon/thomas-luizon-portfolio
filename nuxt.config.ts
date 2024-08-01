@@ -32,6 +32,7 @@ export default defineNuxtConfig({
 	runtimeConfig: {
 		github: process.env.GITHUB_LINK,
 		linkedin: process.env.LINKEDIN_LINK,
+		githubToken: process.env.GITHUB_TOKEN,
 	},
 	devtools: { enabled: true },
 	colorMode: {
