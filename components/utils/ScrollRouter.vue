@@ -1,26 +1,35 @@
 <template>
-	<div @wheel="handleScroll" class="h-screen flex overflow-hidden">
+	<div
+		@wheel="handleScroll"
+		@touchstart="handleTouchStart"
+		@touchend="handleTouchEnd"
+		class="h-screen flex overflow-hidden"
+	>
+		<UtilsScrollIndicator />
 		<slot />
 	</div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const route = useRoute()
-const router = useRouter()
-const localePath = useLocalePath()
+const { navigateToRoute } = useNavigation()
 let isThrottled = false
 
-const handleScroll = event => {
+let touchStartX = 0
+let touchStartY = 0
+let touchEndX = 0
+let touchEndY = 0
+
+const handleScroll = (event: WheelEvent) => {
 	if (isThrottled) return
 
-	const underscoreIndex = route.name.indexOf('_')
-	let routeName = route.name
+	let routeName = route.name as string
+
+	const underscoreIndex = routeName.indexOf('_')
 
 	if (underscoreIndex >= 0) {
 		routeName = routeName.substring(0, underscoreIndex)
 	}
-
-	if (routeName === 'index') routeName = 'home'
 
 	const currentRouteIndex = routes.indexOf(routeName)
 
@@ -31,9 +40,7 @@ const handleScroll = event => {
 				isThrottled = false
 			}, 500)
 
-			const nextRoute = routes[currentRouteIndex + 1]
-			const nextRoutePath = localePath(nextRoute)
-			router.push(nextRoutePath)
+			navigateToRoute(currentRouteIndex + 1, routes)
 		}
 	} else {
 		if (currentRouteIndex > 0) {
@@ -42,12 +49,57 @@ const handleScroll = event => {
 				isThrottled = false
 			}, 500)
 
-			let prevRoute = routes[currentRouteIndex - 1]
+			navigateToRoute(currentRouteIndex - 1, routes)
+		}
+	}
+}
 
-			if (prevRoute === 'home') prevRoute = 'index'
+const handleTouchStart = (event: TouchEvent) => {
+	const touch = event.touches[0]
+	touchStartX = touch.clientX
+	touchStartY = touch.clientY
+}
 
-			const prevRoutePath = localePath(prevRoute)
-			router.push(prevRoutePath)
+const handleTouchEnd = (event: TouchEvent) => {
+	const touch = event.changedTouches[0]
+	touchEndX = touch.clientX
+	touchEndY = touch.clientY
+
+	handleGesture()
+}
+
+const handleGesture = () => {
+	if (isThrottled) return
+
+	const deltaX = touchEndX - touchStartX
+	const deltaY = touchEndY - touchStartY
+
+	let routeName = route.name as string
+	const underscoreIndex = routeName.indexOf('_')
+
+	if (underscoreIndex >= 0) {
+		routeName = routeName.substring(0, underscoreIndex)
+	}
+
+	const currentRouteIndex = routes.indexOf(routeName)
+
+	if (deltaX > 50 || deltaY > 50) {
+		if (currentRouteIndex < routes.length - 1) {
+			isThrottled = true
+			setTimeout(() => {
+				isThrottled = false
+			}, 500)
+
+			navigateToRoute(currentRouteIndex + 1, routes)
+		}
+	} else if (deltaX < -50 || deltaY < -50) {
+		if (currentRouteIndex > 0) {
+			isThrottled = true
+			setTimeout(() => {
+				isThrottled = false
+			}, 500)
+
+			navigateToRoute(currentRouteIndex - 1, routes)
 		}
 	}
 }

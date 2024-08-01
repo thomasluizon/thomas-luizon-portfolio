@@ -7,12 +7,17 @@ export default defineNuxtConfig({
 		'@nuxtjs/color-mode',
 	],
 	app: {
-		pageTransition: { name: 'rotate', mode: 'out-in' },
+		pageTransition: { name: 'rotate', mode: 'out-in', appear: true },
 	},
 	i18n: {
 		vueI18n: './i18n.config.ts',
 		locales: ['en', 'pt'],
 		defaultLocale: 'en',
+		detectBrowserLanguage: {
+			useCookie: true,
+			cookieKey: 'i18n_redirected',
+			redirectOn: 'root',
+		},
 	},
 	googleFonts: {
 		families: {
@@ -27,6 +32,7 @@ export default defineNuxtConfig({
 	runtimeConfig: {
 		github: process.env.GITHUB_LINK,
 		linkedin: process.env.LINKEDIN_LINK,
+		githubToken: process.env.GITHUB_TOKEN,
 	},
 	devtools: { enabled: true },
 	colorMode: {

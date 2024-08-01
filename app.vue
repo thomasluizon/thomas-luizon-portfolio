@@ -20,6 +20,7 @@ useHead({
 .rotate-enter-from,
 .rotate-leave-to {
 	opacity: 0;
-	transform: rotate3d(1, 1, 1, 15deg);
+	transform: translateX(20%);
+	filter: grayscale(1);
 }
 </style>

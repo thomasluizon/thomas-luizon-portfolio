@@ -1,7 +1,7 @@
 <template>
 	<NuxtLink
 		:class="['menu-hover', isActive ? 'active' : '']"
-		:to="localePath(route === 'home' ? 'index' : route)"
+		:to="localePath(route)"
 		>{{ translatedText }}</NuxtLink
 	>
 </template>
@@ -18,10 +18,6 @@ const { t } = useI18n()
 const translatedText = computed(() => t(props.route))
 const localePath = useLocalePath()
 
-const actualRroute = useRoute()
-const isActive = computed(
-	() =>
-		actualRroute.path ===
-		localePath(props.route === 'home' ? 'index' : props.route)
-)
+const actualRoute = useRoute()
+const isActive = computed(() => actualRoute.path === localePath(props.route))
 </script>
