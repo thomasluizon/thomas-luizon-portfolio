@@ -1,7 +1,7 @@
 <template>
 	<ul class="flex gap-3">
 		<li v-for="social in socials" :key="social.url">
-			<LayoutSocial :img="social.img" :url="social.url" :alt="social.alt" />
+			<UtilsSocial :img="social.img" :url="social.url" :alt="social.alt" />
 		</li>
 	</ul>
 </template>
@@ -14,12 +14,12 @@ const config = useRuntimeConfig()
 
 const socials = [
 	{
-		url: config.github,
+		url: config.public.github,
 		img: githubIcon,
 		alt: 'GitHub',
 	},
 	{
-		url: config.linkedin,
+		url: config.public.linkedin,
 		img: linkedinIcon,
 		alt: 'LinkedIn',
 	},
