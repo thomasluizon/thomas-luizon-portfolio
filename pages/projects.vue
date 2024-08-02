@@ -2,25 +2,30 @@
 	<UtilsContainer tag="main" class="w-full flex justify-center items-center">
 		<UtilsSpinner v-if="!projectsStore.hasLoaded" />
 		<div
+			v-else-if="projectsStore.hasLoaded && projectsStore.projects == null"
+		>
+			Erro ao buscar projetos no GitHub...
+		</div>
+		<div
 			v-else-if="
-				projectsStore.hasLoaded && projectsStore.projects.length === 0
+				projectsStore.hasLoaded && projectsStore.projects?.length === 0
 			"
 		>
 			No momento não há projetos... Aguarde enquanto trabalho em novos!
 		</div>
-		<div class="p-12" v-else>
-			<Carousel class="max-w-lg">
+		<div v-else>
+			<Carousel class="max-w-2xl">
 				<CarouselContent>
 					<CarouselItem
 						v-for="project in projectsStore.projects"
 						:key="project.repo"
-						class="flex flex-col items-center"
+						class="flex flex-col items-center justify-center"
 					>
-						{{ project.desc }}
+						<UtilsProject :project="project" />
 					</CarouselItem>
 				</CarouselContent>
-				<CarouselPrevious />
-				<CarouselNext />
+				<CarouselPrevious class="scale-150" />
+				<CarouselNext class="scale-150" />
 			</Carousel>
 		</div>
 	</UtilsContainer>
