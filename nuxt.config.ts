@@ -5,6 +5,7 @@ export default defineNuxtConfig({
 		'shadcn-nuxt',
 		'@nuxtjs/google-fonts',
 		'@nuxtjs/color-mode',
+		'@pinia/nuxt',
 	],
 	app: {
 		pageTransition: { name: 'rotate', mode: 'out-in', appear: true },
@@ -30,9 +31,12 @@ export default defineNuxtConfig({
 	},
 	compatibilityDate: '2024-07-17',
 	runtimeConfig: {
-		github: process.env.GITHUB_LINK,
-		linkedin: process.env.LINKEDIN_LINK,
 		githubToken: process.env.GITHUB_TOKEN,
+		public: {
+			github: process.env.NUXT_PUBLIC_GITHUB_LINK,
+			linkedin: process.env.NUXT_PUBLIC_LINKEDIN_LINK,
+			email: process.env.NUXT_PUBLIC_EMAIL,
+		},
 	},
 	devtools: { enabled: true },
 	colorMode: {

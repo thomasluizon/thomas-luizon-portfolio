@@ -71,7 +71,6 @@ const handleTouchEnd = (event: TouchEvent) => {
 const handleGesture = () => {
 	if (isThrottled) return
 
-	const deltaX = touchEndX - touchStartX
 	const deltaY = touchEndY - touchStartY
 
 	let routeName = route.name as string
@@ -83,7 +82,8 @@ const handleGesture = () => {
 
 	const currentRouteIndex = routes.indexOf(routeName)
 
-	if (deltaX > 50 || deltaY > 50) {
+	if (deltaY < -50) {
+		// Swipe up
 		if (currentRouteIndex < routes.length - 1) {
 			isThrottled = true
 			setTimeout(() => {
@@ -92,7 +92,8 @@ const handleGesture = () => {
 
 			navigateToRoute(currentRouteIndex + 1, routes)
 		}
-	} else if (deltaX < -50 || deltaY < -50) {
+	} else if (deltaY > 50) {
+		// Swipe down
 		if (currentRouteIndex > 0) {
 			isThrottled = true
 			setTimeout(() => {

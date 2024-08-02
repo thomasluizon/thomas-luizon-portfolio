@@ -53,6 +53,7 @@ function handleMouseDown(event: MouseEvent) {
 	lastMouseY.value = event.clientY
 	window.addEventListener('mousemove', handleMouseMove)
 	window.addEventListener('mouseup', handleMouseUp)
+	document.body.classList.add('select-none')
 }
 
 function handleMouseMove(event: MouseEvent) {
@@ -89,6 +90,7 @@ function handleMouseUp() {
 	isDragging.value = false
 	window.removeEventListener('mousemove', handleMouseMove)
 	window.removeEventListener('mouseup', handleMouseUp)
+	document.body.classList.remove('select-none')
 }
 
 updateRouteName()
