@@ -12,17 +12,19 @@
 
 <script setup lang="ts">
 const route = useRoute()
+const sidebarStore = useSidebarStore()
 const { navigateToRoute } = useNavigation()
-let isThrottled = false
 
+let isThrottled = false
 let touchStartY = 0
 let touchEndY = 0
 
+const isMobile = ref(window.matchMedia('(max-width: 767px)').matches)
+
 const handleScroll = (event: WheelEvent) => {
-	if (isThrottled) return
+	if (isThrottled || (sidebarStore.isSidebarOpen && isMobile.value)) return
 
 	let routeName = route.name as string
-
 	const underscoreIndex = routeName.indexOf('_')
 
 	if (underscoreIndex >= 0) {
@@ -65,7 +67,7 @@ const handleTouchEnd = (event: TouchEvent) => {
 }
 
 const handleGesture = () => {
-	if (isThrottled) return
+	if (isThrottled || (sidebarStore.isSidebarOpen && isMobile.value)) return
 
 	const deltaY = touchEndY - touchStartY
 
@@ -100,4 +102,20 @@ const handleGesture = () => {
 		}
 	}
 }
+
+const updateMobileState = () => {
+	const isCurrentlyMobile = window.matchMedia('(max-width: 767px)').matches
+	if (!isCurrentlyMobile) {
+		sidebarStore.isSidebarOpen = false
+	}
+	isMobile.value = isCurrentlyMobile
+}
+
+onMounted(() => {
+	window.addEventListener('resize', updateMobileState)
+})
+
+onBeforeUnmount(() => {
+	window.removeEventListener('resize', updateMobileState)
+})
 </script>
