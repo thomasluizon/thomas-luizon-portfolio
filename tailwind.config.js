@@ -87,6 +87,9 @@ module.exports = {
 				normal: 100,
 			},
 		},
+		screens: {
+			md: '769px',
+		},
 	},
 	plugins: [animate],
 }
