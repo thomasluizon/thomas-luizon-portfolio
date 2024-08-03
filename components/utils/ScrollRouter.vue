@@ -102,20 +102,4 @@ const handleGesture = () => {
 		}
 	}
 }
-
-const updateMobileState = () => {
-	const isCurrentlyMobile = window.matchMedia('(max-width: 767px)').matches
-	if (!isCurrentlyMobile) {
-		sidebarStore.isSidebarOpen = false
-	}
-	isMobile.value = isCurrentlyMobile
-}
-
-onMounted(() => {
-	window.addEventListener('resize', updateMobileState)
-})
-
-onBeforeUnmount(() => {
-	window.removeEventListener('resize', updateMobileState)
-})
 </script>
