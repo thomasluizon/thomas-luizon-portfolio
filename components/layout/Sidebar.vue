@@ -11,8 +11,6 @@
 </template>
 
 <script setup lang="ts">
-import { useSidebarStore } from '~/stores/sidebarStore'
-
 const sidebarStore = useSidebarStore()
 
 const computedClass = computed(() => {

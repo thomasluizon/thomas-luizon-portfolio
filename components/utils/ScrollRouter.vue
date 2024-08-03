@@ -15,9 +15,7 @@ const route = useRoute()
 const { navigateToRoute } = useNavigation()
 let isThrottled = false
 
-let touchStartX = 0
 let touchStartY = 0
-let touchEndX = 0
 let touchEndY = 0
 
 const handleScroll = (event: WheelEvent) => {
@@ -56,13 +54,11 @@ const handleScroll = (event: WheelEvent) => {
 
 const handleTouchStart = (event: TouchEvent) => {
 	const touch = event.touches[0]
-	touchStartX = touch.clientX
 	touchStartY = touch.clientY
 }
 
 const handleTouchEnd = (event: TouchEvent) => {
 	const touch = event.changedTouches[0]
-	touchEndX = touch.clientX
 	touchEndY = touch.clientY
 
 	handleGesture()
