@@ -1,6 +1,9 @@
 <template>
 	<UtilsScrollRouter>
-		<LayoutSidebar />
+		<div>
+			<UtilsHamburger @toggle="toggleSidebar" />
+			<LayoutSidebar :isSidebarOpen="isSidebarOpen" />
+		</div>
 		<slot />
 	</UtilsScrollRouter>
 </template>
@@ -14,4 +17,10 @@ onMounted(async () => {
 		await projectsStore.fetchProjects()
 	}
 })
+
+const isSidebarOpen = ref(false)
+
+function toggleSidebar() {
+	isSidebarOpen.value = !isSidebarOpen.value
+}
 </script>
