@@ -16,7 +16,7 @@ body {
 }
 
 .menu-hover {
-	@apply hover:bg-slate-200 dark:hover:bg-slate-800 p-3 rounded-lg transition-colors duration-500;
+	@apply p-3 rounded-lg transition-colors duration-500;
 }
 
 .active {

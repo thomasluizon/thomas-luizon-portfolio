@@ -11,6 +11,7 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted, ref } from 'vue'
 const route = useRoute()
 const sidebarStore = useSidebarStore()
 const { navigateToRoute } = useNavigation()
@@ -19,7 +20,7 @@ let isThrottled = false
 let touchStartY = 0
 let touchEndY = 0
 
-const isMobile = ref(window.matchMedia('(max-width: 767px)').matches)
+const isMobile = ref(false)
 
 const handleScroll = (event: WheelEvent) => {
 	if (isThrottled || (sidebarStore.isSidebarOpen && isMobile.value)) return
@@ -102,4 +103,23 @@ const handleGesture = () => {
 		}
 	}
 }
+
+const updateMobileState = () => {
+	if (typeof window !== 'undefined') {
+		const isCurrentlyMobile = window.matchMedia('(max-width: 767px)').matches
+		if (!isCurrentlyMobile) {
+			sidebarStore.isSidebarOpen = false
+		}
+		isMobile.value = isCurrentlyMobile
+	}
+}
+
+onMounted(() => {
+	updateMobileState()
+	window.addEventListener('resize', updateMobileState)
+})
+
+onBeforeUnmount(() => {
+	window.removeEventListener('resize', updateMobileState)
+})
 </script>
