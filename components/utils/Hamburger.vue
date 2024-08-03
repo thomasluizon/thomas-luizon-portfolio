@@ -9,10 +9,10 @@
 	</div>
 </template>
 
-<script setup>
-const emit = defineEmits(['toggle'])
+<script setup lang="ts">
+const sidebarStore = useSidebarStore()
 
 function handleClick() {
-	emit('toggle')
+	sidebarStore.toggleSidebar()
 }
 </script>
