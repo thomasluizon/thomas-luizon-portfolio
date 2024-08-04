@@ -1,5 +1,8 @@
 <template>
-	<UtilsContainer tag="main" class="w-full flex justify-center items-center">
+	<UtilsContainer
+		tag="main"
+		class="w-full flex justify-center items-center px-8 md:px-36"
+	>
 		<UtilsSpinner v-if="!projectsStore.hasLoaded" />
 		<div
 			v-else-if="projectsStore.hasLoaded && projectsStore.projects == null"
@@ -14,7 +17,7 @@
 			No momento não há projetos... Aguarde enquanto trabalho em novos!
 		</div>
 		<div v-else>
-			<Carousel class="max-w-2xl">
+			<Carousel class="max-w-full md:max-w-2xl">
 				<CarouselContent>
 					<CarouselItem
 						v-for="project in projectsStore.projects"
@@ -24,15 +27,14 @@
 						<UtilsProject :project="project" />
 					</CarouselItem>
 				</CarouselContent>
-				<CarouselPrevious class="scale-150" />
-				<CarouselNext class="scale-150" />
+				<CarouselPrevious class="scale-150 absolute left-2" />
+				<CarouselNext class="scale-150 absolute right-2" />
 			</Carousel>
 		</div>
 	</UtilsContainer>
 </template>
 
 <script setup lang="ts">
-import { useProjectsStore } from '~/stores/projectsStore'
 const projectsStore = useProjectsStore()
 
 const { t } = useI18n()

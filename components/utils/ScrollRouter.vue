@@ -11,20 +11,21 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted, ref } from 'vue'
 const route = useRoute()
+const sidebarStore = useSidebarStore()
 const { navigateToRoute } = useNavigation()
-let isThrottled = false
 
-let touchStartX = 0
+let isThrottled = false
 let touchStartY = 0
-let touchEndX = 0
 let touchEndY = 0
 
+const isMobile = ref(false)
+
 const handleScroll = (event: WheelEvent) => {
-	if (isThrottled) return
+	if (isThrottled || (sidebarStore.isSidebarOpen && isMobile.value)) return
 
 	let routeName = route.name as string
-
 	const underscoreIndex = routeName.indexOf('_')
 
 	if (underscoreIndex >= 0) {
@@ -56,20 +57,18 @@ const handleScroll = (event: WheelEvent) => {
 
 const handleTouchStart = (event: TouchEvent) => {
 	const touch = event.touches[0]
-	touchStartX = touch.clientX
 	touchStartY = touch.clientY
 }
 
 const handleTouchEnd = (event: TouchEvent) => {
 	const touch = event.changedTouches[0]
-	touchEndX = touch.clientX
 	touchEndY = touch.clientY
 
 	handleGesture()
 }
 
 const handleGesture = () => {
-	if (isThrottled) return
+	if (isThrottled || (sidebarStore.isSidebarOpen && isMobile.value)) return
 
 	const deltaY = touchEndY - touchStartY
 
@@ -104,4 +103,23 @@ const handleGesture = () => {
 		}
 	}
 }
+
+const updateMobileState = () => {
+	if (typeof window !== 'undefined') {
+		const isCurrentlyMobile = window.matchMedia('(max-width: 767px)').matches
+		if (!isCurrentlyMobile) {
+			sidebarStore.isSidebarOpen = false
+		}
+		isMobile.value = isCurrentlyMobile
+	}
+}
+
+onMounted(() => {
+	updateMobileState()
+	window.addEventListener('resize', updateMobileState)
+})
+
+onBeforeUnmount(() => {
+	window.removeEventListener('resize', updateMobileState)
+})
 </script>
