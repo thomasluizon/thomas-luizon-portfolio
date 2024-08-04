@@ -8,7 +8,7 @@ body {
 }
 
 body {
-	@apply transition-colors duration-200 overflow-hidden;
+	@apply transition-colors duration-200 overflow-hidden h-dvh;
 }
 
 .sidebar-section {

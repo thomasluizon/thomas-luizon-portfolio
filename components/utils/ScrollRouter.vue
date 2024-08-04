@@ -3,7 +3,7 @@
 		@wheel="handleScroll"
 		@touchstart="handleTouchStart"
 		@touchend="handleTouchEnd"
-		class="h-screen flex overflow-hidden"
+		class="h-dvh flex overflow-hidden"
 	>
 		<UtilsScrollIndicator />
 		<slot />
