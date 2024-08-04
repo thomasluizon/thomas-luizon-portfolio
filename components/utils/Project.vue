@@ -1,16 +1,30 @@
 <template>
-	<div class="h-full flex flex-col items-center gap-6">
-		<div class="image-container">
+	<div class="h-full flex flex-col items-center gap-6 max-[500px]:gap-4 p-4">
+		<div
+			class="image-container w-full max-w-md max-[500px]:w-full max-[500px]:max-w-full"
+		>
 			<img
 				:src="project.img"
 				alt="Imagem de um projeto"
 				class="project-img"
 			/>
 		</div>
-		<p class="text-center">{{ project.desc }}</p>
-		<div class="flex items-center gap-4">
-			<a :href="project.repo" class="project-btn" target="_blank">Repo</a>
-			<a :href="project.demo" class="project-btn" target="_blank">Demo</a>
+		<p class="text-center max-[500px]:text-sm">{{ project.desc }}</p>
+		<div
+			class="flex items-center gap-4 max-[500px]:gap-2 max-[500px]:flex-col"
+		>
+			<a
+				:href="project.repo"
+				class="project-btn w-full text-center max-[500px]:w-auto"
+				target="_blank"
+				>Repo</a
+			>
+			<a
+				:href="project.demo"
+				class="project-btn w-full text-center max-[500px]:w-auto"
+				target="_blank"
+				>Demo</a
+			>
 		</div>
 	</div>
 </template>

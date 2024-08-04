@@ -4,8 +4,12 @@
 		class="w-full flex flex-col justify-center items-center gap-4"
 	>
 		<h2 class="text-2xl">{{ $t('contactMe') }}</h2>
-		<form :action="apiUrl" method="POST" class="flex flex-col gap-2">
-			<div class="flex gap-2">
+		<form
+			:action="apiUrl"
+			method="POST"
+			class="flex flex-col gap-2 w-full max-w-md"
+		>
+			<div class="flex gap-2 max-[580px]:flex-col">
 				<input
 					type="email"
 					name="email"
