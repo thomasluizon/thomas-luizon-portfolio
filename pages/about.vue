@@ -3,7 +3,7 @@
 		<div class="flex flex-col gap-4">
 			<h3 class="font-bold">{{ $t('whoAmI') }}</h3>
 			<h2 class="text-3xl">{{ $t('aboutMe') }}</h2>
-			<p class="max-w-lg text-justify">
+			<p class="max-w-lg text-justify max-[375px]:text-sm">
 				{{ $t('aboutText') }}
 			</p>
 		</div>
