@@ -1,7 +1,7 @@
 <template>
 	<div class="fixed top-0 right-0 w-2 h-full">
 		<div
-			class="absolute w-full h-1/4 bg-slate-700 dark:bg-slate-100 transition-all duration-500 ease rounded-md cursor-pointer hover:contrast-50"
+			class="absolute z-50 w-full h-1/4 bg-slate-700 dark:bg-slate-100 transition-all duration-500 ease rounded-md cursor-pointer hover:contrast-50"
 			:style="{ top: indicatorPosition + '%' }"
 			@mousedown="handleMouseDown"
 		></div>

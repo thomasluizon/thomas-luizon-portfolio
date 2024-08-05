@@ -11,7 +11,6 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
 const route = useRoute()
 const sidebarStore = useSidebarStore()
 const { navigateToRoute } = useNavigation()
