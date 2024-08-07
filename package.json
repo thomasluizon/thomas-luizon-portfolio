@@ -1,5 +1,17 @@
 {
-	"name": "nuxt-app",
+	"name": "thomas-luizon-portfolio",
+	"version": "1.0.0",
+	"description": "My portfolio.",
+	"author": "Thomas Luizon <thomaslrgregorio@gmail.com>",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/thomasluizon/thomas-luizon-portfolio"
+	},
+	"bugs": {
+		"url": "https://github.com/thomasluizon/thomas-luizon-portfolio/issues"
+	},
+	"homepage": "https://thomas-luizon-portfolio.vercel.app",
 	"private": true,
 	"type": "module",
 	"scripts": {
