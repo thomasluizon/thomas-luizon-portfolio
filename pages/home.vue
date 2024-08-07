@@ -12,6 +12,10 @@
 				src="/images/profile.png"
 				:alt="t('profileAlt')"
 				class="rounded-full"
+				:placeholder="500"
+				sizes="100vw sm:50vw md:400px"
+				width="500px"
+				height="500px"
 			/>
 		</div>
 	</UtilsContainer>
