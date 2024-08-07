@@ -7,7 +7,7 @@
 			class="dark:invert cursor-pointer"
 			@click="() => (isDark = false)"
 		/>
-		<Switch v-model:checked="isDark" />
+		<Switch :aria-label="t('switchButton')" v-model:checked="isDark" />
 		<img
 			:src="moon"
 			:alt="t('moonAlt')"

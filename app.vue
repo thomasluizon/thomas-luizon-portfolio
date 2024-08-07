@@ -4,17 +4,6 @@
 	</NuxtLayout>
 </template>
 
-<script setup lang="ts">
-const { t } = useI18n()
-
-const title = `${t('portfolio')} - Thomas Luizon`
-
-useHead({
-	title,
-	meta: [{ name: 'description', content: title }],
-})
-</script>
-
 <style>
 .rotate-enter-active,
 .rotate-leave-active {

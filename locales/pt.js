@@ -13,6 +13,7 @@ export default {
 	// Sidebar
 	portfolio: 'Portfólio',
 	language: 'Idioma',
+	switchButton: 'Botão de alterar tema',
 
 	// Home
 	fullStackDev: 'Desenvolvedor Full-Stack.',

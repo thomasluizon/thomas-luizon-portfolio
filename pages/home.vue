@@ -19,8 +19,4 @@ import icon from '~/assets/images/profile.png'
 const { t } = useI18n()
 
 const name = 'Thomas Luizon'
-
-useHead({
-	title: `${t('portfolio')} - ${name}`,
-})
 </script>

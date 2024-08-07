@@ -14,6 +14,7 @@ export default defineNuxtConfig({
 		vueI18n: './i18n.config.ts',
 		locales: ['en', 'pt'],
 		defaultLocale: 'en',
+		baseUrl: 'https://thomas-luizon-portfolio.vercel.app',
 		detectBrowserLanguage: {
 			useCookie: true,
 			cookieKey: 'i18n_redirected',
