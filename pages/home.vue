@@ -8,14 +8,16 @@
 			<p class="text-lg text-center">{{ $t('fullStackDev') }}</p>
 		</div>
 		<div class="max-w-sm">
-			<img :src="icon" :alt="t('profileAlt')" class="rounded-full" />
+			<NuxtImg
+				src="/images/profile.png"
+				:alt="t('profileAlt')"
+				class="rounded-full"
+			/>
 		</div>
 	</UtilsContainer>
 </template>
 
 <script setup lang="ts">
-import icon from '~/assets/images/profile.png'
-
 const { t } = useI18n()
 
 const name = 'Thomas Luizon'

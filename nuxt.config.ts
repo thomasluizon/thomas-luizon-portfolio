@@ -6,6 +6,7 @@ export default defineNuxtConfig({
 		'@nuxtjs/google-fonts',
 		'@nuxtjs/color-mode',
 		'@pinia/nuxt',
+		'@nuxt/image',
 	],
 	app: {
 		pageTransition: { name: 'rotate', mode: 'out-in', appear: true },
