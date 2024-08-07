@@ -2,7 +2,7 @@
 
 ![GitHub](https://img.shields.io/github/license/thomasluizon/thomas-portfolio?color=purple&logo=github)
 
-Welcome to my personal portfolio website. This project showcases my skills, projects, and experiences as a full-stack developer.
+🖥️ Welcome to my personal portfolio website. This project showcases my skills, projects, and experiences as a full-stack developer.
 
 ## Table of Contents
 
