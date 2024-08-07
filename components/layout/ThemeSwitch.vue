@@ -6,9 +6,7 @@
 			width="30px"
 			class="dark:invert cursor-pointer"
 			@click="() => (isDark = false)"
-			:placeholder="500"
-			sizes="100vw sm:50vw md:400px"
-			height="30px"
+			preset="default"
 		/>
 		<Switch :aria-label="t('switchButton')" v-model:checked="isDark" />
 		<NuxtImg
@@ -17,9 +15,7 @@
 			width="30px"
 			class="dark:invert cursor-pointer"
 			@click="() => (isDark = true)"
-			:placeholder="500"
-			sizes="100vw sm:50vw md:400px"
-			height="30px"
+			preset="default"
 		/>
 	</div>
 </template>

@@ -11,6 +11,29 @@ export default defineNuxtConfig({
 	app: {
 		pageTransition: { name: 'rotate', mode: 'out-in', appear: true },
 	},
+	image: {
+		domains: ['github.com'],
+		screens: {
+			xs: 320,
+			sm: 640,
+			md: 768,
+			lg: 1024,
+			xl: 1280,
+			xxl: 1536,
+		},
+		presets: {
+			default: {
+				modifiers: {
+					format: 'webp',
+					quality: 80,
+					placeholder: 500,
+					sizes: '100vw sm:50vw md:400px',
+				},
+			},
+		},
+		format: ['webp'],
+		quality: 80,
+	},
 	i18n: {
 		vueI18n: './i18n.config.ts',
 		locales: ['en', 'pt'],

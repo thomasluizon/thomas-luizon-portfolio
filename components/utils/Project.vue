@@ -7,10 +7,7 @@
 				:src="project.img"
 				alt="Imagem de um projeto"
 				class="project-img"
-				:placeholder="500"
-				sizes="100vw sm:50vw md:400px"
-				width="500px"
-				height="500px"
+				preset="default"
 			/>
 		</div>
 		<p class="text-center max-[500px]:text-sm">{{ project.desc }}</p>
