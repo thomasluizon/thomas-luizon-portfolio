@@ -3,10 +3,14 @@
 		<div
 			class="image-container w-full max-w-md max-[500px]:w-full max-[500px]:max-w-full"
 		>
-			<img
+			<NuxtImg
 				:src="project.img"
 				alt="Imagem de um projeto"
 				class="project-img"
+				:placeholder="500"
+				sizes="100vw sm:50vw md:400px"
+				width="500px"
+				height="500px"
 			/>
 		</div>
 		<p class="text-center max-[500px]:text-sm">{{ project.desc }}</p>

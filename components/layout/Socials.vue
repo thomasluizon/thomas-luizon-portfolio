@@ -7,20 +7,17 @@
 </template>
 
 <script setup lang="ts">
-import githubIcon from '~/assets/images/github-icon.svg'
-import linkedinIcon from '~/assets/images/linkedin-icon.svg'
-
 const config = useRuntimeConfig()
 
 const socials = [
 	{
 		url: config.public.github,
-		img: githubIcon,
+		img: '/images/github-icon.svg',
 		alt: 'GitHub',
 	},
 	{
 		url: config.public.linkedin,
-		img: linkedinIcon,
+		img: '/images/linkedin-icon.svg',
 		alt: 'LinkedIn',
 	},
 ]

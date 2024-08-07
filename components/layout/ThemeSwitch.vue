@@ -1,27 +1,30 @@
 <template>
 	<div class="flex gap-3 items-center justify-center">
-		<img
-			:src="sun"
+		<NuxtImg
+			src="/images/sun.svg"
 			:alt="t('sunAlt')"
 			width="30px"
 			class="dark:invert cursor-pointer"
 			@click="() => (isDark = false)"
+			:placeholder="500"
+			sizes="100vw sm:50vw md:400px"
+			height="30px"
 		/>
 		<Switch :aria-label="t('switchButton')" v-model:checked="isDark" />
-		<img
-			:src="moon"
+		<NuxtImg
+			src="/images/moon.svg"
 			:alt="t('moonAlt')"
 			width="30px"
 			class="dark:invert cursor-pointer"
 			@click="() => (isDark = true)"
+			:placeholder="500"
+			sizes="100vw sm:50vw md:400px"
+			height="30px"
 		/>
 	</div>
 </template>
 
 <script setup lang="ts">
-import moon from '~/assets/images/moon.svg'
-import sun from '~/assets/images/sun.svg'
-
 const { t } = useI18n()
 const colorMode = useColorMode()
 const isDark = ref(colorMode.preference == 'dark')

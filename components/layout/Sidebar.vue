@@ -52,7 +52,7 @@ const updateMobileState = () => {
 }
 
 onMounted(() => {
-	window.addEventListener('resize', updateMobileState)
+	window.addEventListener('resize', updateMobileState, { passive: true })
 })
 
 onBeforeUnmount(() => {

@@ -51,8 +51,8 @@ function navigateToRoute(index: number) {
 function handleMouseDown(event: MouseEvent) {
 	isDragging.value = true
 	lastMouseY.value = event.clientY
-	window.addEventListener('mousemove', handleMouseMove)
-	window.addEventListener('mouseup', handleMouseUp)
+	window.addEventListener('mousemove', handleMouseMove, { passive: true })
+	window.addEventListener('mouseup', handleMouseUp, { passive: true })
 	document.body.classList.add('select-none')
 }
 
