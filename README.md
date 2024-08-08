@@ -1,6 +1,6 @@
 # Portfolio
 
-![GitHub](https://img.shields.io/github/license/thomasluizon/thomas-portfolio?color=purple&logo=github)
+![GitHub](https://img.shields.io/github/license/thomasluizon/thomas-luizon-portfolio?color=purple&logo=github)
 
 🖥️ Welcome to my personal portfolio website. This project showcases my skills, projects, and experiences as a full-stack developer.
 
