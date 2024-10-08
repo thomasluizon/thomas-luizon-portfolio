@@ -8,7 +8,7 @@ export default {
 	// Image alts
 	sunAlt: 'Um desenho do sol.',
 	moonAlt: 'Um desenho da lua.',
-	profileAlt: 'Um desenho meu.',
+	profileAlt: 'Uma foto minha.',
 
 	// Sidebar
 	portfolio: 'Portfólio',
