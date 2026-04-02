@@ -8,7 +8,6 @@
 </template>
 
 <script setup lang="ts">
-const projectsStore = useProjectsStore()
 const { t, locale } = useI18n()
 
 const i18nHead = useLocaleHead({
@@ -31,11 +30,5 @@ useHead({
 			content: `Thomas Luizon - ${t('fullStackDev')}`,
 		},
 	],
-})
-
-onMounted(async () => {
-	if (!projectsStore.hasLoaded) {
-		await projectsStore.fetchProjects()
-	}
 })
 </script>
