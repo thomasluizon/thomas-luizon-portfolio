@@ -1,36 +1,49 @@
 <template>
-	<div class="h-full flex flex-col items-center gap-6 max-[500px]:gap-4 p-4">
-		<div
-			class="image-container w-full max-w-md max-[500px]:w-full max-[500px]:max-w-full"
-		>
+	<div class="flex h-full flex-col gap-6 p-2 sm:p-4">
+		<div class="image-container w-full">
 			<NuxtImg
 				:src="project.img"
-				alt="Imagem de um projeto"
+				:alt="project.alt"
 				class="project-img"
+				width="960"
+				height="600"
+				sizes="(max-width: 768px) 92vw, 760px"
 				preset="default"
 			/>
 		</div>
-		<p class="text-center max-[500px]:text-sm">{{ project.desc }}</p>
-		<div
-			class="flex items-center gap-4 max-[500px]:gap-2 max-[500px]:flex-col"
-		>
+		<div class="space-y-3">
+			<h2 class="text-2xl font-semibold tracking-tight">
+				{{ project.title }}
+			</h2>
+			<p class="text-sm leading-7 text-muted-foreground sm:text-base">
+				{{ project.desc }}
+			</p>
+		</div>
+		<div class="mt-auto flex flex-wrap gap-3">
 			<a
 				:href="project.repo"
-				class="project-btn w-full text-center max-[500px]:w-auto"
+				class="project-btn"
 				target="_blank"
-				>Repo</a
+				rel="noopener noreferrer"
 			>
+				{{ t('projectRepo') }}
+			</a>
 			<a
+				v-if="project.demo"
 				:href="project.demo"
-				class="project-btn w-full text-center max-[500px]:w-auto"
+				class="project-btn"
 				target="_blank"
-				>Demo</a
+				rel="noopener noreferrer"
 			>
+				{{ t('projectDemo') }}
+			</a>
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
+const { t } = useI18n()
+
 const props = defineProps<{
 	project: Project
 }>()
@@ -40,14 +53,14 @@ const project = props.project
 
 <style scoped>
 .image-container {
-	@apply w-1/2 max-h-[500px] overflow-hidden rounded-2xl;
+	@apply overflow-hidden rounded-[1.75rem] border border-border/70 bg-card/80 shadow-lg;
 }
 
 .project-img {
-	@apply w-full h-full object-cover;
+	@apply aspect-[16/10] w-full object-cover;
 }
 
 .project-btn {
-	@apply inline-block px-4 py-2 border rounded-md border-slate-900 dark:border-slate-50 hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors duration-500;
+	@apply inline-flex items-center justify-center rounded-full border border-border/70 bg-background/80 px-4 py-2 text-sm font-medium transition-colors duration-200 hover:border-primary/60 hover:bg-accent hover:text-accent-foreground;
 }
 </style>

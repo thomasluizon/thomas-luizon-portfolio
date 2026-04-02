@@ -1,99 +1,37 @@
 <template>
-	<div class="fixed top-0 right-0 w-2 h-full">
-		<div
-			class="absolute z-50 w-full h-1/4 bg-slate-700 dark:bg-slate-100 transition-all duration-500 ease rounded-md cursor-pointer hover:contrast-50"
-			:style="{ top: indicatorPosition + '%' }"
-			@mousedown="handleMouseDown"
-		></div>
-	</div>
+	<nav
+		:aria-label="t('sectionNavigation')"
+		class="pointer-events-none fixed right-4 top-1/2 z-30 hidden -translate-y-1/2 md:block"
+	>
+		<ul
+			class="pointer-events-auto flex flex-col gap-3 rounded-full border border-border/70 bg-background/75 p-2 shadow-lg backdrop-blur"
+		>
+			<li v-for="routeName in routes" :key="routeName">
+				<button
+					type="button"
+					class="group flex h-4 w-4 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+					:aria-current="currentRoute === routeName ? 'page' : undefined"
+					:aria-label="t(routeName)"
+					@click="navigateToRoute(routeName)"
+				>
+					<span
+						class="h-2.5 w-2.5 rounded-full bg-muted-foreground/40 transition-all duration-200"
+						:class="
+							currentRoute === routeName
+								? 'scale-125 bg-primary'
+								: 'group-hover:bg-primary/60'
+						"
+					/>
+				</button>
+			</li>
+		</ul>
+	</nav>
 </template>
 
 <script setup lang="ts">
 const route = useRoute()
-const router = useRouter()
-const localePath = useLocalePath()
+const { t } = useI18n()
+const { navigateToRoute } = useNavigation()
 
-const routeName = ref('')
-const lastMouseY = ref(0)
-const isDragging = ref(false)
-const isThrottled = ref(false)
-
-const indicatorHeight = 25
-
-const indicatorPosition = computed(() => {
-	const routeIndex = routeName.value ? routes.indexOf(routeName.value) : -1
-	return routeIndex >= 0
-		? (routeIndex / (routes.length - 1)) * (100 - indicatorHeight)
-		: 0
-})
-
-function updateRouteName() {
-	if (route.name) {
-		const underscoreIndex = (route.name as string).indexOf('_')
-		if (underscoreIndex >= 0) {
-			routeName.value = (route.name as string).substring(0, underscoreIndex)
-		} else {
-			routeName.value = route.name as string
-		}
-	} else {
-		routeName.value = ''
-	}
-}
-
-function navigateToRoute(index: number) {
-	if (index >= 0 && index < routes.length) {
-		const targetRoute = routes[index]
-		const targetRoutePath = localePath(targetRoute)
-		router.push(targetRoutePath)
-	}
-}
-
-function handleMouseDown(event: MouseEvent) {
-	isDragging.value = true
-	lastMouseY.value = event.clientY
-	window.addEventListener('mousemove', handleMouseMove, { passive: true })
-	window.addEventListener('mouseup', handleMouseUp, { passive: true })
-	document.body.classList.add('select-none')
-}
-
-function handleMouseMove(event: MouseEvent) {
-	if (isDragging.value) {
-		if (event.buttons === 0) {
-			handleMouseUp()
-			return
-		}
-
-		if (isThrottled.value) return
-
-		const deltaY = event.clientY - lastMouseY.value
-
-		const currentRouteIndex = routes.indexOf(routeName.value)
-		if (deltaY > 0 && currentRouteIndex < routes.length - 1) {
-			isThrottled.value = true
-			setTimeout(() => {
-				isThrottled.value = false
-			}, 500)
-			navigateToRoute(currentRouteIndex + 1)
-		} else if (deltaY < 0 && currentRouteIndex > 0) {
-			isThrottled.value = true
-			setTimeout(() => {
-				isThrottled.value = false
-			}, 500)
-			navigateToRoute(currentRouteIndex - 1)
-		}
-
-		lastMouseY.value = event.clientY
-	}
-}
-
-function handleMouseUp() {
-	isDragging.value = false
-	window.removeEventListener('mousemove', handleMouseMove)
-	window.removeEventListener('mouseup', handleMouseUp)
-	document.body.classList.remove('select-none')
-}
-
-updateRouteName()
-
-watch(() => route.name, updateRouteName)
+const currentRoute = computed(() => getRouteKey(route.name))
 </script>

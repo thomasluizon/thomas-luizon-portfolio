@@ -1,1 +1,3 @@
 User-agent: *
+Allow: /
+Sitemap: https://thomas-luizon-portfolio.vercel.app/sitemap.xml
