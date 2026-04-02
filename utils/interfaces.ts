@@ -1,4 +1,5 @@
 export interface Repository {
+	name: string
 	topics: string[]
 	html_url: string
 	homepage: string
@@ -6,8 +7,10 @@ export interface Repository {
 }
 
 export interface Project {
+	name: string
 	repo: string
 	demo: string
 	desc: string
 	img: string
+	topics: string[]
 }

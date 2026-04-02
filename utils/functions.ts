@@ -1,14 +1,6 @@
-export function useNavigation() {
-	const router = useRouter()
-	const localePath = useLocalePath()
-
-	const navigateToRoute = (index: number, routes: string[]) => {
-		if (index >= 0 && index < routes.length) {
-			const targetRoute = routes[index]
-			const targetRoutePath = localePath(targetRoute)
-			router.push(targetRoutePath)
-		}
+export function useScrollToSection() {
+	const scrollTo = (sectionId: string) => {
+		document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
 	}
-
-	return { navigateToRoute }
+	return { scrollTo }
 }

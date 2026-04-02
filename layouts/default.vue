@@ -1,11 +1,10 @@
 <template>
-	<UtilsScrollRouter>
-		<div>
-			<UtilsHamburger />
-			<LayoutSidebar />
-		</div>
-		<slot />
-	</UtilsScrollRouter>
+	<div class="min-h-screen">
+		<LayoutNavbar />
+		<main>
+			<slot />
+		</main>
+	</div>
 </template>
 
 <script setup lang="ts">
@@ -18,9 +17,8 @@ const i18nHead = useLocaleHead({
 	addSeoAttributes: true,
 })
 
-const title = `${t('portfolio')} - Thomas Luizon`
 useHead({
-	title,
+	title: `Thomas Luizon - ${t('fullStackDev')}`,
 	htmlAttrs: {
 		lang: i18nHead.value.htmlAttrs.lang || locale,
 		dir: i18nHead.value.htmlAttrs.dir,
@@ -28,7 +26,10 @@ useHead({
 	link: [...(i18nHead.value.link || [])],
 	meta: [
 		...(i18nHead.value.meta || []),
-		{ name: 'description', content: title },
+		{
+			name: 'description',
+			content: `Thomas Luizon - ${t('fullStackDev')}`,
+		},
 	],
 })
 

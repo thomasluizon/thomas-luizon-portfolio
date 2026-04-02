@@ -1,24 +1,26 @@
 <template>
-	<ul class="flex gap-3">
-		<li v-for="social in socials" :key="social.url">
-			<UtilsSocial :img="social.img" :url="social.url" :alt="social.alt" />
-		</li>
-	</ul>
+	<div class="flex items-center gap-4">
+		<a
+			v-for="social in socials"
+			:key="social.url"
+			:href="social.url"
+			target="_blank"
+			rel="noopener noreferrer"
+			class="text-muted-foreground hover:text-foreground transition-colors"
+			:aria-label="social.label"
+		>
+			<component :is="social.icon" :size="20" />
+		</a>
+	</div>
 </template>
 
 <script setup lang="ts">
+import { Github, Linkedin } from 'lucide-vue-next'
+
 const config = useRuntimeConfig()
 
 const socials = [
-	{
-		url: config.public.github,
-		img: '/images/github-icon.svg',
-		alt: 'GitHub',
-	},
-	{
-		url: config.public.linkedin,
-		img: '/images/linkedin-icon.svg',
-		alt: 'LinkedIn',
-	},
+	{ url: config.public.github, icon: Github, label: 'GitHub' },
+	{ url: config.public.linkedin, icon: Linkedin, label: 'LinkedIn' },
 ]
 </script>
