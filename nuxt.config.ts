@@ -8,9 +8,7 @@ export default defineNuxtConfig({
 		'@pinia/nuxt',
 		'@nuxt/image',
 	],
-	app: {
-		pageTransition: { name: 'rotate', mode: 'out-in', appear: true },
-	},
+	app: {},
 	image: {
 		domains: ['github.com'],
 		screens: {
@@ -47,7 +45,8 @@ export default defineNuxtConfig({
 	},
 	googleFonts: {
 		families: {
-			Poppins: true,
+			'Space Grotesk': [400, 500, 600, 700],
+			Inter: [300, 400, 500, 600],
 		},
 	},
 	shadcn: {

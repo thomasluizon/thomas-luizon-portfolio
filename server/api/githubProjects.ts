@@ -36,20 +36,14 @@ export default defineEventHandler(async event => {
 		return numA - numB
 	})
 
-	const projectArray: Project[] = []
-
-	repos.forEach(repository => {
-		const repoUrl = repository.html_url
-
-		const obj: Project = {
-			repo: repoUrl,
-			demo: repository.homepage,
-			desc: repository.description,
-			img: `${repoUrl}/blob/main/screenshot.jpeg?raw=true`,
-		}
-
-		projectArray.push(obj)
-	})
+	const projectArray: Project[] = repos.map(repository => ({
+		name: repository.name,
+		repo: repository.html_url,
+		demo: repository.homepage,
+		desc: repository.description,
+		img: `${repository.html_url}/blob/main/screenshot.jpeg?raw=true`,
+		topics: repository.topics.filter(t => !t.includes('show-portfolio')),
+	}))
 
 	return projectArray
 })

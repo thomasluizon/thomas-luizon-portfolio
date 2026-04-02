@@ -1,35 +1,23 @@
 <template>
-	<div class="flex gap-3 items-center justify-center">
-		<NuxtImg
-			src="/images/sun.svg"
-			:alt="t('sunAlt')"
-			width="30px"
-			class="dark:invert cursor-pointer"
-			@click="() => (isDark = false)"
-			preset="default"
-		/>
-		<Switch :aria-label="t('switchButton')" v-model:checked="isDark" />
-		<NuxtImg
-			src="/images/moon.svg"
-			:alt="t('moonAlt')"
-			width="30px"
-			class="dark:invert cursor-pointer"
-			@click="() => (isDark = true)"
-			preset="default"
-		/>
-	</div>
+	<button
+		class="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+		:aria-label="t('switchButton')"
+		@click="toggle"
+	>
+		<Sun v-if="isDark" :size="18" />
+		<Moon v-else :size="18" />
+	</button>
 </template>
 
 <script setup lang="ts">
+import { Sun, Moon } from 'lucide-vue-next'
+
 const { t } = useI18n()
 const colorMode = useColorMode()
-const isDark = ref(colorMode.preference == 'dark')
+const isDark = ref(colorMode.preference === 'dark')
 
-watch(isDark, () => {
-	if (isDark.value) {
-		colorMode.preference = 'dark'
-	} else {
-		colorMode.preference = 'light'
-	}
-})
+const toggle = () => {
+	isDark.value = !isDark.value
+	colorMode.preference = isDark.value ? 'dark' : 'light'
+}
 </script>

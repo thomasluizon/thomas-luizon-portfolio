@@ -1,32 +1,44 @@
 export default {
-	// Routes
+	// Navigation
 	home: 'Home',
 	about: 'About',
 	projects: 'Projects',
 	contact: 'Contact',
 
 	// Image alts
-	sunAlt: 'An image of the sun.',
-	moonAlt: 'An image of the moon.',
-	profileAlt: 'A photo of mine.',
+	profileAlt: 'A photo of Thomas Luizon.',
+	projectImageAlt: 'Screenshot of {name}',
 
-	// Sidebar
+	// Sidebar / Navbar
 	portfolio: 'Portfolio',
-	language: 'Language',
-	switchButton: 'Toggle theme button',
+	switchButton: 'Toggle theme',
 
-	// Home
-	fullStackDev: 'Full-Stack Developer.',
+	// Hero
+	fullStackDev: 'Senior Software Engineer.',
+	scrollDown: 'Scroll down',
 
 	// About
-	whoAmI: 'Who am i?',
+	whoAmI: 'Who am I?',
 	aboutMe: 'About me',
 	aboutText:
-		'With a specialization in the Microsoft ecosystem and a passion for programming, I dedicate my career to exploring new technologies. I have years of experience in software development, focusing on creating solutions that exceed expectations in performance, scalability, and usability. I value clean code principles and design patterns, ensuring code that is understandable and easy to maintain. My user-centered approach aims to deliver a fluid and intuitive experience. Driven by continuous learning and innovation, I am committed to technical excellence and prepared to tackle complex challenges, providing robust solutions that drive business success and satisfy users.',
+		'Software Engineer with over 6 years of experience, specialized in Microsoft technologies such as C#, .NET Core, ASP.NET Core, Azure, and SQL Server. I combine this strong backend foundation with solid front-end expertise using TypeScript, React, Vue.js, Next.js, and Nuxt.js to deliver complete and scalable web solutions. My experience includes designing microservices architectures, optimizing SQL databases, and building cloud-native applications on both AWS and Azure. I focus on creating robust, maintainable systems that solve real business challenges. I enjoy collaborating in cross-functional teams, mentoring developers, and continuously learning new technologies. Certified in Microsoft Azure Fundamentals (AZ-900).',
+
+	// Projects
+	projectsError: 'Failed to load projects.',
+	projectsEmpty: 'No projects available yet.',
+	viewRepo: 'Repository',
+	viewDemo: 'Live Demo',
 
 	// Contact
 	contactMe: 'Contact me',
+	letsConnect: "Let's connect",
+	emailLabel: 'Email',
+	nameLabel: 'Your name',
+	messageLabel: 'Your message',
 	name: 'Name',
 	message: 'Message',
 	send: 'Send',
+
+	// Footer
+	copyright: '{year} Thomas Luizon. All rights reserved.',
 }

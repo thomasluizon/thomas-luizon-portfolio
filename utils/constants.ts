@@ -1,1 +1,1 @@
-export const routes = ['home', 'about', 'projects', 'contact']
+export const sections = ['hero', 'about', 'projects', 'contact']
