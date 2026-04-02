@@ -5,14 +5,31 @@
 </template>
 
 <style>
-.rotate-enter-active,
-.rotate-leave-active {
-	transition: all 0.4s;
+.page-enter-active,
+.page-leave-active {
+	transition:
+		opacity 0.24s ease,
+		transform 0.24s ease,
+		filter 0.24s ease;
 }
-.rotate-enter-from,
-.rotate-leave-to {
+
+.page-enter-from,
+.page-leave-to {
 	opacity: 0;
-	transform: translateX(20%);
-	filter: grayscale(1);
+	transform: translateY(1rem);
+	filter: blur(6px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.page-enter-active,
+	.page-leave-active {
+		transition: none;
+	}
+
+	.page-enter-from,
+	.page-leave-to {
+		transform: none;
+		filter: none;
+	}
 }
 </style>

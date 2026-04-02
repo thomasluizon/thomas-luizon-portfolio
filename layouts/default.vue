@@ -1,15 +1,16 @@
 <template>
 	<UtilsScrollRouter>
-		<div>
-			<UtilsHamburger />
-			<LayoutSidebar />
+		<UtilsHamburger />
+		<LayoutSidebar />
+		<div class="flex flex-1">
+			<slot />
 		</div>
-		<slot />
 	</UtilsScrollRouter>
 </template>
 
 <script setup lang="ts">
-const projectsStore = useProjectsStore()
+const route = useRoute()
+const config = useRuntimeConfig()
 const { t, locale } = useI18n()
 
 const i18nHead = useLocaleHead({
@@ -18,23 +19,38 @@ const i18nHead = useLocaleHead({
 	addSeoAttributes: true,
 })
 
-const title = `${t('portfolio')} - Thomas Luizon`
-useHead({
-	title,
-	htmlAttrs: {
-		lang: i18nHead.value.htmlAttrs.lang || locale,
-		dir: i18nHead.value.htmlAttrs.dir,
-	},
-	link: [...(i18nHead.value.link || [])],
-	meta: [
-		...(i18nHead.value.meta || []),
-		{ name: 'description', content: title },
-	],
+const canonicalUrl = computed(() => {
+	return new URL(route.fullPath || '/home', config.public.siteUrl).toString()
 })
 
-onMounted(async () => {
-	if (!projectsStore.hasLoaded) {
-		await projectsStore.fetchProjects()
-	}
+const siteDescription = computed(() => t('siteDescription'))
+
+useHead(() => ({
+	titleTemplate: titleChunk =>
+		titleChunk
+			? `${titleChunk} | Thomas Luizon`
+			: `Thomas Luizon | ${t('portfolio')}`,
+	htmlAttrs: {
+		lang: i18nHead.value.htmlAttrs.lang || locale.value,
+		dir: i18nHead.value.htmlAttrs.dir,
+	},
+	link: [
+		...(i18nHead.value.link || []).filter(
+			(link: { rel?: string }) => link.rel !== 'canonical'
+		),
+		{ rel: 'canonical', href: canonicalUrl.value },
+	],
+	meta: [...(i18nHead.value.meta || [])],
+}))
+
+useSeoMeta({
+	description: () => siteDescription.value,
+	ogType: 'website',
+	ogSiteName: 'Thomas Luizon',
+	ogDescription: () => siteDescription.value,
+	ogUrl: () => canonicalUrl.value,
+	ogImage: () => `${config.public.siteUrl}/images/profile.png`,
+	twitterCard: 'summary_large_image',
+	twitterDescription: () => siteDescription.value,
 })
 </script>

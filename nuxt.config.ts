@@ -1,3 +1,5 @@
+const siteUrl = 'https://thomas-luizon-portfolio.vercel.app'
+
 export default defineNuxtConfig({
 	modules: [
 		'@nuxtjs/i18n',
@@ -9,7 +11,7 @@ export default defineNuxtConfig({
 		'@nuxt/image',
 	],
 	app: {
-		pageTransition: { name: 'rotate', mode: 'out-in', appear: true },
+		pageTransition: { name: 'page', mode: 'out-in', appear: true },
 	},
 	image: {
 		domains: ['github.com'],
@@ -26,8 +28,6 @@ export default defineNuxtConfig({
 				modifiers: {
 					format: 'webp',
 					quality: 80,
-					placeholder: 500,
-					sizes: '100vw sm:50vw md:400px',
 				},
 			},
 		},
@@ -38,7 +38,7 @@ export default defineNuxtConfig({
 		vueI18n: './i18n.config.ts',
 		locales: ['en', 'pt'],
 		defaultLocale: 'en',
-		baseUrl: 'https://thomas-luizon-portfolio.vercel.app',
+		baseUrl: siteUrl,
 		detectBrowserLanguage: {
 			useCookie: true,
 			cookieKey: 'i18n_redirected',
@@ -47,8 +47,10 @@ export default defineNuxtConfig({
 	},
 	googleFonts: {
 		families: {
-			Poppins: true,
+			Poppins: [400, 500, 600, 700],
 		},
+		display: 'swap',
+		preconnect: true,
 	},
 	shadcn: {
 		prefix: '',
@@ -58,12 +60,19 @@ export default defineNuxtConfig({
 	runtimeConfig: {
 		githubToken: process.env.GITHUB_TOKEN,
 		public: {
-			github: process.env.NUXT_PUBLIC_GITHUB_LINK,
-			linkedin: process.env.NUXT_PUBLIC_LINKEDIN_LINK,
-			email: process.env.NUXT_PUBLIC_EMAIL,
+			siteUrl,
+			github:
+				process.env.NUXT_PUBLIC_GITHUB_LINK ||
+				'https://github.com/thomasluizon',
+			linkedin:
+				process.env.NUXT_PUBLIC_LINKEDIN_LINK ||
+				'https://www.linkedin.com/in/thomas-luizon',
+			email:
+				process.env.NUXT_PUBLIC_EMAIL ||
+				'thomaslrgregorio@gmail.com',
 		},
 	},
-	devtools: { enabled: true },
+	devtools: { enabled: false },
 	colorMode: {
 		preference: 'dark',
 		fallback: 'system',

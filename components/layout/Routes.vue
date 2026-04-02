@@ -1,5 +1,9 @@
 <template>
-	<div class="sidebar-section gap-2">
-		<UtilsRoute v-for="route in routes" :key="route" :route="route" />
-	</div>
+	<nav :aria-label="$t('primaryNavigation')" class="w-full">
+		<ul class="sidebar-section w-full items-start gap-2">
+			<li v-for="route in routes" :key="route" class="w-full">
+				<UtilsRoute :route="route" />
+			</li>
+		</ul>
+	</nav>
 </template>
