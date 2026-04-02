@@ -55,7 +55,6 @@ export default defineNuxtConfig({
 	},
 	compatibilityDate: '2024-07-17',
 	runtimeConfig: {
-		githubToken: process.env.GITHUB_TOKEN,
 		public: {
 			github: process.env.NUXT_PUBLIC_GITHUB_LINK,
 			linkedin: process.env.NUXT_PUBLIC_LINKEDIN_LINK,

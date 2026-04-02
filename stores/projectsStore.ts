@@ -1,24 +1,20 @@
 export const useProjectsStore = defineStore('projects', () => {
-	const projects = ref<Project[] | null>(null)
-	const hasLoaded = ref(false)
-	const error = ref<string | null>(null)
+	const projects: Project[] = [
+		{
+			name: 'Orbit Landing Page',
+			repo: 'https://github.com/thomasluizon/orbit-landing-page',
+			demo: 'https://useorbit.org',
+			desc: 'Orbit - AI-Powered Habit Tracker: Full-stack productivity app with an AI assistant that learns user patterns and proactively suggests habits, routines, and optimizations.',
+			topics: ['nuxt', 'tailwindcss', 'typescript'],
+		},
+		{
+			name: 'Personal Page',
+			repo: 'https://github.com/thomasluizon/personal-page',
+			demo: 'https://thomas-personal-page.vercel.app/',
+			desc: 'A personal page showcasing a background image with links to social media profiles, built with Next.js and Tailwind CSS.',
+			topics: ['nextjs', 'react', 'tailwindcss', 'typescript'],
+		},
+	]
 
-	const fetchProjects = async () => {
-		try {
-			error.value = null
-			const response = await fetch('/api/githubProjects')
-			if (response.ok) {
-				projects.value = await response.json()
-			} else {
-				error.value = `GitHub API returned ${response.status}`
-			}
-		} catch (err) {
-			error.value = err instanceof Error ? err.message : 'Unknown error'
-			console.error('[projectsStore] Failed to fetch projects:', err)
-		} finally {
-			hasLoaded.value = true
-		}
-	}
-
-	return { projects, hasLoaded, error, fetchProjects }
+	return { projects }
 })
