@@ -6,20 +6,72 @@ interface Props {
   copy: LocaleContent;
 }
 
+interface OrbitSparkle {
+  top: string;
+  left: string;
+  small?: boolean;
+  hideMobile?: boolean;
+}
+
 const { copy } = Astro.props;
 const slides = orbitCaseStudy.assets.screens.slice(0, 3);
+const sparkles: OrbitSparkle[] = [
+  { top: "8%", left: "7%" },
+  { top: "10%", left: "56%" },
+  { top: "68%", left: "88%" },
+];
+
+const primaryOrbitDots = [
+  "--orbit-r:400px;--dot-dur:22s;--dot-delay:0s;--dot-dir:normal;--dot-size:9px;--dot-color:rgba(139,92,246,0.95);--dot-glow:rgba(139,92,246,0.8);--dot-glow2:rgba(139,92,246,0.4);--dot-pulse:2.5s;",
+  "--orbit-r:400px;--dot-dur:22s;--dot-delay:-11s;--dot-dir:normal;--dot-size:6px;--dot-color:rgba(167,139,250,0.85);--dot-glow:rgba(167,139,250,0.7);--dot-glow2:rgba(167,139,250,0.35);--dot-pulse:3.2s;",
+] as const;
+
 ---
 
 <section id="orbit" class="page-section orbit-section" data-orbit-section>
+  <div class="orbit-scene" aria-hidden="true">
+    <div class="orbit-scene__bg-layer orbit-scene__dot-grid"></div>
+    <div class="orbit-scene__bg-layer orbit-scene__glow orbit-scene__glow--primary"></div>
+    <div class="orbit-scene__bg-layer orbit-scene__glow orbit-scene__glow--secondary"></div>
+    <div class="orbit-scene__bg-layer orbit-scene__beam"></div>
+    <div class="orbit-scene__bg-layer orbit-scene__vignette"></div>
+
+    <div class="orbit-scene__ring orbit-scene__ring--primary">
+      {
+        primaryOrbitDots.map((style) => (
+          <div class="orbit-scene__orbit-dot" style={style}>
+            <div class="orbit-scene__orbit-dot-inner"></div>
+          </div>
+        ))
+      }
+    </div>
+
+    {
+      sparkles.map((sparkle) => (
+        <span
+          class={`orbit-scene__sparkle ${sparkle.small ? "orbit-scene__sparkle--sm" : ""} ${
+            sparkle.hideMobile ? "orbit-scene__sparkle--hide-mobile" : ""
+          }`}
+          style={`top:${sparkle.top};left:${sparkle.left};`}
+        ></span>
+      ))
+    }
+  </div>
+
   <div class="section-shell orbit-shell">
     <div class="orbit-topline" data-reveal>
-      <div class="section-kicker" data-copy="orbit.label">{copy.orbit.label}</div>
+      <div class="orbit-brand-lockup">
+        <img src={orbitCaseStudy.assets.logo} alt="Orbit logo" class="orbit-brand-lockup__logo" />
+        <div class="orbit-brand-lockup__copy">
+          <div class="orbit-brand-lockup__label" data-copy="orbit.label">{copy.orbit.label}</div>
+        </div>
+      </div>
       <div class="orbit-topline__links">
         <a
           href={orbitCaseStudy.url}
           target="_blank"
           rel="noreferrer noopener"
-          class="orbit-topline__link"
+          class="orbit-topline__link orbit-topline__link--primary"
           data-copy="orbit.links.website"
         >
           {copy.orbit.links.website}
@@ -28,7 +80,7 @@ const slides = orbitCaseStudy.assets.screens.slice(0, 3);
           href={orbitCaseStudy.appUrl}
           target="_blank"
           rel="noreferrer noopener"
-          class="orbit-topline__link"
+          class="orbit-topline__link orbit-topline__link--quiet"
           data-copy="orbit.links.app"
         >
           {copy.orbit.links.app}
@@ -36,41 +88,27 @@ const slides = orbitCaseStudy.assets.screens.slice(0, 3);
       </div>
     </div>
 
-    <div class="orbit-header" data-reveal>
-      <div class="orbit-header__copy">
-        <h2 class="section-title orbit-title" data-copy="orbit.title">
-          {copy.orbit.title}
-        </h2>
-        <p class="section-intro orbit-intro" data-copy="orbit.subtitle">
-          {copy.orbit.subtitle}
-        </p>
-      </div>
-      <div class="orbit-header__role">
-        <span class="orbit-role__label" data-copy="orbit.roleLabel">
-          {copy.orbit.roleLabel}
-        </span>
-        <strong class="orbit-role__value" data-copy="orbit.roleValue">
-          {copy.orbit.roleValue}
-        </strong>
-      </div>
-    </div>
-
     <div class="orbit-grid">
       <div class="orbit-copy">
+        <div class="orbit-copy__header" data-reveal>
+          <p class="section-intro orbit-intro" data-copy="orbit.subtitle">
+            {copy.orbit.subtitle}
+          </p>
+          <div class="orbit-meta">
+            <div class="orbit-header__role">
+              <span class="orbit-role__label" data-copy="orbit.roleLabel">
+                {copy.orbit.roleLabel}
+              </span>
+              <strong class="orbit-role__value" data-copy="orbit.roleValue">
+                {copy.orbit.roleValue}
+              </strong>
+            </div>
+          </div>
+        </div>
+
         <p class="orbit-copy__lede" data-copy="orbit.intro" data-reveal>
           {copy.orbit.intro}
         </p>
-
-        <dl class="orbit-stats" data-reveal>
-          {
-            copy.orbit.stats.map((item, index) => (
-              <div class="orbit-stat">
-                <dt data-copy={`orbit.stats.${index}.label`}>{item.label}</dt>
-                <dd data-copy={`orbit.stats.${index}.value`}>{item.value}</dd>
-              </div>
-            ))
-          }
-        </dl>
 
         <div class="orbit-steps">
           {
@@ -111,9 +149,9 @@ const slides = orbitCaseStudy.assets.screens.slice(0, 3);
           <div class="orbit-media__background" aria-hidden="true">
             <img src={orbitCaseStudy.assets.featureGraphic} alt="" />
           </div>
-          <div class="orbit-product-mark" data-reveal>
-            <img src={orbitCaseStudy.assets.logo} alt="Orbit logo" />
-            <ul class="orbit-product-mark__stack">
+
+          <div class="orbit-media__stack-wrap" data-reveal>
+            <ul class="orbit-stack orbit-stack--media" aria-label="Orbit technology stack">
               {orbitCaseStudy.stack.map((item) => <li>{item}</li>)}
             </ul>
           </div>

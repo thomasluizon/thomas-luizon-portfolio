@@ -65,7 +65,5 @@ export const orbitCaseStudy = {
     "TypeScript",
     "AWS",
     "React Native",
-    "Product design",
-    "AI UX",
   ],
 } as const;

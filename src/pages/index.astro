@@ -8,7 +8,6 @@ import { siteConfig } from "../data/site";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const copy = content[defaultLocale];
-const [aboutLead, ...aboutBody] = copy.about.narrative;
 ---
 
 <BaseLayout title={copy.meta.title} description={copy.meta.description}>
@@ -91,7 +90,6 @@ const [aboutLead, ...aboutBody] = copy.about.narrative;
 
         <figure class="hero-portrait" data-reveal>
           <div class="hero-portrait__frame">
-            <div class="hero-portrait__grid"></div>
             <img src="/images/profile.png" alt="Thomas Luizon" />
           </div>
         </figure>
@@ -100,21 +98,18 @@ const [aboutLead, ...aboutBody] = copy.about.narrative;
 
     <section id="about" class="page-section" data-section="about">
       <div class="section-shell about-shell">
-        <div class="section-heading section-heading--split" data-reveal>
+        <div class="section-heading" data-reveal>
           <div class="section-heading__lead">
             <span class="section-kicker" data-copy="about.label">{copy.about.label}</span>
             <h2 class="section-title" data-copy="about.title">{copy.about.title}</h2>
           </div>
-          <p class="section-intro section-heading__body" data-copy="about.narrative.0">
-            {aboutLead}
-          </p>
         </div>
 
         <div class="about-grid">
           <div class="about-narrative">
             {
-              aboutBody.map((paragraph, index) => (
-                <p data-copy={`about.narrative.${index + 1}`} data-reveal>
+              copy.about.narrative.map((paragraph, index) => (
+                <p data-copy={`about.narrative.${index}`} data-reveal>
                   {paragraph}
                 </p>
               ))
@@ -139,7 +134,7 @@ const [aboutLead, ...aboutBody] = copy.about.narrative;
 
     <section id="principles" class="page-section" data-section="principles">
       <div class="section-shell principles-shell">
-        <div class="section-heading section-heading--split" data-reveal>
+        <div class="section-heading" data-reveal>
           <div class="section-heading__lead">
             <span class="section-kicker" data-copy="principles.label">
               {copy.principles.label}
@@ -148,9 +143,6 @@ const [aboutLead, ...aboutBody] = copy.about.narrative;
               {copy.principles.title}
             </h2>
           </div>
-          <p class="section-intro section-heading__body" data-copy="principles.intro">
-            {copy.principles.intro}
-          </p>
         </div>
 
         <div class="principles-grid">
