@@ -1,0 +1,149 @@
+---
+import type { LocaleContent } from "../data/content";
+import { orbitCaseStudy } from "../data/site";
+
+interface Props {
+  copy: LocaleContent;
+}
+
+const { copy } = Astro.props;
+const slides = orbitCaseStudy.assets.screens.slice(0, 3);
+---
+
+<section id="orbit" class="page-section orbit-section" data-orbit-section>
+  <div class="section-shell orbit-shell">
+    <div class="orbit-topline" data-reveal>
+      <div class="section-kicker" data-copy="orbit.label">{copy.orbit.label}</div>
+      <div class="orbit-topline__links">
+        <a
+          href={orbitCaseStudy.url}
+          target="_blank"
+          rel="noreferrer noopener"
+          class="orbit-topline__link"
+          data-copy="orbit.links.website"
+        >
+          {copy.orbit.links.website}
+        </a>
+        <a
+          href={orbitCaseStudy.appUrl}
+          target="_blank"
+          rel="noreferrer noopener"
+          class="orbit-topline__link"
+          data-copy="orbit.links.app"
+        >
+          {copy.orbit.links.app}
+        </a>
+      </div>
+    </div>
+
+    <div class="orbit-header" data-reveal>
+      <div class="orbit-header__copy">
+        <h2 class="section-title orbit-title" data-copy="orbit.title">
+          {copy.orbit.title}
+        </h2>
+        <p class="section-intro orbit-intro" data-copy="orbit.subtitle">
+          {copy.orbit.subtitle}
+        </p>
+      </div>
+      <div class="orbit-header__role">
+        <span class="orbit-role__label" data-copy="orbit.roleLabel">
+          {copy.orbit.roleLabel}
+        </span>
+        <strong class="orbit-role__value" data-copy="orbit.roleValue">
+          {copy.orbit.roleValue}
+        </strong>
+      </div>
+    </div>
+
+    <div class="orbit-grid">
+      <div class="orbit-copy">
+        <p class="orbit-copy__lede" data-copy="orbit.intro" data-reveal>
+          {copy.orbit.intro}
+        </p>
+
+        <dl class="orbit-stats" data-reveal>
+          {
+            copy.orbit.stats.map((item, index) => (
+              <div class="orbit-stat">
+                <dt data-copy={`orbit.stats.${index}.label`}>{item.label}</dt>
+                <dd data-copy={`orbit.stats.${index}.value`}>{item.value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+
+        <div class="orbit-steps">
+          {
+            copy.orbit.steps.map((step, index) => (
+              <article
+                class={`orbit-step ${index === 0 ? "is-active" : ""}`}
+                data-orbit-step
+                data-orbit-index={index}
+                data-reveal
+                tabindex="0"
+              >
+                <span
+                  class="orbit-step__label"
+                  data-copy={`orbit.steps.${index}.label`}
+                >
+                  {step.label}
+                </span>
+                <h3
+                  class="orbit-step__title"
+                  data-copy={`orbit.steps.${index}.title`}
+                >
+                  {step.title}
+                </h3>
+                <p
+                  class="orbit-step__body"
+                  data-copy={`orbit.steps.${index}.body`}
+                >
+                  {step.body}
+                </p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="orbit-media">
+        <div class="orbit-media__sticky">
+          <div class="orbit-media__background" aria-hidden="true">
+            <img src={orbitCaseStudy.assets.featureGraphic} alt="" />
+          </div>
+          <div class="orbit-product-mark" data-reveal>
+            <img src={orbitCaseStudy.assets.logo} alt="Orbit logo" />
+            <ul class="orbit-product-mark__stack">
+              {orbitCaseStudy.stack.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+
+          <div class="orbit-device" data-reveal>
+            <div class="orbit-device__button orbit-device__button--left-top"></div>
+            <div class="orbit-device__button orbit-device__button--left-bottom"></div>
+            <div class="orbit-device__button orbit-device__button--right"></div>
+            <div class="orbit-device__frame">
+              <div class="orbit-device__notch" aria-hidden="true">
+                <span></span>
+                <span></span>
+              </div>
+              <div class="orbit-device__screen">
+                {
+                  slides.map((screen, index) => (
+                    <img
+                      src={screen.image}
+                      alt={`Orbit interface preview ${index + 1}`}
+                      class={`orbit-device__slide ${index === 0 ? "is-active" : ""}`}
+                      data-orbit-slide
+                      data-orbit-slide-index={index}
+                    />
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

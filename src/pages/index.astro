@@ -1,0 +1,202 @@
+---
+import ContactForm from "../components/ContactForm.astro";
+import LanguageSwitcher from "../components/LanguageSwitcher.astro";
+import OrbitShowcase from "../components/OrbitShowcase.astro";
+import SocialLinks from "../components/SocialLinks.astro";
+import { content, defaultLocale } from "../data/content";
+import { siteConfig } from "../data/site";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const copy = content[defaultLocale];
+const [aboutLead, ...aboutBody] = copy.about.narrative;
+---
+
+<BaseLayout title={copy.meta.title} description={copy.meta.description}>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <header class="site-header" data-site-header>
+    <div class="site-header__inner">
+      <a href="#home" class="brand-mark" aria-label="Thomas Luizon home">
+        <span class="brand-mark__copy">
+          <strong>{siteConfig.name}</strong>
+          <span>{siteConfig.role}</span>
+        </span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#about" data-nav-link="about" data-copy="nav.about">{copy.nav.about}</a>
+        <a href="#principles" data-nav-link="principles" data-copy="nav.principles">
+          {copy.nav.principles}
+        </a>
+        <a href="#orbit" data-nav-link="orbit" data-copy="nav.orbit">{copy.nav.orbit}</a>
+        <a href="#contact" data-nav-link="contact" data-copy="nav.contact">
+          {copy.nav.contact}
+        </a>
+      </nav>
+
+      <div class="site-header__actions">
+        <SocialLinks className="site-header__socials" />
+        <LanguageSwitcher />
+        <a href="#contact" class="header-cta" data-copy="nav.workTogether">
+          {copy.nav.workTogether}
+        </a>
+        <button
+          class="menu-toggle"
+          type="button"
+          data-menu-toggle
+          aria-expanded="false"
+          data-copy-aria="nav.menu"
+          aria-label={copy.nav.menu}
+        >
+          <span data-menu-label data-copy="nav.menu">{copy.nav.menu}</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-nav" data-mobile-nav hidden>
+    <nav class="mobile-nav__panel" aria-label="Mobile">
+      <a href="#about" data-copy="nav.about">{copy.nav.about}</a>
+      <a href="#principles" data-copy="nav.principles">{copy.nav.principles}</a>
+      <a href="#orbit" data-copy="nav.orbit">{copy.nav.orbit}</a>
+      <a href="#contact" data-copy="nav.contact">{copy.nav.contact}</a>
+      <div class="mobile-nav__social">
+        <SocialLinks includeEmail={true} />
+      </div>
+    </nav>
+  </div>
+
+  <main id="main-content">
+    <section id="home" class="page-section hero-section" data-section="home">
+      <div class="section-shell hero-shell">
+        <div class="hero-copy">
+          <p class="section-kicker" data-copy="hero.eyebrow" data-hero-line>
+            {copy.hero.eyebrow}
+          </p>
+          <h1 class="hero-title" data-copy="hero.title" data-hero-line>
+            {copy.hero.title}
+          </h1>
+          <p class="hero-summary" data-copy="hero.summary" data-hero-line>
+            {copy.hero.summary}
+          </p>
+          <div class="hero-actions" data-hero-line>
+            <a href="#contact" class="primary-button" data-copy="hero.primaryCta">
+              {copy.hero.primaryCta}
+            </a>
+            <a href="#orbit" class="secondary-button" data-copy="hero.secondaryCta">
+              {copy.hero.secondaryCta}
+            </a>
+          </div>
+        </div>
+
+        <figure class="hero-portrait" data-reveal>
+          <div class="hero-portrait__frame">
+            <div class="hero-portrait__grid"></div>
+            <img src="/images/profile.png" alt="Thomas Luizon" />
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <section id="about" class="page-section" data-section="about">
+      <div class="section-shell about-shell">
+        <div class="section-heading section-heading--split" data-reveal>
+          <div class="section-heading__lead">
+            <span class="section-kicker" data-copy="about.label">{copy.about.label}</span>
+            <h2 class="section-title" data-copy="about.title">{copy.about.title}</h2>
+          </div>
+          <p class="section-intro section-heading__body" data-copy="about.narrative.0">
+            {aboutLead}
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-narrative">
+            {
+              aboutBody.map((paragraph, index) => (
+                <p data-copy={`about.narrative.${index + 1}`} data-reveal>
+                  {paragraph}
+                </p>
+              ))
+            }
+          </div>
+
+          <div class="about-capabilities" data-reveal>
+            <span class="about-capabilities__label" data-copy="about.capabilityLabel">
+              {copy.about.capabilityLabel}
+            </span>
+            <ul class="about-capabilities__list">
+              {
+                copy.about.capabilities.map((item, index) => (
+                  <li data-copy={`about.capabilities.${index}`}>{item}</li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="principles" class="page-section" data-section="principles">
+      <div class="section-shell principles-shell">
+        <div class="section-heading section-heading--split" data-reveal>
+          <div class="section-heading__lead">
+            <span class="section-kicker" data-copy="principles.label">
+              {copy.principles.label}
+            </span>
+            <h2 class="section-title" data-copy="principles.title">
+              {copy.principles.title}
+            </h2>
+          </div>
+          <p class="section-intro section-heading__body" data-copy="principles.intro">
+            {copy.principles.intro}
+          </p>
+        </div>
+
+        <div class="principles-grid">
+          {
+            copy.principles.items.map((item, index) => (
+              <article class="principle-item" data-reveal>
+                <h3 data-copy={`principles.items.${index}.title`}>{item.title}</h3>
+                <p data-copy={`principles.items.${index}.body`}>{item.body}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <OrbitShowcase copy={copy} />
+
+    <section id="contact" class="page-section contact-section" data-section="contact">
+      <div class="section-shell contact-shell">
+        <div class="contact-copy" data-reveal>
+          <span class="section-kicker" data-copy="contact.label">{copy.contact.label}</span>
+          <h2 class="section-title" data-copy="contact.title">{copy.contact.title}</h2>
+          <p class="section-intro" data-copy="contact.body">{copy.contact.body}</p>
+
+          <div class="contact-direct">
+            <span data-copy="contact.emailLabel">{copy.contact.emailLabel}</span>
+            <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+          </div>
+
+          <SocialLinks includeEmail={true} className="contact-socials" />
+        </div>
+
+        <div class="contact-form-wrap" data-reveal>
+          <ContactForm copy={copy} />
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <p class="site-footer__status" data-copy="footer.status">{copy.footer.status}</p>
+      <div class="site-footer__meta">
+        <span data-copy="footer.rights">{copy.footer.rights}</span>
+        <span data-copy="footer.builtWith">{copy.footer.builtWith}</span>
+      </div>
+    </div>
+  </footer>
+</BaseLayout>

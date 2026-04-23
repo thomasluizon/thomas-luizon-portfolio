@@ -1,0 +1,64 @@
+---
+import type { LocaleContent } from "../data/content";
+import { siteConfig } from "../data/site";
+
+interface Props {
+  copy: LocaleContent;
+}
+
+const { copy } = Astro.props;
+---
+
+<form
+  class="contact-form"
+  action={siteConfig.formAction}
+  method="POST"
+  data-contact-form
+>
+  <input type="text" name="_honey" class="contact-form__trap" tabindex="-1" autocomplete="off" />
+  <input type="hidden" name="_subject" value={siteConfig.contactSubject} />
+
+  <label class="contact-field">
+    <span data-copy="contact.form.name">{copy.contact.form.name}</span>
+    <input
+      type="text"
+      name="name"
+      required
+      data-copy-placeholder="contact.form.namePlaceholder"
+      placeholder={copy.contact.form.namePlaceholder}
+      autocomplete="name"
+    />
+  </label>
+
+  <label class="contact-field">
+    <span data-copy="contact.form.email">{copy.contact.form.email}</span>
+    <input
+      type="email"
+      name="email"
+      required
+      data-copy-placeholder="contact.form.emailPlaceholder"
+      placeholder={copy.contact.form.emailPlaceholder}
+      autocomplete="email"
+    />
+  </label>
+
+  <label class="contact-field">
+    <span data-copy="contact.form.message">{copy.contact.form.message}</span>
+    <textarea
+      name="message"
+      rows="6"
+      required
+      data-copy-placeholder="contact.form.messagePlaceholder"
+      placeholder={copy.contact.form.messagePlaceholder}
+    ></textarea>
+  </label>
+
+  <div class="contact-form__footer">
+    <button class="contact-submit" type="submit">
+      <span data-submit-label data-copy="contact.form.submit">
+        {copy.contact.form.submit}
+      </span>
+    </button>
+    <p class="contact-status" data-contact-status aria-live="polite"></p>
+  </div>
+</form>

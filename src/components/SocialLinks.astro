@@ -1,0 +1,53 @@
+---
+import { siteConfig } from "../data/site";
+
+interface Props {
+  className?: string;
+  includeEmail?: boolean;
+}
+
+const { className = "", includeEmail = false } = Astro.props;
+const links = siteConfig.socialLinks.filter(
+  (link) => includeEmail || link.label !== "Email",
+);
+---
+
+<div class={`social-links ${className}`.trim()}>
+  {
+    links.map((link) => (
+      <a
+        href={link.href}
+        class="social-links__item"
+        target={link.href.startsWith("http") ? "_blank" : undefined}
+        rel={link.href.startsWith("http") ? "noreferrer noopener" : undefined}
+        aria-label={link.label}
+      >
+        {link.label === "GitHub" && (
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M12 1.5a10.5 10.5 0 0 0-3.32 20.46c.52.09.7-.22.7-.5v-1.93c-2.84.62-3.44-1.2-3.44-1.2-.47-1.18-1.13-1.49-1.13-1.49-.93-.64.07-.63.07-.63 1.02.08 1.56 1.05 1.56 1.05.92 1.56 2.41 1.11 3 .85.09-.66.36-1.11.65-1.36-2.26-.26-4.63-1.13-4.63-5.05 0-1.12.4-2.03 1.05-2.74-.11-.26-.46-1.31.1-2.72 0 0 .86-.28 2.82 1.05a9.7 9.7 0 0 1 5.14 0c1.95-1.33 2.81-1.05 2.81-1.05.57 1.41.22 2.46.11 2.72.65.71 1.04 1.62 1.04 2.74 0 3.93-2.38 4.78-4.65 5.03.36.31.69.93.69 1.88v2.79c0 .28.18.6.71.49A10.5 10.5 0 0 0 12 1.5Z"
+            />
+          </svg>
+        )}
+        {link.label === "LinkedIn" && (
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M6.94 8.25H3.56V21h3.38V8.25Zm.22-4.2A1.98 1.98 0 0 0 5.18 2 1.98 1.98 0 0 0 3.2 4.05 1.98 1.98 0 0 0 5.18 6.1a1.98 1.98 0 0 0 1.98-2.05ZM21 13.12c0-3.07-1.61-5.16-4.56-5.16-1.35 0-2.35.74-2.74 1.45v-1.16H10.3c.05.77 0 12.75 0 12.75h3.39v-7.11c0-.38.03-.76.14-1.03.3-.75.99-1.53 2.15-1.53 1.51 0 2.11 1.16 2.11 2.85V21H21v-7.88Z"
+            />
+          </svg>
+        )}
+        {link.label === "Email" && (
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              fill="currentColor"
+              d="M3.75 5.25h16.5A1.5 1.5 0 0 1 21.75 6.75v10.5a1.5 1.5 0 0 1-1.5 1.5H3.75a1.5 1.5 0 0 1-1.5-1.5V6.75a1.5 1.5 0 0 1 1.5-1.5Zm0 1.62v.18l8.25 5.47 8.25-5.47v-.18H3.75Zm16.5 10.26v-8.18l-7.84 5.19a.76.76 0 0 1-.82 0L3.75 8.95v8.18h16.5Z"
+            />
+          </svg>
+        )}
+        <span class="social-links__text">{link.label}</span>
+      </a>
+    ))
+  }
+</div>

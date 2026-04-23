@@ -4,6 +4,8 @@
 .nitro
 .cache
 dist
+.astro
+.vite
 node_modules
 logs
 *.log
@@ -13,3 +15,5 @@ logs
 .env
 .env.*
 !.env.example
+.mcp.json
+.codex/config.toml
