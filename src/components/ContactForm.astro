@@ -15,7 +15,14 @@ const { copy } = Astro.props;
   method="POST"
   data-contact-form
 >
-  <input type="text" name="_honey" class="contact-form__trap" tabindex="-1" autocomplete="off" />
+  <input
+    type="text"
+    name="_honey"
+    class="contact-form__trap"
+    tabindex="-1"
+    autocomplete="off"
+    aria-hidden="true"
+  />
   <input type="hidden" name="_subject" value={siteConfig.contactSubject} />
 
   <label class="contact-field">
@@ -54,7 +61,7 @@ const { copy } = Astro.props;
   </label>
 
   <div class="contact-form__footer">
-    <button class="contact-submit" type="submit">
+    <button class="contact-submit action-button action-button--primary" type="submit">
       <span data-submit-label data-copy="contact.form.submit">
         {copy.contact.form.submit}
       </span>

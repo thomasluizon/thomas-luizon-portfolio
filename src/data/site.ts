@@ -1,3 +1,11 @@
+import profileImage from "../assets/images/profile.png";
+import aiChatImage from "../assets/orbit/ai-chat.png";
+import calendarImage from "../assets/orbit/calendar.png";
+import featureGraphicImage from "../assets/orbit/feature-graphic.png";
+import habitsImage from "../assets/orbit/habits.png";
+import logoNoBgImage from "../assets/orbit/logo-no-bg.png";
+import widgetImage from "../assets/orbit/widget.png";
+
 export const siteConfig = {
   siteUrl: "https://thomas-luizon-portfolio.vercel.app",
   name: "Thomas Luizon",
@@ -30,6 +38,10 @@ export const siteConfig = {
   ],
 } as const;
 
+export const siteAssets = {
+  profile: profileImage,
+} as const;
+
 export const orbitCaseStudy = {
   name: "Orbit",
   url: "https://useorbit.org/",
@@ -38,25 +50,24 @@ export const orbitCaseStudy = {
     "https://play.google.com/store/apps/details?id=org.useorbit.app",
   role: "Founder & solo developer",
   assets: {
-    logo: "/orbit/logo-no-bg.png",
-    featureGraphic: "/orbit/feature-graphic.png",
-    portfolio: "/orbit/portfolio.png",
+    logo: logoNoBgImage,
+    featureGraphic: featureGraphicImage,
     screens: [
       {
         id: "chat",
-        image: "/orbit/ai-chat.png",
+        image: aiChatImage,
       },
       {
         id: "habits",
-        image: "/orbit/habits.png",
+        image: habitsImage,
       },
       {
         id: "calendar",
-        image: "/orbit/calendar.png",
+        image: calendarImage,
       },
       {
         id: "widget",
-        image: "/orbit/widget.png",
+        image: widgetImage,
       },
     ],
   },

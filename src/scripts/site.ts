@@ -9,7 +9,7 @@ const readCookie = (name: string): string | null => {
   const entry = document.cookie
     .split("; ")
     .find((item) => item.startsWith(`${name}=`));
-  return entry ? decodeURIComponent(entry.split("=")[1]) : null;
+  return entry ? decodeURIComponent(entry.split("=")[1] ?? "") : null;
 };
 
 const writeCookie = (name: string, value: string) => {
@@ -27,7 +27,6 @@ const resolvePath = (source: unknown, path: string): unknown =>
 const detectLocale = (): Locale => {
   const stored = readCookie(COOKIE_KEY);
   if (isLocale(stored)) return stored;
-
   return navigator.language.toLowerCase().startsWith("pt") ? "pt-BR" : defaultLocale;
 };
 
@@ -37,21 +36,38 @@ const updateMeta = (locale: Locale) => {
   const meta = content[locale].meta;
   document.title = meta.title;
 
-  const descriptionTags = document.querySelectorAll<HTMLMetaElement>(
-    'meta[name="description"], meta[property="og:description"], meta[name="twitter:description"]',
-  );
+  document
+    .querySelectorAll<HTMLMetaElement>(
+      'meta[name="description"], meta[property="og:description"], meta[name="twitter:description"]',
+    )
+    .forEach((tag) => {
+      tag.setAttribute("content", meta.description);
+    });
 
-  descriptionTags.forEach((tag) => {
-    tag.setAttribute("content", meta.description);
-  });
+  document
+    .querySelectorAll<HTMLMetaElement>('meta[property="og:title"], meta[name="twitter:title"]')
+    .forEach((tag) => {
+      tag.setAttribute("content", meta.title);
+    });
+};
 
-  const titleTags = document.querySelectorAll<HTMLMetaElement>(
-    'meta[property="og:title"], meta[name="twitter:title"]',
-  );
+const isMenuOpen = () => {
+  const panel = document.querySelector<HTMLElement>("[data-mobile-nav]");
+  return !!panel && !panel.hasAttribute("hidden");
+};
 
-  titleTags.forEach((tag) => {
-    tag.setAttribute("content", meta.title);
-  });
+const syncMenuLabel = () => {
+  const menuLabel = document.querySelector<HTMLElement>("[data-menu-label]");
+  const menuToggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+  const label = isMenuOpen() ? content[currentLocale].nav.close : content[currentLocale].nav.menu;
+
+  if (menuLabel) {
+    menuLabel.textContent = label;
+  }
+
+  if (menuToggle) {
+    menuToggle.setAttribute("aria-label", label);
+  }
 };
 
 const applyLocale = (locale: Locale) => {
@@ -61,6 +77,7 @@ const applyLocale = (locale: Locale) => {
   document.querySelectorAll<HTMLElement>("[data-copy]").forEach((element) => {
     const key = element.dataset.copy;
     if (!key) return;
+
     const value = resolvePath(dictionary, key);
     if (typeof value === "string") {
       element.textContent = value;
@@ -72,6 +89,7 @@ const applyLocale = (locale: Locale) => {
     .forEach((element) => {
       const key = element.dataset.copyPlaceholder;
       if (!key) return;
+
       const value = resolvePath(dictionary, key);
       if (typeof value === "string") {
         element.placeholder = value;
@@ -81,6 +99,7 @@ const applyLocale = (locale: Locale) => {
   document.querySelectorAll<HTMLElement>("[data-copy-aria]").forEach((element) => {
     const key = element.dataset.copyAria;
     if (!key) return;
+
     const value = resolvePath(dictionary, key);
     if (typeof value === "string") {
       element.setAttribute("aria-label", value);
@@ -92,16 +111,10 @@ const applyLocale = (locale: Locale) => {
     localeDisplay.textContent = locale === "pt-BR" ? "PT" : "EN";
   }
 
-  const menuLabel = document.querySelector<HTMLElement>("[data-menu-label]");
-  if (menuLabel) {
-    const navPanel = document.querySelector<HTMLElement>("[data-mobile-nav]");
-    const isOpen = navPanel ? !navPanel.hasAttribute("hidden") : false;
-    menuLabel.textContent = isOpen ? dictionary.nav.close : dictionary.nav.menu;
-  }
-
   updateMeta(locale);
   writeCookie(COOKIE_KEY, locale);
   currentLocale = locale;
+  syncMenuLabel();
 };
 
 const initLanguageToggle = () => {
@@ -116,25 +129,25 @@ const initLanguageToggle = () => {
 const initMobileMenu = () => {
   const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
   const panel = document.querySelector<HTMLElement>("[data-mobile-nav]");
-  const menuLabel = document.querySelector<HTMLElement>("[data-menu-label]");
   if (!toggle || !panel) return;
 
   const sync = (open: boolean) => {
     panel.toggleAttribute("hidden", !open);
     toggle.setAttribute("aria-expanded", open ? "true" : "false");
     document.body.classList.toggle("menu-open", open);
-    if (menuLabel) {
-      menuLabel.textContent = open ? content[currentLocale].nav.close : content[currentLocale].nav.menu;
-    }
+    syncMenuLabel();
   };
 
   toggle.addEventListener("click", () => {
-    const open = panel.hasAttribute("hidden");
-    sync(open);
+    sync(panel.hasAttribute("hidden"));
   });
 
   panel.querySelectorAll<HTMLAnchorElement>("a[href^='#']").forEach((link) => {
     link.addEventListener("click", () => sync(false));
+  });
+
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") sync(false);
   });
 };
 
@@ -142,44 +155,59 @@ const initNavigationState = () => {
   const sections = Array.from(document.querySelectorAll<HTMLElement>("main section[id]"));
   const links = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]"));
   if (!sections.length || !links.length) return;
+
   const header = document.querySelector<HTMLElement>("[data-site-header]");
 
   const setActive = (id: string) => {
     links.forEach((link) => {
-      link.classList.toggle("is-active", link.getAttribute("href") === `#${id}`);
+      link.classList.toggle("is-active", link.dataset.navLink === id);
+    });
+
+    sections.forEach((section) => {
+      section.classList.toggle("is-active", section.id === id);
     });
   };
 
-  const getActiveSection = () => {
-    const headerOffset = header?.getBoundingClientRect().height ?? 0;
-    const marker = window.scrollY + headerOffset + window.innerHeight * 0.22;
-    let fallback = sections[0];
-
-    for (const section of sections) {
-      const top = section.offsetTop;
-      const bottom = top + section.offsetHeight;
-
-      if (marker >= top && marker < bottom) {
-        return section;
-      }
-
-      if (marker >= top) {
-        fallback = section;
-      }
-    }
-
-    return fallback;
-  };
-
   const sync = () => {
-    const activeSection = getActiveSection();
-    setActive(activeSection.id);
+    const headerOffset = header?.getBoundingClientRect().height ?? 0;
+    const marker = window.scrollY + headerOffset + window.innerHeight * 0.24;
+    let active = sections[0];
+
+    sections.forEach((section) => {
+      if (marker >= section.offsetTop) {
+        active = section;
+      }
+    });
+
+    setActive(active.id);
   };
 
   sync();
   window.addEventListener("scroll", sync, { passive: true });
   window.addEventListener("resize", sync);
-  window.addEventListener("load", sync);
+};
+
+const initScrollProgress = () => {
+  const progress = document.querySelector<HTMLElement>("[data-scroll-progress]");
+  if (!progress) return;
+
+  let scheduled = false;
+  const sync = () => {
+    const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    const ratio = Math.min(1, Math.max(0, window.scrollY / max));
+    progress.style.transform = `scaleX(${ratio})`;
+    scheduled = false;
+  };
+
+  const requestSync = () => {
+    if (scheduled) return;
+    scheduled = true;
+    window.requestAnimationFrame(sync);
+  };
+
+  sync();
+  window.addEventListener("scroll", requestSync, { passive: true });
+  window.addEventListener("resize", requestSync);
 };
 
 const initContactForm = () => {
@@ -223,47 +251,10 @@ const initContactForm = () => {
   });
 };
 
-const initOrbitModeWithoutMotion = () => {
-  const orbitSection = document.querySelector<HTMLElement>("[data-orbit-section]");
-  if (!orbitSection) return;
-
-  const body = document.body;
-  const observer = new IntersectionObserver(
-    (entries) => {
-      const entry = entries[0];
-      body.classList.toggle("orbit-mode", !!entry?.isIntersecting);
-    },
-    {
-      threshold: 0.4,
-    },
-  );
-
-  observer.observe(orbitSection);
-};
-
-const initOrbitStepsWithoutMotion = () => {
-  const steps = Array.from(document.querySelectorAll<HTMLElement>("[data-orbit-step]"));
-  const slides = Array.from(document.querySelectorAll<HTMLElement>("[data-orbit-slide]"));
-  if (!steps.length || !slides.length) return;
-
-  const setActive = (index: number) => {
-    steps.forEach((step, stepIndex) => step.classList.toggle("is-active", stepIndex === index));
-    slides.forEach((slide, slideIndex) => slide.classList.toggle("is-active", slideIndex === index));
-  };
-
-  steps.forEach((step, index) => {
-    step.addEventListener("click", () => setActive(index));
-    step.addEventListener("focus", () => setActive(index));
-  });
-};
-
 const initMotion = async () => {
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  initOrbitStepsWithoutMotion();
-
   if (prefersReducedMotion) {
-    initOrbitModeWithoutMotion();
-    document.documentElement.classList.add("motion-safe-ready");
+    document.documentElement.classList.add("motion-ready");
     return;
   }
 
@@ -274,98 +265,110 @@ const initMotion = async () => {
 
   gsap.registerPlugin(ScrollTrigger);
 
-  gsap.from("[data-hero-line]", {
-    opacity: 0,
-    y: 32,
-    duration: 0.9,
-    stagger: 0.14,
-    ease: "power3.out",
-    clearProps: "all",
-  });
+  gsap.fromTo(
+    "[data-hero-line]",
+    { y: 30 },
+    {
+      y: 0,
+      duration: 0.68,
+      stagger: 0.08,
+      ease: "power3.out",
+      clearProps: "transform",
+    },
+  );
+
+  gsap.fromTo(
+    ".site-header",
+    { y: -16 },
+    {
+      y: 0,
+      duration: 0.62,
+      ease: "power3.out",
+      clearProps: "transform",
+    },
+  );
 
   gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((element) => {
-    gsap.from(element, {
-      opacity: 0,
-      y: 34,
-      duration: 0.9,
-      ease: "power2.out",
+    gsap.fromTo(
+      element,
+      { opacity: 0, y: 34 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.72,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: element,
+          start: "top 86%",
+          once: true,
+        },
+        clearProps: "opacity,transform",
+      },
+    );
+  });
+
+  gsap.utils.toArray<HTMLElement>(".page-section").forEach((section) => {
+    const shell = section.querySelector<HTMLElement>(".section-shell");
+    if (!shell || section.id === "home") return;
+
+    gsap.fromTo(
+      shell,
+      { y: 44 },
+      {
+        y: 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top bottom",
+          end: "top 28%",
+          scrub: 0.45,
+        },
+        clearProps: "transform",
+      },
+    );
+  });
+
+  gsap.utils
+    .toArray<HTMLElement>(".capability-list li, .principle-row, .orbit-stack-list li")
+    .forEach((row) => {
+      gsap.fromTo(
+        row,
+        { opacity: 0.42, x: -14 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.54,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: row,
+            start: "top 90%",
+            once: true,
+          },
+          clearProps: "opacity,transform",
+        },
+      );
+    });
+
+  gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((element) => {
+    gsap.to(element, {
+      y: -42,
+      ease: "none",
       scrollTrigger: {
         trigger: element,
-        start: "top 84%",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 0.45,
       },
-      clearProps: "opacity,transform",
     });
   });
 
-  const orbitSection = document.querySelector<HTMLElement>("[data-orbit-section]");
-  if (orbitSection) {
-    ScrollTrigger.create({
-      trigger: orbitSection,
-      start: "top 55%",
-      end: "bottom 45%",
-      onEnter: () => document.body.classList.add("orbit-mode"),
-      onEnterBack: () => document.body.classList.add("orbit-mode"),
-      onLeave: () => document.body.classList.remove("orbit-mode"),
-      onLeaveBack: () => document.body.classList.remove("orbit-mode"),
-    });
-  }
-
-  const steps = Array.from(document.querySelectorAll<HTMLElement>("[data-orbit-step]"));
-  const slides = Array.from(document.querySelectorAll<HTMLElement>("[data-orbit-slide]"));
-
-  if (steps.length && slides.length) {
-    let activeIndex = 0;
-
-    gsap.set(slides, {
-      autoAlpha: 0,
-      scale: 0.985,
-    });
-
-    gsap.set(slides[0], {
-      autoAlpha: 1,
-      scale: 1,
-    });
-
-    const setActive = (index: number) => {
-      if (index === activeIndex) return;
-
-      activeIndex = index;
-
-      steps.forEach((step, stepIndex) => {
-        step.classList.toggle("is-active", stepIndex === index);
-      });
-
-      slides.forEach((slide, slideIndex) => {
-        gsap.to(slide, {
-          autoAlpha: slideIndex === index ? 1 : 0,
-          scale: slideIndex === index ? 1 : 0.985,
-          duration: slideIndex === index ? 0.55 : 0.35,
-          ease: "power2.out",
-          overwrite: "auto",
-        });
-      });
-    };
-
-    steps.forEach((step, index) => {
-      step.addEventListener("click", () => setActive(index));
-      step.addEventListener("focus", () => setActive(index));
-
-      ScrollTrigger.create({
-        trigger: step,
-        start: "top 68%",
-        end: "bottom 52%",
-        onEnter: () => setActive(index),
-        onEnterBack: () => setActive(index),
-      });
-    });
-  }
-
-  document.documentElement.classList.add("motion-safe-ready");
+  document.documentElement.classList.add("motion-ready");
 };
 
 applyLocale(currentLocale);
 initLanguageToggle();
 initMobileMenu();
 initNavigationState();
+initScrollProgress();
 initContactForm();
 void initMotion();

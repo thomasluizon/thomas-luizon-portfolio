@@ -107,14 +107,14 @@ export const content: Record<Locale, LocaleContent> = {
     },
     hero: {
       eyebrow: "Senior Product Engineer",
-      title: "I build AI products with strong backend and clear product thinking.",
+      title: "AI products, backend depth, product taste.",
       summary:
-        "6+ years building production software with .NET, TypeScript, AWS, and Azure, working from infrastructure and APIs through to the product experience.",
+        "I build production software across .NET, TypeScript, AWS, and Azure, from infrastructure and APIs to the experience people actually use.",
       primaryCta: "Let's work together",
       secondaryCta: "View my main project",
       proofLabel: "Selected proof",
       proofItems: [
-        "6+ years in production engineering",
+        "6+ years shipping production systems",
         "AI, cloud, and infrastructure depth",
         "TypeScript and .NET across the stack",
         "Founder and solo developer of Orbit",
@@ -122,12 +122,12 @@ export const content: Record<Locale, LocaleContent> = {
     },
     about: {
       label: "About",
-      title: "From backend to the product experience.",
+      title: "I connect the system work to the product work.",
       narrative: [
-        "Most of my work starts in the backend: C#, .NET, APIs, relational databases, queues, and systems that have to stay stable in production.",
-        "I have spent a lot of time with AWS, Azure, SQL Server, Kafka, and event-driven flows, usually in products that need to move fast without becoming fragile.",
-        "I also care about the part the user actually touches. That is why I work comfortably in TypeScript, React, Vue, Next, and Nuxt when the product needs a sharper frontend.",
-        "What I enjoy most is connecting those layers well, so the interface feels simple because the system underneath it is doing its job.",
+        "Most of my work starts in the backend: C#, .NET, APIs, relational databases, queues, and systems that need to stay stable in production.",
+        "I have spent a lot of time with AWS, Azure, SQL Server, Kafka, and event-driven flows in products that had to move fast without becoming fragile.",
+        "I also care about what the user touches. I work comfortably in TypeScript, React, Vue, Next, and Nuxt when the product needs a sharper frontend.",
+        "The work I like most is making those layers fit, so the interface feels simple because the system underneath is doing its job.",
       ],
       capabilityLabel: "Technologies I work with most",
       capabilities: [
@@ -139,12 +139,12 @@ export const content: Record<Locale, LocaleContent> = {
     },
     principles: {
       label: "Principles",
-      title: "How I like to work.",
+      title: "How I make decisions.",
       intro: "",
       items: [
         {
           title: "AI has to earn its place.",
-          body: "If it goes into the product, it should make a task clearer, faster, or easier. Otherwise it is just noise.",
+          body: "If AI goes into the product, it should make a task clearer, faster, or easier.",
         },
         {
           title: "Good architecture keeps the team moving.",
@@ -152,11 +152,11 @@ export const content: Record<Locale, LocaleContent> = {
         },
         {
           title: "Frontend and backend should be designed together.",
-          body: "The product feels better when the interface, data model, and API decisions are pulling in the same direction.",
+          body: "The product feels better when interface, data model, and API decisions pull in the same direction.",
         },
         {
           title: "Ownership means staying with the problem.",
-          body: "I like following the work all the way through, from product decisions to rollout and the tradeoffs in between.",
+          body: "I like following the work from product decisions to rollout and the tradeoffs in between.",
         },
       ],
     },
@@ -167,7 +167,7 @@ export const content: Record<Locale, LocaleContent> = {
       roleLabel: "Role",
       roleValue: "Founder & solo developer",
       intro:
-        "Orbit is where I brought product, AI, backend, mobile, and brand into one thing. I designed it, built it, and shipped it myself.",
+        "Orbit is where I brought product, AI, backend, mobile, and brand into one thing. I designed, built, and shipped it myself.",
       stats: [
         {
           label: "AI UX",
@@ -190,17 +190,17 @@ export const content: Record<Locale, LocaleContent> = {
         {
           label: "01",
           title: "From idea to routine",
-          body: "You describe what you want to build, and Orbit turns that into habits, schedules, and smaller actions you can actually follow.",
+          body: "Describe what you want to build. Orbit turns it into habits, schedules, and smaller actions.",
         },
         {
           label: "02",
           title: "Built for repeated use",
-          body: "The app is designed for daily use: checking in, adjusting the plan, and keeping momentum without a noisy interface.",
+          body: "Daily check-ins, plan adjustments, and momentum without a noisy interface.",
         },
         {
           label: "03",
           title: "Shipped as one product system",
-          body: "App, backend, website, branding, and launch work were treated as parts of the same product from day one.",
+          body: "App, backend, website, brand, and launch work were treated as one product from day one.",
         },
       ],
       links: {
@@ -252,14 +252,14 @@ export const content: Record<Locale, LocaleContent> = {
     },
     hero: {
       eyebrow: "Senior Product Engineer",
-      title: "Construo produtos com IA, backend forte e visão de produto.",
+      title: "Produtos com IA, backend forte e visão de produto.",
       summary:
-        "Tenho mais de 6 anos construindo software em produção com .NET, TypeScript, AWS e Azure, indo de infraestrutura e APIs até a experiência final do usuário.",
+        "Construo software em produção com .NET, TypeScript, AWS e Azure, indo de infraestrutura e APIs até a experiência que as pessoas usam.",
       primaryCta: "Vamos trabalhar juntos",
       secondaryCta: "Ver meu projeto principal",
       proofLabel: "Provas selecionadas",
       proofItems: [
-        "Mais de 6 anos em engenharia de produção",
+        "Mais de 6 anos entregando sistemas em produção",
         "Profundidade em IA, cloud e infraestrutura",
         "TypeScript e .NET em toda a stack",
         "Founder e solo developer do Orbit",
@@ -267,12 +267,12 @@ export const content: Record<Locale, LocaleContent> = {
     },
     about: {
       label: "Sobre",
-      title: "Do backend à experiência final do produto.",
+      title: "Conecto o trabalho de sistema ao trabalho de produto.",
       narrative: [
         "Grande parte do meu trabalho começa no backend: C#, .NET, APIs, banco relacional, filas e sistemas que precisam continuar estáveis em produção.",
-        "Passei bastante tempo com AWS, Azure, SQL Server, Kafka e fluxos orientados a eventos, quase sempre em produtos que precisavam evoluir rápido sem virar bagunça.",
-        "Também gosto de cuidar do que o usuário vê. Por isso trabalho bem com TypeScript, React, Vue, Next e Nuxt quando o produto pede uma interface mais bem resolvida.",
-        "O que eu mais gosto é juntar essas camadas direito, para a experiência parecer simples porque o sistema por baixo está fazendo o trabalho certo.",
+        "Passei bastante tempo com AWS, Azure, SQL Server, Kafka e fluxos orientados a eventos em produtos que precisavam evoluir rápido sem virar bagunça.",
+        "Também cuido do que o usuário toca. Trabalho bem com TypeScript, React, Vue, Next e Nuxt quando o produto pede uma interface mais bem resolvida.",
+        "O trabalho que mais gosto é fazer essas camadas encaixarem, para a experiência parecer simples porque o sistema por baixo está fazendo o certo.",
       ],
       capabilityLabel: "Tecnologias com que mais trabalho",
       capabilities: [
@@ -284,12 +284,12 @@ export const content: Record<Locale, LocaleContent> = {
     },
     principles: {
       label: "Princípios",
-      title: "Como eu gosto de trabalhar.",
+      title: "Como eu tomo decisões.",
       intro: "",
       items: [
         {
           title: "IA precisa merecer espaço no produto.",
-          body: "Se ela entra, tem que deixar alguma tarefa mais clara, mais rápida ou mais fácil. Se não, vira enfeite.",
+          body: "Se ela entra, tem que deixar uma tarefa mais clara, mais rápida ou mais fácil.",
         },
         {
           title: "Arquitetura boa é a que ajuda o time.",
@@ -297,11 +297,11 @@ export const content: Record<Locale, LocaleContent> = {
         },
         {
           title: "Frontend e backend precisam ser pensados juntos.",
-          body: "O produto fica melhor quando interface, modelo de dados e APIs estão puxando para o mesmo lado.",
+          body: "O produto fica melhor quando interface, modelo de dados e APIs puxam para o mesmo lado.",
         },
         {
           title: "Ownership, para mim, é ficar com o problema até o fim.",
-          body: "Eu gosto de acompanhar o trabalho inteiro, da decisão de produto ao rollout e aos trade-offs do caminho.",
+          body: "Gosto de acompanhar o trabalho da decisão de produto ao rollout e aos trade-offs do caminho.",
         },
       ],
     },
@@ -335,17 +335,17 @@ export const content: Record<Locale, LocaleContent> = {
         {
           label: "01",
           title: "Do texto para uma rotina de verdade",
-          body: "Você descreve o que quer fazer, e o Orbit transforma isso em hábitos, horários e subtarefas que já fazem sentido no dia a dia.",
+          body: "Você descreve o que quer fazer. O Orbit transforma isso em hábitos, horários e ações menores.",
         },
         {
           label: "02",
           title: "Feito para uso recorrente",
-          body: "O foco é uso diário: acompanhar, ajustar e continuar, sem uma interface cansativa ou teatral.",
+          body: "Check-ins, ajustes de plano e continuidade sem uma interface cansativa.",
         },
         {
           label: "03",
           title: "Tratado como produto desde o começo",
-          body: "Aplicativo, backend, site, marca e lançamento foram pensados como partes do mesmo produto.",
+          body: "App, backend, site, marca e lançamento foram pensados como um produto só.",
         },
       ],
       links: {
