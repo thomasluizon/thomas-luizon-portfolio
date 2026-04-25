@@ -1,0 +1,19 @@
+---
+import type { LocaleContent } from "../data/content";
+
+interface Props {
+  copy: LocaleContent;
+}
+
+const { copy } = Astro.props;
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p data-copy="footer.status">{copy.footer.status}</p>
+    <div class="site-footer__meta">
+      <span data-copy="footer.rights">{copy.footer.rights}</span>
+      <span data-copy="footer.builtWith">{copy.footer.builtWith}</span>
+    </div>
+  </div>
+</footer>

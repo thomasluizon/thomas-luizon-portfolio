@@ -1,0 +1,29 @@
+---
+import type { LocaleContent } from "../data/content";
+
+interface Props {
+  copy: LocaleContent;
+}
+
+const { copy } = Astro.props;
+---
+
+<section id="about" class="page-section" data-section="about">
+  <div class="section-shell about-shell">
+    <div class="section-main about-copy">
+      <div class="about-heading" data-reveal>
+        <p class="section-kicker" data-copy="about.question">{copy.about.question}</p>
+        <h2 class="section-title" data-copy="about.title">{copy.about.title}</h2>
+      </div>
+      <div class="about-card text-stack" data-reveal>
+        {
+          copy.about.narrative.map((paragraph, index) => (
+            <p data-copy={`about.narrative.${index}`}>
+              {paragraph}
+            </p>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

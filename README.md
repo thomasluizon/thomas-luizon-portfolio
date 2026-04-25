@@ -1,6 +1,6 @@
 # Thomas Luizon Portfolio
 
-Astro-based personal portfolio for Thomas Luizon. The site is a bilingual, one-page portfolio that presents Thomas as a senior product engineer with strong AI, cloud, and infrastructure depth, while featuring Orbit as the main case study.
+Astro-based personal portfolio for Thomas Luizon. The site is an English, one-page portfolio that presents Thomas as a senior product engineer with strong AI, cloud, and infrastructure depth, while featuring Orbit as the main case study.
 
 ## Stack
 

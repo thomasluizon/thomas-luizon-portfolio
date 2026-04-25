@@ -1,0 +1,68 @@
+---
+import type { LocaleContent } from "../data/content";
+import SocialLinks from "./SocialLinks.astro";
+
+interface Props {
+  copy: LocaleContent;
+}
+
+const { copy } = Astro.props;
+
+const navItems = [
+  { href: "#about", id: "about", key: "nav.about", label: copy.nav.about },
+  { href: "#orbit", id: "orbit", key: "nav.orbit", label: copy.nav.orbit },
+  { href: "#contact", id: "contact", key: "nav.contact", label: copy.nav.contact },
+];
+---
+
+<header class="site-header" data-site-header>
+  <div class="site-header__inner">
+    <a href="#home" class="brand-mark" aria-label="Thomas Luizon home">
+      <span class="brand-mark__name">THOMAS LUIZON</span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      {
+        navItems.map((item) => (
+          <a href={item.href} data-nav-link={item.id} data-copy={item.key}>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="site-header__actions">
+      <button class="theme-toggle" type="button" aria-label="Dark theme" aria-pressed="true">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20.6 14.7A8.7 8.7 0 0 1 9.3 3.4 8.7 8.7 0 1 0 20.6 14.7Z" />
+        </svg>
+      </button>
+      <button
+        class="menu-toggle"
+        type="button"
+        data-menu-toggle
+        aria-expanded="false"
+        data-copy-aria="nav.menu"
+        aria-label={copy.nav.menu}
+      >
+        <span data-menu-label data-copy="nav.menu">{copy.nav.menu}</span>
+      </button>
+    </div>
+  </div>
+  <div class="site-progress" aria-hidden="true">
+    <span data-scroll-progress></span>
+  </div>
+</header>
+
+<div class="mobile-nav" data-mobile-nav hidden>
+  <nav class="mobile-nav__panel" aria-label="Mobile">
+    {
+      navItems.map((item) => (
+        <a href={item.href} data-copy={item.key}>
+          {item.label}
+        </a>
+      ))
+    }
+    <SocialLinks includeEmail={true} className="mobile-nav__socials" />
+  </nav>
+</div>

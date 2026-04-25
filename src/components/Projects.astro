@@ -1,0 +1,12 @@
+---
+import type { LocaleContent } from "../data/content";
+import OrbitShowcase from "./OrbitShowcase.astro";
+
+interface Props {
+  copy: LocaleContent;
+}
+
+const { copy } = Astro.props;
+---
+
+<OrbitShowcase copy={copy} />

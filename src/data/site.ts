@@ -9,8 +9,8 @@ import widgetImage from "../assets/orbit/widget.png";
 export const siteConfig = {
   siteUrl: "https://thomas-luizon-portfolio.vercel.app",
   name: "Thomas Luizon",
-  role: "Senior Product Engineer",
-  location: "São Paulo, Brazil",
+  role: "Software Engineer",
+  location: "Sao Paulo, Brazil",
   email: "thomaslrgregorio@gmail.com",
   linkedin: "https://www.linkedin.com/in/thomas-luizon",
   github: "https://github.com/thomasluizon",
@@ -32,7 +32,7 @@ export const siteConfig = {
   ],
   heroProof: [
     "6+ years shipping production systems",
-    "AI-first product engineering",
+    "Software engineering with applied AI",
     "AWS, Azure, and event-driven architecture",
     "Founder and solo developer of Orbit",
   ],

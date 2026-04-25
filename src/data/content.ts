@@ -1,4 +1,4 @@
-export const locales = ["en", "pt-BR"] as const;
+export const locales = ["en"] as const;
 export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = "en";
 
@@ -14,8 +14,6 @@ export interface LocaleContent {
     contact: string;
     menu: string;
     close: string;
-    languageLabel: string;
-    workTogether: string;
   };
   hero: {
     eyebrow: string;
@@ -28,6 +26,7 @@ export interface LocaleContent {
   };
   about: {
     label: string;
+    question: string;
     title: string;
     narrative: string[];
     capabilityLabel: string;
@@ -91,27 +90,25 @@ export interface LocaleContent {
 export const content: Record<Locale, LocaleContent> = {
   en: {
     meta: {
-      title: "Thomas Luizon | Senior Product Engineer",
+      title: "Thomas Luizon | Software Engineer",
       description:
-        "Senior product engineer building AI products with strong backend, cloud infrastructure, and product thinking. Explore Thomas Luizon's work and Orbit.",
+        "Software engineer building production systems, digital products, and Orbit with backend, cloud, frontend, and AI applied with product thinking.",
     },
     nav: {
       about: "About",
       principles: "Principles",
-      orbit: "Orbit",
+      orbit: "Projects",
       contact: "Contact",
       menu: "Menu",
       close: "Close",
-      languageLabel: "Switch language",
-      workTogether: "Let's work together",
     },
     hero: {
-      eyebrow: "Senior Product Engineer",
-      title: "AI products, backend depth, product taste.",
+      eyebrow: "Software Engineer",
+      title: "Thomas Luizon",
       summary:
-        "I build production software across .NET, TypeScript, AWS, and Azure, from infrastructure and APIs to the experience people actually use.",
-      primaryCta: "Let's work together",
-      secondaryCta: "View my main project",
+        "I design and build reliable software across backend, cloud, frontend, and AI, turning complex technical decisions into products people can use with clarity.",
+      primaryCta: "Contact",
+      secondaryCta: "Projects",
       proofLabel: "Selected proof",
       proofItems: [
         "6+ years shipping production systems",
@@ -122,12 +119,12 @@ export const content: Record<Locale, LocaleContent> = {
     },
     about: {
       label: "About",
-      title: "I connect the system work to the product work.",
+      question: "Who am I?",
+      title: "About me",
       narrative: [
-        "Most of my work starts in the backend: C#, .NET, APIs, relational databases, queues, and systems that need to stay stable in production.",
-        "I have spent a lot of time with AWS, Azure, SQL Server, Kafka, and event-driven flows in products that had to move fast without becoming fragile.",
-        "I also care about what the user touches. I work comfortably in TypeScript, React, Vue, Next, and Nuxt when the product needs a sharper frontend.",
-        "The work I like most is making those layers fit, so the interface feels simple because the system underneath is doing its job.",
+        "I am a software engineer who likes the full path from architecture to interface. My work usually connects backend reliability, cloud infrastructure, frontend execution, and practical AI features.",
+        "I care about products that feel simple because the system underneath is well designed. Good APIs, clear data flows, and thoughtful UI decisions should work together instead of competing for attention.",
+        "Orbit is the clearest example of that approach: a real product built across app, backend, AI flows, brand, and launch execution.",
       ],
       capabilityLabel: "Technologies I work with most",
       capabilities: [
@@ -163,11 +160,11 @@ export const content: Record<Locale, LocaleContent> = {
     orbit: {
       label: "Featured project",
       title: "Orbit",
-      subtitle: "An AI habit app built as a real product, not a demo.",
+      subtitle: "AI habits, real routines, and product execution in one system.",
       roleLabel: "Role",
       roleValue: "Founder & solo developer",
       intro:
-        "Orbit is where I brought product, AI, backend, mobile, and brand into one thing. I designed, built, and shipped it myself.",
+        "Orbit combines mobile UX, applied AI, backend architecture, and a focused brand system. This section uses the actual app screens and the visual language from the Orbit landing page.",
       stats: [
         {
           label: "AI UX",
@@ -212,7 +209,7 @@ export const content: Record<Locale, LocaleContent> = {
       label: "Contact",
       title: "Get in touch.",
       body:
-        "If you need a senior product engineer for AI-heavy products with strong systems and product taste, let's talk.",
+        "If you need a software engineer for AI-heavy products with strong systems and product taste, let's talk.",
       emailLabel: "Direct email",
       form: {
         name: "Name",
@@ -232,151 +229,6 @@ export const content: Record<Locale, LocaleContent> = {
       status: "Available for full-time roles and selected consulting work.",
       rights: "Thomas Luizon",
       builtWith: "Astro, GSAP, and a fully custom front-end rebuild.",
-    },
-  },
-  "pt-BR": {
-    meta: {
-      title: "Thomas Luizon | Senior Product Engineer",
-      description:
-        "Senior product engineer construindo produtos com IA, backend forte, cloud e visão de produto. Conheça o trabalho de Thomas Luizon e o Orbit.",
-    },
-    nav: {
-      about: "Sobre",
-      principles: "Princípios",
-      orbit: "Orbit",
-      contact: "Contato",
-      menu: "Menu",
-      close: "Fechar",
-      languageLabel: "Mudar idioma",
-      workTogether: "Vamos trabalhar juntos",
-    },
-    hero: {
-      eyebrow: "Senior Product Engineer",
-      title: "Produtos com IA, backend forte e visão de produto.",
-      summary:
-        "Construo software em produção com .NET, TypeScript, AWS e Azure, indo de infraestrutura e APIs até a experiência que as pessoas usam.",
-      primaryCta: "Vamos trabalhar juntos",
-      secondaryCta: "Ver meu projeto principal",
-      proofLabel: "Provas selecionadas",
-      proofItems: [
-        "Mais de 6 anos entregando sistemas em produção",
-        "Profundidade em IA, cloud e infraestrutura",
-        "TypeScript e .NET em toda a stack",
-        "Founder e solo developer do Orbit",
-      ],
-    },
-    about: {
-      label: "Sobre",
-      title: "Conecto o trabalho de sistema ao trabalho de produto.",
-      narrative: [
-        "Grande parte do meu trabalho começa no backend: C#, .NET, APIs, banco relacional, filas e sistemas que precisam continuar estáveis em produção.",
-        "Passei bastante tempo com AWS, Azure, SQL Server, Kafka e fluxos orientados a eventos em produtos que precisavam evoluir rápido sem virar bagunça.",
-        "Também cuido do que o usuário toca. Trabalho bem com TypeScript, React, Vue, Next e Nuxt quando o produto pede uma interface mais bem resolvida.",
-        "O trabalho que mais gosto é fazer essas camadas encaixarem, para a experiência parecer simples porque o sistema por baixo está fazendo o certo.",
-      ],
-      capabilityLabel: "Tecnologias com que mais trabalho",
-      capabilities: [
-        "C#, .NET Core, ASP.NET Core, Python",
-        "TypeScript, React, Vue.js, Next.js, Nuxt.js",
-        "AWS, Azure, AppConfig, Lambda, APIs",
-        "SQL Server, Redis, Kafka, BFF e CI/CD",
-      ],
-    },
-    principles: {
-      label: "Princípios",
-      title: "Como eu tomo decisões.",
-      intro: "",
-      items: [
-        {
-          title: "IA precisa merecer espaço no produto.",
-          body: "Se ela entra, tem que deixar uma tarefa mais clara, mais rápida ou mais fácil.",
-        },
-        {
-          title: "Arquitetura boa é a que ajuda o time.",
-          body: "Eu prefiro sistemas fáceis de entender, fáceis de mudar e sem complexidade inventada.",
-        },
-        {
-          title: "Frontend e backend precisam ser pensados juntos.",
-          body: "O produto fica melhor quando interface, modelo de dados e APIs puxam para o mesmo lado.",
-        },
-        {
-          title: "Ownership, para mim, é ficar com o problema até o fim.",
-          body: "Gosto de acompanhar o trabalho da decisão de produto ao rollout e aos trade-offs do caminho.",
-        },
-      ],
-    },
-    orbit: {
-      label: "Projeto em destaque",
-      title: "Orbit",
-      subtitle: "Um app de hábitos com IA pensado como produto real, não como demo.",
-      roleLabel: "Papel",
-      roleValue: "Fundador e único desenvolvedor",
-      intro:
-        "No Orbit, eu juntei produto, IA, backend, mobile e marca em um mesmo trabalho. Eu desenhei, construí e lancei tudo sozinho.",
-      stats: [
-        {
-          label: "AI UX",
-          value: "Fluxos de chat para hábitos que ajudam de verdade, sem teatralidade.",
-        },
-        {
-          label: "Estratégia de produto",
-          value: "Comportamento diário pensado para clareza, consistência e retenção.",
-        },
-        {
-          label: "Rigor técnico",
-          value: "Entrega cross-platform apoiada por APIs limpas e visão operacional.",
-        },
-        {
-          label: "Execução",
-          value: "Velocidade de founder sem deixar a qualidade cair.",
-        },
-      ],
-      steps: [
-        {
-          label: "01",
-          title: "Do texto para uma rotina de verdade",
-          body: "Você descreve o que quer fazer. O Orbit transforma isso em hábitos, horários e ações menores.",
-        },
-        {
-          label: "02",
-          title: "Feito para uso recorrente",
-          body: "Check-ins, ajustes de plano e continuidade sem uma interface cansativa.",
-        },
-        {
-          label: "03",
-          title: "Tratado como produto desde o começo",
-          body: "App, backend, site, marca e lançamento foram pensados como um produto só.",
-        },
-      ],
-      links: {
-        website: "Visitar Orbit",
-        app: "Abrir o app",
-      },
-    },
-    contact: {
-      label: "Contato",
-      title: "Entre em contato.",
-      body:
-        "Se você precisa de um senior product engineer para produtos com IA, backend forte e senso de produto, fale comigo.",
-      emailLabel: "Email direto",
-      form: {
-        name: "Nome",
-        email: "Email",
-        message: "Mensagem",
-        submit: "Enviar mensagem",
-        submitting: "Enviando...",
-        success: "Mensagem enviada. Retorno em breve.",
-        error:
-          "Não foi possível enviar o formulário agora. Por favor, me envie um email diretamente.",
-        namePlaceholder: "Seu nome",
-        emailPlaceholder: "voce@empresa.com",
-        messagePlaceholder: "Conte o que você está construindo.",
-      },
-    },
-    footer: {
-      status: "Disponível para vagas full-time e consultorias selecionadas.",
-      rights: "Thomas Luizon",
-      builtWith: "Astro, GSAP e um front-end totalmente reconstruído.",
     },
   },
 };

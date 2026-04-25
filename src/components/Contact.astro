@@ -1,0 +1,35 @@
+---
+import type { LocaleContent } from "../data/content";
+import { siteConfig } from "../data/site";
+import ContactForm from "./ContactForm.astro";
+import SocialLinks from "./SocialLinks.astro";
+
+interface Props {
+  copy: LocaleContent;
+}
+
+const { copy } = Astro.props;
+---
+
+<section id="contact" class="page-section contact-section" data-section="contact">
+  <div class="section-shell split-shell contact-shell">
+    <aside class="section-rail">
+      <span>04</span>
+      <span data-copy="contact.label">{copy.contact.label}</span>
+    </aside>
+
+    <div class="section-main contact-copy" data-reveal>
+      <h2 class="section-title" data-copy="contact.title">{copy.contact.title}</h2>
+      <p class="section-intro" data-copy="contact.body">{copy.contact.body}</p>
+      <div class="contact-direct">
+        <span data-copy="contact.emailLabel">{copy.contact.emailLabel}</span>
+        <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+      </div>
+      <SocialLinks includeEmail={true} className="contact-socials" />
+    </div>
+
+    <div class="contact-form-wrap" data-reveal>
+      <ContactForm copy={copy} />
+    </div>
+  </div>
+</section>

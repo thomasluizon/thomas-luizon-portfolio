@@ -27,7 +27,7 @@ const resolvePath = (source: unknown, path: string): unknown =>
 const detectLocale = (): Locale => {
   const stored = readCookie(COOKIE_KEY);
   if (isLocale(stored)) return stored;
-  return navigator.language.toLowerCase().startsWith("pt") ? "pt-BR" : defaultLocale;
+  return defaultLocale;
 };
 
 let currentLocale: Locale = detectLocale();
@@ -72,7 +72,7 @@ const syncMenuLabel = () => {
 
 const applyLocale = (locale: Locale) => {
   const dictionary = content[locale];
-  document.documentElement.lang = locale === "pt-BR" ? "pt-BR" : "en";
+  document.documentElement.lang = "en";
 
   document.querySelectorAll<HTMLElement>("[data-copy]").forEach((element) => {
     const key = element.dataset.copy;
@@ -106,24 +106,10 @@ const applyLocale = (locale: Locale) => {
     }
   });
 
-  const localeDisplay = document.querySelector<HTMLElement>("[data-locale-display]");
-  if (localeDisplay) {
-    localeDisplay.textContent = locale === "pt-BR" ? "PT" : "EN";
-  }
-
   updateMeta(locale);
   writeCookie(COOKIE_KEY, locale);
   currentLocale = locale;
   syncMenuLabel();
-};
-
-const initLanguageToggle = () => {
-  const toggle = document.querySelector<HTMLButtonElement>("[data-locale-toggle]");
-  if (!toggle) return;
-
-  toggle.addEventListener("click", () => {
-    applyLocale(currentLocale === "en" ? "pt-BR" : "en");
-  });
 };
 
 const initMobileMenu = () => {
@@ -366,7 +352,6 @@ const initMotion = async () => {
 };
 
 applyLocale(currentLocale);
-initLanguageToggle();
 initMobileMenu();
 initNavigationState();
 initScrollProgress();
