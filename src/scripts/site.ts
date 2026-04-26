@@ -253,24 +253,26 @@ const initMotion = async () => {
 
   gsap.fromTo(
     "[data-hero-line]",
-    { y: 30 },
+    { opacity: 0, y: 30 },
     {
+      opacity: 1,
       y: 0,
       duration: 0.68,
       stagger: 0.08,
       ease: "power3.out",
-      clearProps: "transform",
+      clearProps: "opacity,transform",
     },
   );
 
   gsap.fromTo(
     ".site-header",
-    { y: -16 },
+    { opacity: 0, y: -16 },
     {
+      opacity: 1,
       y: 0,
       duration: 0.62,
       ease: "power3.out",
-      clearProps: "transform",
+      clearProps: "opacity,transform",
     },
   );
 
