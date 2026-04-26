@@ -185,11 +185,15 @@ const applyLocale = (locale: Locale) => {
 };
 
 const initLocaleSelector = () => {
-  document.querySelectorAll<HTMLButtonElement>("[data-locale-option]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const locale = normalizeLocale(button.dataset.localeOption);
-      if (locale) applyLocale(locale);
-    });
+  document.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+
+    const button = target.closest<HTMLButtonElement>("[data-locale-option]");
+    if (!button) return;
+
+    const locale = normalizeLocale(button.dataset.localeOption);
+    if (locale) applyLocale(locale);
   });
 };
 

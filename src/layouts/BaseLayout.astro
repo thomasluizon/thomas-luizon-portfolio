@@ -1,6 +1,5 @@
 ---
 import "../styles/global.css";
-import siteScriptUrl from "../scripts/site.ts?url";
 
 interface Props {
   title: string;
@@ -42,6 +41,8 @@ const ogImage = `${canonicalUrl}/og-image.png`;
   </head>
   <body class="portfolio-body">
     <slot />
-    <script type="module" src={siteScriptUrl} is:inline></script>
+    <script>
+      import "../scripts/site.ts";
+    </script>
   </body>
 </html>
