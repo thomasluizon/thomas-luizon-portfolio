@@ -13,6 +13,11 @@ const navItems = [
   { href: "#orbit", id: "orbit", key: "nav.orbit", label: copy.nav.orbit },
   { href: "#contact", id: "contact", key: "nav.contact", label: copy.nav.contact },
 ];
+
+const languageOptions = [
+  { locale: "pt", label: "PT" },
+  { locale: "en", label: "EN" },
+];
 ---
 
 <header class="site-header" data-site-header>
@@ -32,6 +37,25 @@ const navItems = [
     </nav>
 
     <div class="site-header__actions">
+      <div
+        class="language-switch"
+        role="group"
+        data-copy-aria="nav.languageLabel"
+        aria-label={copy.nav.languageLabel}
+      >
+        {
+          languageOptions.map((option) => (
+            <button
+              type="button"
+              data-locale-option={option.locale}
+              aria-pressed="false"
+            >
+              {option.label}
+            </button>
+          ))
+        }
+      </div>
+
       <button
         class="menu-toggle"
         type="button"

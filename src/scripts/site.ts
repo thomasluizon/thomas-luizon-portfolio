@@ -1,6 +1,11 @@
 import { content, defaultLocale, locales, type Locale } from "../data/content";
 
 const COOKIE_KEY = "thomas_portfolio_locale";
+const STORAGE_KEY = "thomas_portfolio_locale";
+const localeHtmlLang: Record<Locale, string> = {
+  en: "en",
+  pt: "pt-BR",
+};
 
 const isLocale = (value: string | null): value is Locale =>
   !!value && locales.includes(value as Locale);
@@ -16,6 +21,33 @@ const writeCookie = (name: string, value: string) => {
   document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=31536000; SameSite=Lax`;
 };
 
+const readStorage = (name: string): string | null => {
+  try {
+    return window.localStorage.getItem(name);
+  } catch {
+    return null;
+  }
+};
+
+const writeStorage = (name: string, value: string) => {
+  try {
+    window.localStorage.setItem(name, value);
+  } catch {
+    // Cookies still persist the preference when localStorage is unavailable.
+  }
+};
+
+const normalizeLocale = (value: string | null | undefined): Locale | null => {
+  if (!value) return null;
+
+  const normalized = value.toLowerCase();
+  if (isLocale(normalized)) return normalized;
+  if (normalized.startsWith("pt")) return "pt";
+  if (normalized.startsWith("en")) return "en";
+
+  return null;
+};
+
 const resolvePath = (source: unknown, path: string): unknown =>
   path.split(".").reduce<unknown>((current, key) => {
     if (current && typeof current === "object") {
@@ -24,16 +56,37 @@ const resolvePath = (source: unknown, path: string): unknown =>
     return undefined;
   }, source);
 
+const resolveCopy = (locale: Locale, path: string): string | null => {
+  const localized = resolvePath(content[locale], path);
+  if (typeof localized === "string") return localized;
+
+  const fallback = resolvePath(content[defaultLocale], path);
+  return typeof fallback === "string" ? fallback : null;
+};
+
 const detectLocale = (): Locale => {
-  const stored = readCookie(COOKIE_KEY);
-  if (isLocale(stored)) return stored;
+  const stored = normalizeLocale(readStorage(STORAGE_KEY));
+  if (stored) return stored;
+
+  const cookie = normalizeLocale(readCookie(COOKIE_KEY));
+  if (cookie) return cookie;
+
+  const browserLanguages = navigator.languages?.length
+    ? navigator.languages
+    : [navigator.language];
+
+  for (const language of browserLanguages) {
+    const matched = normalizeLocale(language);
+    if (matched) return matched;
+  }
+
   return defaultLocale;
 };
 
 let currentLocale: Locale = detectLocale();
 
 const updateMeta = (locale: Locale) => {
-  const meta = content[locale].meta;
+  const meta = content[locale]?.meta ?? content[defaultLocale].meta;
   document.title = meta.title;
 
   document
@@ -70,16 +123,34 @@ const syncMenuLabel = () => {
   }
 };
 
+const syncLocaleButtons = (locale: Locale) => {
+  document.querySelectorAll<HTMLButtonElement>("[data-locale-option]").forEach((button) => {
+    const isActive = button.dataset.localeOption === locale;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-pressed", isActive ? "true" : "false");
+    button.setAttribute(
+      "aria-label",
+      `${content[locale].nav.languageLabel}: ${button.textContent?.trim() ?? ""}`,
+    );
+  });
+};
+
+const persistLocale = (locale: Locale) => {
+  writeStorage(STORAGE_KEY, locale);
+  writeCookie(COOKIE_KEY, locale);
+};
+
 const applyLocale = (locale: Locale) => {
-  const dictionary = content[locale];
-  document.documentElement.lang = "en";
+  const nextLocale = isLocale(locale) ? locale : defaultLocale;
+  document.documentElement.lang = localeHtmlLang[nextLocale];
+  document.documentElement.dataset.locale = nextLocale;
 
   document.querySelectorAll<HTMLElement>("[data-copy]").forEach((element) => {
     const key = element.dataset.copy;
     if (!key) return;
 
-    const value = resolvePath(dictionary, key);
-    if (typeof value === "string") {
+    const value = resolveCopy(nextLocale, key);
+    if (value) {
       element.textContent = value;
     }
   });
@@ -90,8 +161,8 @@ const applyLocale = (locale: Locale) => {
       const key = element.dataset.copyPlaceholder;
       if (!key) return;
 
-      const value = resolvePath(dictionary, key);
-      if (typeof value === "string") {
+      const value = resolveCopy(nextLocale, key);
+      if (value) {
         element.placeholder = value;
       }
     });
@@ -100,16 +171,26 @@ const applyLocale = (locale: Locale) => {
     const key = element.dataset.copyAria;
     if (!key) return;
 
-    const value = resolvePath(dictionary, key);
-    if (typeof value === "string") {
+    const value = resolveCopy(nextLocale, key);
+    if (value) {
       element.setAttribute("aria-label", value);
     }
   });
 
-  updateMeta(locale);
-  writeCookie(COOKIE_KEY, locale);
-  currentLocale = locale;
+  updateMeta(nextLocale);
+  persistLocale(nextLocale);
+  currentLocale = nextLocale;
   syncMenuLabel();
+  syncLocaleButtons(nextLocale);
+};
+
+const initLocaleSelector = () => {
+  document.querySelectorAll<HTMLButtonElement>("[data-locale-option]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const locale = normalizeLocale(button.dataset.localeOption);
+      if (locale) applyLocale(locale);
+    });
+  });
 };
 
 const initMobileMenu = () => {
@@ -317,7 +398,7 @@ const initMotion = async () => {
   });
 
   gsap.utils
-    .toArray<HTMLElement>(".capability-list li, .principle-row, .orbit-stack-list li")
+    .toArray<HTMLElement>(".capability-list li, .principle-row")
     .forEach((row) => {
       gsap.fromTo(
         row,
@@ -354,6 +435,7 @@ const initMotion = async () => {
 };
 
 applyLocale(currentLocale);
+initLocaleSelector();
 initMobileMenu();
 initNavigationState();
 initScrollProgress();

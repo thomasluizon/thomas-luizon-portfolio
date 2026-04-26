@@ -11,7 +11,9 @@ const copy = content[defaultLocale];
 ---
 
 <BaseLayout title={copy.meta.title} description={copy.meta.description}>
-  <a href="#main-content" class="skip-link">Skip to content</a>
+  <a href="#main-content" class="skip-link" data-copy="ui.skipToContent">
+    {copy.ui.skipToContent}
+  </a>
 
   <Navbar copy={copy} />
 

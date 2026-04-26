@@ -191,6 +191,7 @@ main {
 
 .brand-mark,
 .site-nav a,
+.language-switch button,
 .menu-toggle,
 .header-cta,
 .action-button,
@@ -284,6 +285,48 @@ main {
   min-width: 0;
   grid-column: 3;
   justify-content: flex-end;
+}
+
+.language-switch {
+  min-height: 2.25rem;
+  display: inline-flex;
+  align-items: stretch;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.025);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+}
+
+.language-switch button {
+  min-width: 2.05rem;
+  border: 0;
+  border-right: 1px solid var(--line-soft);
+  background: transparent;
+  color: var(--text-soft);
+  cursor: pointer;
+  padding: 0 0.56rem;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  transition:
+    background-color var(--transition),
+    color var(--transition),
+    opacity var(--transition);
+}
+
+.language-switch button:last-child {
+  border-right: 0;
+}
+
+.language-switch button:hover,
+.language-switch button.is-active {
+  background: rgba(255, 255, 255, 0.055);
+  color: var(--text);
+}
+
+.language-switch button:active {
+  opacity: 0.72;
 }
 
 .social-links {
@@ -1276,6 +1319,12 @@ main {
 
   .site-header__actions {
     gap: 0.35rem;
+  }
+
+  .language-switch button {
+    min-width: 1.85rem;
+    padding-inline: 0.44rem;
+    font-size: 0.55rem;
   }
 
   .social-links__item {

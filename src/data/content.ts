@@ -1,4 +1,4 @@
-export const locales = ["en"] as const;
+export const locales = ["en", "pt"] as const;
 export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = "en";
 
@@ -14,6 +14,10 @@ export interface LocaleContent {
     contact: string;
     menu: string;
     close: string;
+    languageLabel: string;
+  };
+  ui: {
+    skipToContent: string;
   };
   hero: {
     eyebrow: string;
@@ -96,6 +100,10 @@ export const content: Record<Locale, LocaleContent> = {
       contact: "Contact",
       menu: "Menu",
       close: "Close",
+      languageLabel: "Language",
+    },
+    ui: {
+      skipToContent: "Skip to content",
     },
     hero: {
       eyebrow: "Software Engineer",
@@ -218,6 +226,147 @@ export const content: Record<Locale, LocaleContent> = {
         namePlaceholder: "Your name",
         emailPlaceholder: "you@company.com",
         messagePlaceholder: "Tell me what you're building.",
+      },
+    },
+  },
+  pt: {
+    meta: {
+      title: "Thomas Luizon | Engenheiro de Software",
+      description:
+        "Engenheiro de software focado em transformar backend, cloud, frontend e IA em produtos digitais bem acabados, com arquitetura sólida e visão de produto.",
+    },
+    nav: {
+      about: "Sobre",
+      principles: "Princípios",
+      orbit: "Projetos",
+      contact: "Contato",
+      menu: "Menu",
+      close: "Fechar",
+      languageLabel: "Idioma",
+    },
+    ui: {
+      skipToContent: "Pular para o conteúdo",
+    },
+    hero: {
+      eyebrow: "Engenheiro de Software",
+      title: "Thomas Luizon",
+      summary:
+        "Crio produtos digitais de ponta a ponta, conectando backend, cloud, frontend e IA para tirar complexidade do caminho e entregar experiências claras, estáveis e fáceis de usar.",
+      primaryCta: "Contato",
+      secondaryCta: "Projetos",
+      proofLabel: "Alguns destaques",
+      proofItems: [
+        "6+ anos colocando sistemas em produção",
+        "Boa bagagem em IA, cloud e infraestrutura",
+        "TypeScript e .NET trabalhando juntos na stack",
+        "Fundador e desenvolvedor solo do Orbit",
+      ],
+    },
+    about: {
+      label: "Sobre",
+      question: "Quem sou eu?",
+      title: "Sobre mim",
+      narrative: [
+        "Sou engenheiro de software e gosto de trabalhar no produto inteiro, não só em uma parte isolada. Normalmente estou entre backend, cloud, frontend e IA, conectando as peças para que a experiência final faça sentido.",
+        "Para mim, produto bom parece simples porque muita coisa foi bem resolvida por trás. APIs claras, fluxo de dados bem pensado e interface cuidadosa precisam se complementar.",
+        "O Orbit resume bem esse jeito de trabalhar: app, backend, IA, marca, site e lançamento construídos como partes do mesmo produto.",
+      ],
+      capabilityLabel: "Tecnologias que mais uso no dia a dia",
+      capabilities: [
+        "C#, .NET Core, ASP.NET Core, Python",
+        "TypeScript, React, Vue.js, Next.js, Nuxt.js",
+        "AWS, Azure, AppConfig, Lambda, design de APIs",
+        "SQL Server, Redis, Kafka, BFF, CI/CD",
+      ],
+    },
+    principles: {
+      label: "Princípios",
+      title: "Como eu decido.",
+      intro: "",
+      items: [
+        {
+          title: "IA precisa fazer diferença.",
+          body: "IA só entra quando deixa uma tarefa mais clara, mais rápida ou mais fácil.",
+        },
+        {
+          title: "Boa arquitetura destrava o trabalho.",
+          body: "Gosto de sistemas que o time entende rápido, muda com segurança e não criam complexidade onde ela não precisa existir.",
+        },
+        {
+          title: "Frontend e backend nascem juntos.",
+          body: "A experiência melhora quando interface, dados e API são pensados como partes do mesmo fluxo.",
+        },
+        {
+          title: "Ownership é continuar até resolver.",
+          body: "Gosto de acompanhar o trabalho da decisão de produto ao rollout, incluindo os tradeoffs do caminho.",
+        },
+      ],
+    },
+    orbit: {
+      label: "Projeto em destaque",
+      title: "Orbit",
+      subtitle: "Hábitos com IA, rotinas de verdade e execução de produto no mesmo lugar.",
+      roleLabel: "Papel",
+      roleValue: "Fundador e desenvolvedor solo",
+      intro:
+        "O Orbit junta UX mobile, IA aplicada, backend e uma identidade visual própria. Aqui eu mostro telas reais do app e a mesma linguagem visual usada na landing page do produto.",
+      stats: [
+        {
+          label: "UX com IA",
+          value: "Conversas que viram hábitos práticos, sem parecer demo de IA.",
+        },
+        {
+          label: "Estratégia de produto",
+          value: "Rotina diária pensada para clareza, consistência e retenção.",
+        },
+        {
+          label: "Base técnica",
+          value: "App multiplataforma apoiado por APIs limpas e uma arquitetura fácil de operar.",
+        },
+        {
+          label: "Execução",
+          value: "Velocidade de fundador, mas sem tratar qualidade como detalhe.",
+        },
+      ],
+      steps: [
+        {
+          label: "01",
+          title: "Da ideia para a rotina",
+          body: "Você descreve o que quer criar, e o Orbit quebra isso em hábitos, horários e próximos passos.",
+        },
+        {
+          label: "02",
+          title: "Feito para voltar todo dia",
+          body: "Check-ins, ajustes de plano e progresso visível sem transformar a tela em barulho.",
+        },
+        {
+          label: "03",
+          title: "Um produto, não peças soltas",
+          body: "App, backend, site, marca e lançamento foram construídos como partes do mesmo sistema desde o início.",
+        },
+      ],
+      links: {
+        website: "Ver o Orbit",
+        app: "Abrir o app",
+      },
+    },
+    contact: {
+      label: "Contato",
+      title: "Vamos conversar.",
+      body:
+        "Se você está construindo um produto com IA, sistemas complexos ou uma experiência que precisa ser bem resolvida do backend à interface, me chama.",
+      emailLabel: "E-mail direto",
+      form: {
+        name: "Nome",
+        email: "E-mail",
+        message: "Mensagem",
+        submit: "Enviar mensagem",
+        submitting: "Enviando...",
+        success: "Mensagem enviada. Te respondo em breve.",
+        error: "Não consegui enviar o formulário agora. Se puder, me mande um e-mail direto.",
+        namePlaceholder: "Seu nome",
+        emailPlaceholder: "nome@empresa.com",
+        messagePlaceholder: "Me conta o que você está construindo.",
       },
     },
   },
