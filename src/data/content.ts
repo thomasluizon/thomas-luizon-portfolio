@@ -80,11 +80,6 @@ export interface LocaleContent {
       messagePlaceholder: string;
     };
   };
-  footer: {
-    status: string;
-    rights: string;
-    builtWith: string;
-  };
 }
 
 export const content: Record<Locale, LocaleContent> = {
@@ -224,11 +219,6 @@ export const content: Record<Locale, LocaleContent> = {
         emailPlaceholder: "you@company.com",
         messagePlaceholder: "Tell me what you're building.",
       },
-    },
-    footer: {
-      status: "Available for full-time roles and selected consulting work.",
-      rights: "Thomas Luizon",
-      builtWith: "Astro, GSAP, and a fully custom front-end rebuild.",
     },
   },
 };

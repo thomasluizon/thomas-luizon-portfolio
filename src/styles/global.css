@@ -35,7 +35,7 @@ html {
   min-width: 320px;
   background: var(--bg);
   scroll-behavior: smooth;
-  scroll-padding-top: calc(var(--header-height) + 1rem);
+  scroll-padding-top: 0;
 }
 
 body {
@@ -147,22 +147,16 @@ textarea {
 
 main,
 .site-header,
-.site-footer,
 .mobile-nav {
   width: 100%;
   max-width: none;
   margin-inline: 0;
 }
 
-main,
-.site-footer {
+main {
   position: relative;
   z-index: 1;
   background: var(--bg);
-}
-
-main {
-  counter-reset: section;
 }
 
 .site-header {
@@ -182,8 +176,7 @@ main {
 }
 
 .site-header__inner,
-.section-shell,
-.site-footer__inner {
+.section-shell {
   width: min(calc(100% - var(--section-gutter) - var(--section-gutter)), var(--section-max));
   margin-inline: auto;
 }
@@ -205,8 +198,6 @@ main {
 .contact-field span,
 .contact-direct span,
 .orbit-profile,
-.orbit-stack-list li,
-.site-footer,
 .mobile-nav__panel a {
   font-family: var(--font-display);
   text-transform: uppercase;
@@ -473,8 +464,7 @@ main {
   align-items: center;
   padding-block: clamp(3.9rem, 7vw, 5.7rem);
   overflow: clip;
-  scroll-margin-top: calc(var(--header-height) + 1rem);
-  counter-increment: section;
+  scroll-margin-top: 0;
   background:
     linear-gradient(180deg, transparent 0%, transparent calc(100% - 14rem), rgba(255, 255, 255, 0.02) 100%),
     var(--bg);
@@ -504,19 +494,6 @@ main {
     linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 12rem),
     radial-gradient(circle at var(--glow-x, 78%) var(--glow-y, 48%), rgba(255, 255, 255, 0.055), transparent 23rem),
     linear-gradient(180deg, rgba(255, 255, 255, 0.018), transparent 42%);
-}
-
-.page-section::after {
-  content: ".0" counter(section);
-  position: absolute;
-  left: clamp(0.9rem, 1.7vw, 1.25rem);
-  bottom: clamp(0.8rem, 1.5vw, 1rem);
-  color: rgba(240, 238, 232, 0.38);
-  font-family: var(--font-display);
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  pointer-events: none;
 }
 
 .section-shell {
@@ -817,58 +794,33 @@ main {
 .orbit-visual-layer {
   position: absolute;
   inset: 0;
+  --orbit-ring-size: min(68vw, 36.5rem);
+  z-index: 0;
+  perspective: 50rem;
   pointer-events: none;
 }
 
 .orbital-ring {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--orbit-ring-size);
+  aspect-ratio: 1;
   border: 1px solid rgba(240, 238, 232, 0.095);
   border-radius: 50%;
-  transform: translateZ(0);
+  transform-origin: 50% 50%;
 }
 
 .orbital-ring--one {
-  width: min(54vw, 30rem);
-  aspect-ratio: 1;
-  right: -8%;
-  top: 12%;
+  transform: translate(-50%, -50%);
 }
 
 .orbital-ring--two {
-  width: min(76vw, 46rem);
-  aspect-ratio: 1;
-  right: -22%;
-  top: -10%;
   border-style: dashed;
   border-color: rgba(240, 238, 232, 0.075);
-  animation: orbit-drift 52s linear infinite reverse;
-}
-
-.orbit-dot {
-  position: absolute;
-  width: 0.36rem;
-  height: 0.36rem;
-  border-radius: 50%;
-  background: var(--text);
-  opacity: 0.58;
-  animation: orbit-pulse 3.4s var(--ease) infinite;
-}
-
-.orbit-dot--one {
-  top: 19%;
-  right: 24%;
-}
-
-.orbit-dot--two {
-  top: 62%;
-  right: 4%;
-  animation-delay: 0.8s;
-}
-
-.orbit-dot--three {
-  bottom: 12%;
-  right: 34%;
-  animation-delay: 1.45s;
+  transform: translate(-50%, -50%) rotateZ(0deg) rotateX(68deg);
+  animation: orbit-saturn-ring 16s linear infinite;
+  will-change: transform;
 }
 
 .orbit-product {
@@ -881,7 +833,8 @@ main {
 
 .orbit-phone-stage {
   position: relative;
-  width: min(42vw, 17rem);
+  z-index: 1;
+  width: min(39vw, 15.75rem);
   isolation: isolate;
   transition:
     opacity var(--transition),
@@ -899,23 +852,6 @@ main {
   border-radius: 50%;
   background: radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.105), transparent 58%);
   opacity: 0.64;
-}
-
-.orbit-phone-stage::before,
-.orbit-phone-stage::after {
-  content: "";
-  position: absolute;
-  inset: -12%;
-  z-index: -1;
-  border: 1px solid rgba(240, 238, 232, 0.1);
-  border-radius: 50%;
-}
-
-.orbit-phone-stage::after {
-  inset: -28%;
-  border-style: dashed;
-  opacity: 0.45;
-  animation: orbit-drift 48s linear infinite;
 }
 
 .orbit-phone-device {
@@ -1024,50 +960,6 @@ main {
   25%, 100% { transform: scaleX(0); }
 }
 
-.orbit-stack-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.orbit-stack-list li {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.42rem;
-  color: var(--text-soft);
-  border: 1px solid rgba(240, 238, 232, 0.12);
-  border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.018);
-  padding: 0.44rem 0.56rem;
-  font-size: 0.58rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  transition:
-    border-color var(--transition),
-    color var(--transition),
-    background-color var(--transition),
-    transform var(--transition);
-}
-
-.orbit-stack-list li:hover {
-  border-color: rgba(240, 238, 232, 0.28);
-  color: var(--text);
-  background: rgba(255, 255, 255, 0.04);
-  transform: translateY(-1px);
-}
-
-.orbit-stack-list svg {
-  width: 1rem;
-  height: 1rem;
-  fill: none;
-  stroke: var(--text);
-  stroke-width: 0.45;
-  opacity: 0.78;
-}
-
 .contact-section {
   --glow-x: 72%;
   --glow-y: 50%;
@@ -1086,7 +978,7 @@ main {
 }
 
 .contact-copy {
-  width: 100%;
+  width: min(100%, 34rem);
   display: grid;
   gap: 0.85rem;
   align-content: start;
@@ -1095,6 +987,10 @@ main {
 .contact-copy .section-title {
   max-width: 10ch;
   font-size: clamp(2.2rem, 5.8vw, 3.65rem);
+}
+
+.contact-copy .section-intro {
+  max-width: 31rem;
 }
 
 .contact-direct {
@@ -1258,39 +1154,9 @@ main {
   color: var(--text);
 }
 
-.site-footer {
-  z-index: 1;
-  border-top: 1px solid var(--line-soft);
-  padding-block: 1.05rem 1.35rem;
-}
-
-.site-footer__inner {
-  display: grid;
-  gap: 0.82rem;
-  color: rgba(240, 238, 232, 0.58);
-}
-
-.site-footer p,
-.site-footer__meta {
-  margin: 0;
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  line-height: 1.6;
-}
-
-.site-footer__meta {
-  display: grid;
-  gap: 0.18rem;
-}
-
-@keyframes orbit-drift {
-  to { transform: rotate(360deg); }
-}
-
-@keyframes orbit-pulse {
-  0%, 100% { opacity: 0.42; transform: scale(0.9); }
-  50% { opacity: 0.88; transform: scale(1.15); }
+@keyframes orbit-saturn-ring {
+  from { transform: translate(-50%, -50%) rotateZ(0deg) rotateX(68deg); }
+  to { transform: translate(-50%, -50%) rotateZ(360deg) rotateX(68deg); }
 }
 
 @media (max-width: 57.99rem) {
@@ -1302,7 +1168,6 @@ main {
 
   main,
   .site-header,
-  .site-footer,
   .mobile-nav {
     width: 100%;
     max-width: none;
@@ -1338,10 +1203,6 @@ main {
 
   .page-section {
     padding-block: clamp(4.2rem, 13vw, 5.8rem);
-  }
-
-  .page-section::after {
-    display: none;
   }
 
   .hero-section {
@@ -1404,7 +1265,7 @@ main {
   }
 
   .orbit-phone-stage {
-    width: min(62vw, 16rem);
+    width: min(58vw, 15rem);
   }
 }
 
@@ -1450,7 +1311,7 @@ main {
   }
 
   .orbit-phone-stage {
-    width: min(68vw, 14rem);
+    width: min(64vw, 13.25rem);
   }
 }
 
@@ -1463,14 +1324,6 @@ main {
     width: auto;
   }
 
-  .site-footer__inner {
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: start;
-  }
-
-  .site-footer__meta {
-    text-align: right;
-  }
 }
 
 @media (min-width: 58rem) {
@@ -1509,10 +1362,6 @@ main {
 
   .orbit-case {
     grid-template-columns: minmax(0, 0.76fr) minmax(14rem, 0.46fr);
-  }
-
-  .orbit-stack-list {
-    grid-column: 1 / -1;
   }
 
   .contact-shell {
