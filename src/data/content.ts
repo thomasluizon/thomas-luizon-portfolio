@@ -218,7 +218,7 @@ export const content: Record<Locale, LocaleContent> = {
         name: "Name",
         email: "Email",
         message: "Message",
-        submit: "Send message",
+        submit: "Send",
         submitting: "Sending...",
         success: "Message sent. I'll get back to you soon.",
         error:
@@ -360,7 +360,7 @@ export const content: Record<Locale, LocaleContent> = {
         name: "Nome",
         email: "E-mail",
         message: "Mensagem",
-        submit: "Enviar mensagem",
+        submit: "Enviar",
         submitting: "Enviando...",
         success: "Mensagem enviada. Te respondo em breve.",
         error: "Não consegui enviar o formulário agora. Se puder, me mande um e-mail direto.",
