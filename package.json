@@ -10,6 +10,9 @@
     "build": "astro build",
     "preview": "astro preview"
   },
+  "engines": {
+    "node": "22.x"
+  },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",
     "astro": "^6.1.9",
