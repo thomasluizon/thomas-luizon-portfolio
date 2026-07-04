@@ -171,7 +171,7 @@ export const content: Record<Locale, LocaleContent> = {
         "Orbit is a habit tracker shipped across web and Android as one product system: app, backend, applied AI, brand, and launch. The screens here are the real app; the section quotes its actual design language.",
       stats: [
         { value: "61", label: "Astra tools" },
-        { value: "94", label: "MCP tools" },
+        { value: "79", label: "MCP tools" },
         { value: "2", label: "platforms" },
         { value: "1", label: "developer" },
       ],
@@ -184,7 +184,7 @@ export const content: Record<Locale, LocaleContent> = {
         {
           label: "02 · Open protocol",
           title: "Drive Orbit from any AI",
-          body: "Orbit ships a full Model Context Protocol server (94 tools, OAuth and scoped keys), so Claude, ChatGPT, or any MCP client can manage your habits from wherever you already chat.",
+          body: "Orbit ships a full Model Context Protocol server (79 tools, OAuth and scoped keys), so Claude, ChatGPT, or any MCP client can manage your habits from wherever you already chat.",
         },
         {
           label: "03 · Social",
@@ -313,7 +313,7 @@ export const content: Record<Locale, LocaleContent> = {
         "O Orbit é um app de hábitos entregue na web e no Android como um produto só: app, backend, IA aplicada, marca e lançamento. As telas aqui são as reais do app, e a seção usa a mesma linguagem visual do produto.",
       stats: [
         { value: "61", label: "ferramentas do Astra" },
-        { value: "94", label: "ferramentas MCP" },
+        { value: "79", label: "ferramentas MCP" },
         { value: "2", label: "plataformas" },
         { value: "1", label: "desenvolvedor" },
       ],
@@ -326,7 +326,7 @@ export const content: Record<Locale, LocaleContent> = {
         {
           label: "02 · Protocolo aberto",
           title: "Controle o Orbit por qualquer IA",
-          body: "O Orbit expõe um servidor Model Context Protocol completo (94 ferramentas, OAuth e chaves com escopo) para Claude, ChatGPT ou qualquer cliente MCP cuidar dos seus hábitos de onde você já conversa.",
+          body: "O Orbit expõe um servidor Model Context Protocol completo (79 ferramentas, OAuth e chaves com escopo) para Claude, ChatGPT ou qualquer cliente MCP cuidar dos seus hábitos de onde você já conversa.",
         },
         {
           label: "03 · Social",
