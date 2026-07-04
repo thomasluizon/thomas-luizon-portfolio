@@ -199,11 +199,10 @@ export const content: Record<Locale, LocaleContent> = {
       ],
       stackLabel: "Built with",
       screensAlt: [
-        "Astra AI chat turning a message into a logged habit",
-        "Today's habit list with streaks and progress",
-        "Color-coded habit calendar with completion status",
-        "Android home-screen widget showing today's habits",
-        "Social feed with friends' streaks and cheers",
+        "Astra AI coach chat offering to summarize the day or adjust a habit",
+        "Today screen with the habit list, streak, and daily progress",
+        "Color-coded monthly habit calendar with completion status",
+        "Social screen with friends, co-op challenges, and cheers",
       ],
       links: {
         play: "Get it on Google Play",
@@ -342,11 +341,10 @@ export const content: Record<Locale, LocaleContent> = {
       ],
       stackLabel: "Feito com",
       screensAlt: [
-        "Chat da IA Astra transformando uma mensagem em hábito registrado",
-        "Lista de hábitos do dia com sequências e progresso",
-        "Calendário de hábitos colorido com status de conclusão",
-        "Widget da tela inicial do Android com os hábitos de hoje",
-        "Feed social com sequências e incentivos dos amigos",
+        "Chat da IA Astra oferecendo resumir o dia ou ajustar um hábito",
+        "Tela de hoje com a lista de hábitos, sequência e progresso do dia",
+        "Calendário mensal de hábitos colorido com status de conclusão",
+        "Tela social com amigos, desafios em grupo e incentivos",
       ],
       links: {
         play: "Baixe no Google Play",

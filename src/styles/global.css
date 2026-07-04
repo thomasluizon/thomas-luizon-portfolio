@@ -1146,18 +1146,6 @@ main {
     0 30px 64px -22px rgba(0, 0, 0, 0.82);
 }
 
-.oc-phone-notch {
-  position: absolute;
-  top: 0.72rem;
-  left: 50%;
-  z-index: 3;
-  width: 3rem;
-  height: 0.5rem;
-  border-radius: 999px;
-  background: rgba(2, 6, 24, 0.95);
-  transform: translateX(-50%);
-}
-
 .oc-screen-carousel {
   position: relative;
   aspect-ratio: 9 / 19.5;
@@ -1174,7 +1162,7 @@ main {
   width: 100%;
   height: 100%;
   opacity: 0;
-  animation: oc-screen-cycle 20s infinite;
+  animation: oc-screen-cycle 16s infinite;
 }
 
 .oc-screen__image {
@@ -1192,11 +1180,10 @@ main {
 .oc-screen--2 { animation-delay: 4s; }
 .oc-screen--3 { animation-delay: 8s; }
 .oc-screen--4 { animation-delay: 12s; }
-.oc-screen--5 { animation-delay: 16s; }
 
 @keyframes oc-screen-cycle {
-  0%, 16% { opacity: 1; transform: translateY(0) scale(1); }
-  20%, 96% { opacity: 0; transform: translateY(-1.6%) scale(1.01); }
+  0%, 20% { opacity: 1; transform: translateY(0) scale(1); }
+  25%, 95% { opacity: 0; transform: translateY(-1.6%) scale(1.01); }
   100% { opacity: 0; }
 }
 
@@ -1224,19 +1211,18 @@ main {
   background: var(--oc-primary);
   transform: scaleX(0);
   transform-origin: left center;
-  animation: oc-track-cycle 20s infinite;
+  animation: oc-track-cycle 16s infinite;
 }
 
 .oc-screen-track span:nth-child(1)::before { animation-delay: 0s; }
 .oc-screen-track span:nth-child(2)::before { animation-delay: 4s; }
 .oc-screen-track span:nth-child(3)::before { animation-delay: 8s; }
 .oc-screen-track span:nth-child(4)::before { animation-delay: 12s; }
-.oc-screen-track span:nth-child(5)::before { animation-delay: 16s; }
 
 @keyframes oc-track-cycle {
   0% { transform: scaleX(0); }
-  16% { transform: scaleX(1); }
-  20%, 100% { transform: scaleX(0); }
+  20% { transform: scaleX(1); }
+  25%, 100% { transform: scaleX(0); }
 }
 
 .oc-pillars {
