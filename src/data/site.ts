@@ -1,10 +1,9 @@
 import profileImage from "../assets/images/profile.png";
-import aiChatImage from "../assets/orbit/ai-chat.png";
+import astraChatImage from "../assets/orbit/astra-chat.png";
 import calendarImage from "../assets/orbit/calendar.png";
-import featureGraphicImage from "../assets/orbit/feature-graphic.png";
-import habitsImage from "../assets/orbit/habits.png";
 import logoNoBgImage from "../assets/orbit/logo-no-bg.png";
-import widgetImage from "../assets/orbit/widget.png";
+import socialImage from "../assets/orbit/social.png";
+import todayImage from "../assets/orbit/today.png";
 
 export const siteConfig = {
   siteUrl: "https://thomas-luizon-portfolio.vercel.app",
@@ -51,30 +50,29 @@ export const orbitCaseStudy = {
   role: "Founder & solo developer",
   assets: {
     logo: logoNoBgImage,
-    featureGraphic: featureGraphicImage,
     screens: [
       {
-        id: "chat",
-        image: aiChatImage,
+        id: "astra-chat",
+        image: astraChatImage,
       },
       {
-        id: "habits",
-        image: habitsImage,
+        id: "today",
+        image: todayImage,
       },
       {
         id: "calendar",
         image: calendarImage,
       },
       {
-        id: "widget",
-        image: widgetImage,
+        id: "social",
+        image: socialImage,
       },
     ],
   },
   stack: [
     ".NET",
-    "TypeScript",
-    "AWS",
-    "React Native",
+    "Next.js",
+    "Expo / React Native",
+    "PostgreSQL",
   ],
 } as const;
