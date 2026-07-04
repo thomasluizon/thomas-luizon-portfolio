@@ -694,6 +694,27 @@ main {
   position: relative;
   width: min(32vw, 18.5rem);
   justify-self: center;
+  isolation: isolate;
+}
+
+.hero-portrait::before {
+  content: "";
+  position: absolute;
+  inset: -118%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at center,
+    rgba(7, 8, 10, 0.74) 0%,
+    rgba(8, 9, 11, 0.68) 24%,
+    rgba(10, 11, 13, 0.54) 42%,
+    rgba(13, 14, 17, 0.38) 60%,
+    rgba(17, 18, 22, 0.22) 78%,
+    rgba(21, 22, 26, 0) 100%
+  );
+  filter: blur(24px);
+  opacity: 0.9;
+  pointer-events: none;
 }
 
 .hero-portrait__ring {
@@ -889,6 +910,7 @@ main {
 }
 
 .orbital-ring--one {
+  width: calc(var(--orbit-ring-size) * 0.74);
   transform: translate(-50%, -50%);
 }
 
