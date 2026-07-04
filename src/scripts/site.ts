@@ -177,6 +177,16 @@ const applyLocale = (locale: Locale) => {
     }
   });
 
+  document.querySelectorAll<HTMLImageElement>("[data-copy-alt]").forEach((element) => {
+    const key = element.dataset.copyAlt;
+    if (!key) return;
+
+    const value = resolveCopy(nextLocale, key);
+    if (value) {
+      element.alt = value;
+    }
+  });
+
   updateMeta(nextLocale);
   persistLocale(nextLocale);
   currentLocale = nextLocale;
@@ -421,6 +431,49 @@ const initMotion = async () => {
         },
       );
     });
+
+  const pillars = gsap.utils.toArray<HTMLElement>("[data-pillar]");
+  if (pillars.length) {
+    gsap.fromTo(
+      pillars,
+      { opacity: 0, y: 22 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.09,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: pillars[0],
+          start: "top 86%",
+          once: true,
+        },
+        clearProps: "opacity,transform",
+      },
+    );
+  }
+
+  gsap.utils.toArray<HTMLElement>("[data-count]").forEach((element) => {
+    const target = Number.parseInt(element.textContent ?? "", 10);
+    if (Number.isNaN(target)) return;
+
+    const counter = { value: 0 };
+    element.textContent = "0";
+    gsap.to(counter, {
+      value: target,
+      duration: 1.1,
+      ease: "power2.out",
+      snap: { value: 1 },
+      scrollTrigger: {
+        trigger: element,
+        start: "top 92%",
+        once: true,
+      },
+      onUpdate: () => {
+        element.textContent = String(Math.round(counter.value));
+      },
+    });
+  });
 
   gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((element) => {
     gsap.to(element, {

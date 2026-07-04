@@ -1,7 +1,6 @@
 import profileImage from "../assets/images/profile.png";
 import aiChatImage from "../assets/orbit/ai-chat.png";
 import calendarImage from "../assets/orbit/calendar.png";
-import featureGraphicImage from "../assets/orbit/feature-graphic.png";
 import habitsImage from "../assets/orbit/habits.png";
 import logoNoBgImage from "../assets/orbit/logo-no-bg.png";
 import widgetImage from "../assets/orbit/widget.png";
@@ -51,10 +50,9 @@ export const orbitCaseStudy = {
   role: "Founder & solo developer",
   assets: {
     logo: logoNoBgImage,
-    featureGraphic: featureGraphicImage,
     screens: [
       {
-        id: "chat",
+        id: "astra-chat",
         image: aiChatImage,
       },
       {
@@ -73,8 +71,8 @@ export const orbitCaseStudy = {
   },
   stack: [
     ".NET",
-    "TypeScript",
-    "AWS",
-    "React Native",
+    "Next.js",
+    "Expo / React Native",
+    "PostgreSQL",
   ],
 } as const;

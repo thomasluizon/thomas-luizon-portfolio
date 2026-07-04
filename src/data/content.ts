@@ -49,21 +49,23 @@ export interface LocaleContent {
     label: string;
     title: string;
     subtitle: string;
-    roleLabel: string;
     roleValue: string;
     intro: string;
     stats: Array<{
-      label: string;
       value: string;
+      label: string;
     }>;
-    steps: Array<{
+    pillars: Array<{
       label: string;
       title: string;
       body: string;
     }>;
+    stackLabel: string;
+    screensAlt: string[];
     links: {
-      website: string;
+      play: string;
       app: string;
+      website: string;
     };
   };
   contact: {
@@ -163,49 +165,50 @@ export const content: Record<Locale, LocaleContent> = {
     orbit: {
       label: "Featured project",
       title: "Orbit",
-      subtitle: "AI habits, real routines, and product execution in one system.",
-      roleLabel: "Role",
+      subtitle: "An AI habit coach that acts, an open protocol any assistant can drive, and a support-first social layer.",
       roleValue: "Founder & solo developer",
       intro:
-        "Orbit combines mobile UX, applied AI, backend architecture, and a focused brand system. This section uses the actual app screens and the visual language from the Orbit landing page.",
+        "Orbit is a habit tracker shipped across web and Android as one product system: app, backend, applied AI, brand, and launch. The screens here are the real app; the section quotes its actual design language.",
       stats: [
+        { value: "61", label: "Astra tools" },
+        { value: "94", label: "MCP tools" },
+        { value: "2", label: "platforms" },
+        { value: "1", label: "developer" },
+      ],
+      pillars: [
         {
-          label: "AI UX",
-          value: "Chat-to-habit flows that feel practical instead of performative.",
+          label: "01 · AI coach",
+          title: "Astra acts, not just chats",
+          body: "Say \"I ran today\" and Astra logs it; ask \"how am I doing?\" and it reads your real streaks. 61 built-in tools across habits, goals, calendar, and memory, plus voice and photo input.",
         },
         {
-          label: "Product strategy",
-          value: "Daily behavior design focused on clarity, consistency, and retention.",
+          label: "02 · Open protocol",
+          title: "Drive Orbit from any AI",
+          body: "Orbit ships a full Model Context Protocol server (94 tools, OAuth and scoped keys), so Claude, ChatGPT, or any MCP client can manage your habits from wherever you already chat.",
         },
         {
-          label: "Technical rigor",
-          value: "Cross-platform delivery backed by clean APIs and operational thinking.",
+          label: "03 · Social",
+          title: "Accountability, not leaderboards",
+          body: "Opt in for accountability buddies, co-op challenges, cheers, and invite links. Deliberately no leaderboards (encouragement over competition), and off by default until you choose to share.",
         },
         {
-          label: "Execution",
-          value: "Founder-speed shipping without letting product quality slip.",
+          label: "04 · Core tracker",
+          title: "A serious tracker underneath",
+          body: "Flexible scheduling, sub-habits, checklists, goals with velocity metrics, a color-coded calendar with Google import, XP and streaks with freeze protection, and an Android home-screen widget.",
         },
       ],
-      steps: [
-        {
-          label: "01",
-          title: "From idea to routine",
-          body: "Describe what you want to build. Orbit turns it into habits, schedules, and smaller actions.",
-        },
-        {
-          label: "02",
-          title: "Built for repeated use",
-          body: "Daily check-ins, plan adjustments, and momentum without a noisy interface.",
-        },
-        {
-          label: "03",
-          title: "Shipped as one product system",
-          body: "App, backend, website, brand, and launch work were treated as one product from day one.",
-        },
+      stackLabel: "Built with",
+      screensAlt: [
+        "Astra AI chat turning a message into a logged habit",
+        "Today's habit list with streaks and progress",
+        "Color-coded habit calendar with completion status",
+        "Android home-screen widget showing today's habits",
+        "Social feed with friends' streaks and cheers",
       ],
       links: {
-        website: "Visit Orbit",
-        app: "Open the app",
+        play: "Get it on Google Play",
+        app: "Open the web app",
+        website: "useorbit.org",
       },
     },
     contact: {
@@ -305,49 +308,50 @@ export const content: Record<Locale, LocaleContent> = {
     orbit: {
       label: "Projeto em destaque",
       title: "Orbit",
-      subtitle: "Hábitos com IA, rotinas de verdade e execução de produto no mesmo lugar.",
-      roleLabel: "Papel",
+      subtitle: "Um coach de hábitos com IA que age, um protocolo aberto que qualquer assistente controla e uma camada social feita para apoiar.",
       roleValue: "Fundador e desenvolvedor solo",
       intro:
-        "O Orbit junta UX mobile, IA aplicada, backend e uma identidade visual própria. Aqui eu mostro telas reais do app e a mesma linguagem visual usada na landing page do produto.",
+        "O Orbit é um app de hábitos entregue na web e no Android como um produto só: app, backend, IA aplicada, marca e lançamento. As telas aqui são as reais do app, e a seção usa a mesma linguagem visual do produto.",
       stats: [
+        { value: "61", label: "ferramentas do Astra" },
+        { value: "94", label: "ferramentas MCP" },
+        { value: "2", label: "plataformas" },
+        { value: "1", label: "desenvolvedor" },
+      ],
+      pillars: [
         {
-          label: "UX com IA",
-          value: "Conversas que viram hábitos práticos, sem parecer demo de IA.",
+          label: "01 · Coach com IA",
+          title: "O Astra age, não só conversa",
+          body: "Diga \"corri hoje\" e o Astra registra; pergunte \"como estou indo?\" e ele lê suas sequências reais. 61 ferramentas nativas entre hábitos, metas, calendário e memória, além de voz e imagem.",
         },
         {
-          label: "Estratégia de produto",
-          value: "Rotina diária pensada para clareza, consistência e retenção.",
+          label: "02 · Protocolo aberto",
+          title: "Controle o Orbit por qualquer IA",
+          body: "O Orbit expõe um servidor Model Context Protocol completo (94 ferramentas, OAuth e chaves com escopo) para Claude, ChatGPT ou qualquer cliente MCP cuidar dos seus hábitos de onde você já conversa.",
         },
         {
-          label: "Base técnica",
-          value: "App multiplataforma apoiado por APIs limpas e uma arquitetura fácil de operar.",
+          label: "03 · Social",
+          title: "Apoio, não ranking",
+          body: "Ative parceiros de responsabilidade, desafios em grupo, incentivos e links de convite. De propósito sem ranking (incentivo em vez de competição), e desligado até você decidir compartilhar.",
         },
         {
-          label: "Execução",
-          value: "Velocidade de fundador, mas sem tratar qualidade como detalhe.",
+          label: "04 · Tracker de verdade",
+          title: "Um tracker sério por baixo",
+          body: "Agendamento flexível, sub-hábitos, checklists, metas com métricas de ritmo, calendário colorido com import do Google, XP e sequências com proteção de congelamento, e um widget na tela inicial do Android.",
         },
       ],
-      steps: [
-        {
-          label: "01",
-          title: "Da ideia para a rotina",
-          body: "Você descreve o que quer criar, e o Orbit quebra isso em hábitos, horários e próximos passos.",
-        },
-        {
-          label: "02",
-          title: "Feito para voltar todo dia",
-          body: "Check-ins, ajustes de plano e progresso visível sem transformar a tela em barulho.",
-        },
-        {
-          label: "03",
-          title: "Um produto, não peças soltas",
-          body: "App, backend, site, marca e lançamento foram construídos como partes do mesmo sistema desde o início.",
-        },
+      stackLabel: "Feito com",
+      screensAlt: [
+        "Chat da IA Astra transformando uma mensagem em hábito registrado",
+        "Lista de hábitos do dia com sequências e progresso",
+        "Calendário de hábitos colorido com status de conclusão",
+        "Widget da tela inicial do Android com os hábitos de hoje",
+        "Feed social com sequências e incentivos dos amigos",
       ],
       links: {
-        website: "Ver o Orbit",
-        app: "Abrir o app",
+        play: "Baixe no Google Play",
+        app: "Abrir o app web",
+        website: "useorbit.org",
       },
     },
     contact: {

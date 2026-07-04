@@ -12,72 +12,128 @@ const orbit = orbitCaseStudy;
 ---
 
 <section id="orbit" class="page-section orbit-section" data-section="orbit">
-  <div class="section-shell orbit-case">
-    <div class="orbit-copy" data-reveal>
-      <div class="orbit-profile">
-        <Image src={orbit.assets.logo} alt="" class="orbit-logo" aria-hidden="true" />
-        <span data-copy="orbit.roleValue">{copy.orbit.roleValue}</span>
-      </div>
+  <div class="section-shell">
+    <article class="orbit-capsule">
+      <header class="oc-head" data-reveal>
+        <Image src={orbit.assets.logo} alt="Orbit logo" class="oc-logo" />
+        <div class="oc-head-text">
+          <span class="oc-eyebrow" data-copy="orbit.label">{copy.orbit.label}</span>
+          <span class="oc-role" data-copy="orbit.roleValue">{copy.orbit.roleValue}</span>
+        </div>
+      </header>
 
-      <h2 class="orbit-title" data-copy="orbit.title">{copy.orbit.title}</h2>
-      <p class="orbit-subtitle" data-copy="orbit.subtitle">{copy.orbit.subtitle}</p>
-      <p class="orbit-intro" data-copy="orbit.intro">{copy.orbit.intro}</p>
+      <div class="oc-hero">
+        <div class="oc-hero-copy" data-reveal>
+          <h2 class="oc-title" data-copy="orbit.title">{copy.orbit.title}</h2>
+          <p class="oc-subtitle" data-copy="orbit.subtitle">{copy.orbit.subtitle}</p>
+          <p class="oc-intro" data-copy="orbit.intro">{copy.orbit.intro}</p>
 
-      <div class="orbit-actions">
-        <a
-          href={orbit.url}
-          class="action-button action-button--primary"
-          target="_blank"
-          rel="noreferrer"
-          data-copy="orbit.links.website"
-        >
-          {copy.orbit.links.website}
-        </a>
-        <a
-          href={orbit.appUrl}
-          class="action-button"
-          target="_blank"
-          rel="noreferrer"
-          data-copy="orbit.links.app"
-        >
-          {copy.orbit.links.app}
-        </a>
-      </div>
-    </div>
-
-    <div class="orbit-product" data-reveal>
-      <div class="orbit-visual-layer" aria-hidden="true">
-        <div class="orbital-ring orbital-ring--one"></div>
-        <div class="orbital-ring orbital-ring--two"></div>
-      </div>
-
-      <div class="orbit-phone-stage" aria-label="Real Orbit app screens">
-        <div class="orbit-phone-glow" aria-hidden="true"></div>
-        <div class="orbit-phone-device">
-          <div class="orbit-phone-notch" aria-hidden="true"></div>
-          <div class="orbit-screen-carousel">
+          <ul class="oc-stats">
             {
-              orbit.assets.screens.map((screen, index) => (
-                <Picture
-                  src={screen.image}
-                  alt={index === 0 ? "Real Orbit app screen" : ""}
-                  formats={["avif", "webp"]}
-                  widths={[220, 300, 420, 560]}
-                  sizes="(min-width: 64rem) 12.75rem, 54vw"
-                  class="orbit-screen__image"
-                  pictureAttributes={{ class: `orbit-screen orbit-screen--${index + 1}` }}
-                />
+              copy.orbit.stats.map((stat, index) => (
+                <li class="oc-stat">
+                  <span class="oc-stat-value" data-count data-copy={`orbit.stats.${index}.value`}>
+                    {stat.value}
+                  </span>
+                  <span class="oc-stat-label" data-copy={`orbit.stats.${index}.label`}>
+                    {stat.label}
+                  </span>
+                </li>
               ))
             }
+          </ul>
+
+          <div class="oc-actions">
+            <a
+              href={orbit.playStoreUrl}
+              class="oc-cta oc-cta--primary"
+              target="_blank"
+              rel="noreferrer"
+              data-copy="orbit.links.play"
+            >
+              {copy.orbit.links.play}
+            </a>
+            <a
+              href={orbit.appUrl}
+              class="oc-cta oc-cta--ghost"
+              target="_blank"
+              rel="noreferrer"
+              data-copy="orbit.links.app"
+            >
+              {copy.orbit.links.app}
+            </a>
+            <a
+              href={orbit.url}
+              class="oc-link"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span data-copy="orbit.links.website">{copy.orbit.links.website}</span>
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M4 12L12 4M6 4h6v6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
           </div>
         </div>
-        <div class="orbit-screen-track" aria-hidden="true">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
+
+        <div class="oc-product" data-reveal>
+          <div class="oc-visual-layer" aria-hidden="true">
+            <div class="orbital-ring orbital-ring--one"></div>
+            <div class="orbital-ring orbital-ring--two"></div>
+          </div>
+
+          <div class="oc-phone-stage">
+            <div class="oc-phone-glow" aria-hidden="true"></div>
+            <div class="oc-phone-device">
+              <div class="oc-phone-notch" aria-hidden="true"></div>
+              <div class="oc-screen-carousel">
+                {
+                  orbit.assets.screens.map((screen, index) => (
+                    <Picture
+                      src={screen.image}
+                      alt={copy.orbit.screensAlt[index]}
+                      data-copy-alt={`orbit.screensAlt.${index}`}
+                      formats={["avif", "webp"]}
+                      widths={[220, 300, 420, 560]}
+                      sizes="(min-width: 52rem) 12rem, 60vw"
+                      class="oc-screen__image"
+                      pictureAttributes={{ class: `oc-screen oc-screen--${index + 1}` }}
+                    />
+                  ))
+                }
+              </div>
+            </div>
+            <div class="oc-screen-track" aria-hidden="true">
+              {orbit.assets.screens.map(() => <span></span>)}
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+
+      <ul class="oc-pillars">
+        {
+          copy.orbit.pillars.map((pillar, index) => (
+            <li class="oc-pillar" data-pillar>
+              <span class="oc-pillar-label" data-copy={`orbit.pillars.${index}.label`}>
+                {pillar.label}
+              </span>
+              <h3 class="oc-pillar-title" data-copy={`orbit.pillars.${index}.title`}>
+                {pillar.title}
+              </h3>
+              <p class="oc-pillar-body" data-copy={`orbit.pillars.${index}.body`}>
+                {pillar.body}
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="oc-stack">
+        <span class="oc-stack-label" data-copy="orbit.stackLabel">{copy.orbit.stackLabel}</span>
+        <ul class="oc-stack-chips">
+          {orbit.stack.map((item) => <li class="oc-chip">{item}</li>)}
+        </ul>
+      </div>
+    </article>
   </div>
 </section>
