@@ -1,7 +1,9 @@
 import { content, defaultLocale, locales, type Locale } from "../data/content";
 
-const COOKIE_KEY = "thomas_portfolio_locale";
-const STORAGE_KEY = "thomas_portfolio_locale";
+// The old "thomas_portfolio_locale" key saved the browser language on every first visit,
+// so its value is not a visitor choice. This key holds only a choice from the language switch.
+const COOKIE_KEY = "thomas_portfolio_locale_choice";
+const STORAGE_KEY = "thomas_portfolio_locale_choice";
 const localeHtmlLang: Record<Locale, string> = {
   en: "en",
   pt: "pt-BR",
@@ -64,26 +66,11 @@ const resolveCopy = (locale: Locale, path: string): string | null => {
   return typeof fallback === "string" ? fallback : null;
 };
 
-const detectLocale = (): Locale => {
-  const stored = normalizeLocale(readStorage(STORAGE_KEY));
-  if (stored) return stored;
+// English is the default. Only a choice the visitor made with the language switch changes it.
+const readSavedLocale = (): Locale | null =>
+  normalizeLocale(readStorage(STORAGE_KEY)) ?? normalizeLocale(readCookie(COOKIE_KEY));
 
-  const cookie = normalizeLocale(readCookie(COOKIE_KEY));
-  if (cookie) return cookie;
-
-  const browserLanguages = navigator.languages?.length
-    ? navigator.languages
-    : [navigator.language];
-
-  for (const language of browserLanguages) {
-    const matched = normalizeLocale(language);
-    if (matched) return matched;
-  }
-
-  return defaultLocale;
-};
-
-let currentLocale: Locale = detectLocale();
+let currentLocale: Locale = readSavedLocale() ?? defaultLocale;
 
 const updateMeta = (locale: Locale) => {
   const meta = content[locale]?.meta ?? content[defaultLocale].meta;
@@ -188,7 +175,6 @@ const applyLocale = (locale: Locale) => {
   });
 
   updateMeta(nextLocale);
-  persistLocale(nextLocale);
   currentLocale = nextLocale;
   syncMenuLabel();
   syncLocaleButtons(nextLocale);
@@ -203,7 +189,10 @@ const initLocaleSelector = () => {
     if (!button) return;
 
     const locale = normalizeLocale(button.dataset.localeOption);
-    if (locale) applyLocale(locale);
+    if (!locale) return;
+
+    applyLocale(locale);
+    persistLocale(locale);
   });
 };
 

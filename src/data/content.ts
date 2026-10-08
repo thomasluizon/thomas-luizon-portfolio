@@ -91,9 +91,9 @@ export interface LocaleContent {
 export const content: Record<Locale, LocaleContent> = {
   en: {
     meta: {
-      title: "Thomas Luizon | Software Engineer",
+      title: "Thomas Luizon | Senior Full-Stack Engineer",
       description:
-        "Software engineer building production systems, digital products, and Orbit with backend, cloud, frontend, and AI applied with product thinking.",
+        "Senior full-stack engineer building production systems, digital products, and Orbit with backend, cloud, frontend, and AI applied with product thinking.",
     },
     nav: {
       about: "About",
@@ -108,7 +108,7 @@ export const content: Record<Locale, LocaleContent> = {
       skipToContent: "Skip to content",
     },
     hero: {
-      eyebrow: "Software Engineer",
+      eyebrow: "Senior Full-Stack Engineer",
       title: "Thomas Luizon",
       summary:
         "I design and build reliable software across backend, cloud, frontend, and AI, turning complex technical decisions into products people can use with clarity.",
@@ -127,9 +127,9 @@ export const content: Record<Locale, LocaleContent> = {
       question: "Who am I?",
       title: "About me",
       narrative: [
-        "I am a software engineer who likes the full path from architecture to interface. My work usually connects backend reliability, cloud infrastructure, frontend execution, and practical AI features.",
+        "I am a senior full-stack engineer who likes the full path from architecture to interface. My work usually connects backend reliability, cloud infrastructure, frontend execution, and practical AI features.",
         "I care about products that feel simple because the system underneath is well designed. Good APIs, clear data flows, and thoughtful UI decisions should work together instead of competing for attention.",
-        "Orbit is the clearest example of that approach: a real product built across app, backend, AI flows, brand, and launch execution.",
+        "Orbit is the clearest example of that approach: a real product that I build across app, backend, AI flows, and brand.",
       ],
       capabilityLabel: "Technologies I work with most",
       capabilities: [
@@ -168,10 +168,10 @@ export const content: Record<Locale, LocaleContent> = {
       subtitle: "An AI habit coach that acts, an open protocol any assistant can drive, and a support-first social layer.",
       roleValue: "Founder & solo developer",
       intro:
-        "Orbit is a habit tracker shipped across web and Android as one product system: app, backend, applied AI, brand, and launch. The screens here are the real app; the section quotes its actual design language.",
+        "Orbit is an AI habit coach for web and Android. It is built on Next.js, Expo, and a .NET API on PostgreSQL. It has an AI coach with 63 tools and an MCP server with 81 tools. The screens here come from the real app, and this section uses its design language.",
       stats: [
-        { value: "61", label: "Astra tools" },
-        { value: "79", label: "MCP tools" },
+        { value: "63", label: "Astra tools" },
+        { value: "81", label: "MCP tools" },
         { value: "2", label: "platforms" },
         { value: "1", label: "developer" },
       ],
@@ -179,12 +179,12 @@ export const content: Record<Locale, LocaleContent> = {
         {
           label: "01 · AI coach",
           title: "Astra acts, not just chats",
-          body: "Say \"I ran today\" and Astra logs it; ask \"how am I doing?\" and it reads your real streaks. 61 built-in tools across habits, goals, calendar, and memory, plus voice and photo input.",
+          body: "Say \"I ran today\" and Astra logs it; ask \"how am I doing?\" and it reads your real streaks. 63 built-in tools across habits, goals, calendar, and memory, plus voice and photo input.",
         },
         {
           label: "02 · Open protocol",
           title: "Drive Orbit from any AI",
-          body: "Orbit ships a full Model Context Protocol server (79 tools, OAuth and scoped keys), so Claude, ChatGPT, or any MCP client can manage your habits from wherever you already chat.",
+          body: "Orbit has a full Model Context Protocol server (81 tools, OAuth and scoped keys), so Claude, ChatGPT, or any MCP client can manage your habits from wherever you already chat.",
         },
         {
           label: "03 · Social",
@@ -214,7 +214,7 @@ export const content: Record<Locale, LocaleContent> = {
       label: "Contact",
       title: "Get in touch.",
       body:
-        "If you need a software engineer for AI-heavy products with strong systems and product taste, let's talk.",
+        "If you need a senior full-stack engineer for AI-heavy products with strong systems and product taste, let's talk.",
       emailLabel: "Direct email",
       form: {
         name: "Name",
@@ -233,9 +233,9 @@ export const content: Record<Locale, LocaleContent> = {
   },
   pt: {
     meta: {
-      title: "Thomas Luizon | Engenheiro de Software",
+      title: "Thomas Luizon | Engenheiro de Software Full-Stack Sênior",
       description:
-        "Engenheiro de software focado em transformar backend, cloud, frontend e IA em produtos digitais bem acabados, com arquitetura sólida e visão de produto.",
+        "Engenheiro de software full-stack sênior focado em transformar backend, cloud, frontend e IA em produtos digitais bem acabados, com arquitetura sólida e visão de produto.",
     },
     nav: {
       about: "Sobre",
@@ -250,7 +250,7 @@ export const content: Record<Locale, LocaleContent> = {
       skipToContent: "Pular para o conteúdo",
     },
     hero: {
-      eyebrow: "Engenheiro de Software",
+      eyebrow: "Engenheiro de Software Full-Stack Sênior",
       title: "Thomas Luizon",
       summary:
         "Crio produtos digitais de ponta a ponta, conectando backend, cloud, frontend e IA para tirar complexidade do caminho e entregar experiências claras, estáveis e fáceis de usar.",
@@ -269,9 +269,9 @@ export const content: Record<Locale, LocaleContent> = {
       question: "Quem sou eu?",
       title: "Sobre mim",
       narrative: [
-        "Sou engenheiro de software e gosto de trabalhar no produto inteiro, não só em uma parte isolada. Normalmente estou entre backend, cloud, frontend e IA, conectando as peças para que a experiência final faça sentido.",
+        "Sou engenheiro de software full-stack sênior e gosto de trabalhar no produto inteiro, não só em uma parte isolada. Normalmente estou entre backend, cloud, frontend e IA, conectando as peças para que a experiência final faça sentido.",
         "Para mim, produto bom parece simples porque muita coisa foi bem resolvida por trás. APIs claras, fluxo de dados bem pensado e interface cuidadosa precisam se complementar.",
-        "O Orbit resume bem esse jeito de trabalhar: app, backend, IA, marca, site e lançamento construídos como partes do mesmo produto.",
+        "O Orbit resume bem esse jeito de trabalhar: app, backend, IA, marca e site construídos como partes do mesmo produto.",
       ],
       capabilityLabel: "Tecnologias que mais uso no dia a dia",
       capabilities: [
@@ -310,10 +310,10 @@ export const content: Record<Locale, LocaleContent> = {
       subtitle: "Um coach de hábitos com IA que age, um protocolo aberto que qualquer assistente controla e uma camada social feita para apoiar.",
       roleValue: "Fundador e desenvolvedor solo",
       intro:
-        "O Orbit é um app de hábitos entregue na web e no Android como um produto só: app, backend, IA aplicada, marca e lançamento. As telas aqui são as reais do app, e a seção usa a mesma linguagem visual do produto.",
+        "O Orbit é um coach de hábitos com IA para web e Android. Ele é feito com Next.js, Expo e uma API .NET sobre PostgreSQL. Tem um coach de IA com 63 ferramentas e um servidor MCP com 81 ferramentas. As telas aqui são do app real, e a seção usa a mesma linguagem visual do produto.",
       stats: [
-        { value: "61", label: "ferramentas do Astra" },
-        { value: "79", label: "ferramentas MCP" },
+        { value: "63", label: "ferramentas do Astra" },
+        { value: "81", label: "ferramentas MCP" },
         { value: "2", label: "plataformas" },
         { value: "1", label: "desenvolvedor" },
       ],
@@ -321,12 +321,12 @@ export const content: Record<Locale, LocaleContent> = {
         {
           label: "01 · Coach com IA",
           title: "O Astra age, não só conversa",
-          body: "Diga \"corri hoje\" e o Astra registra; pergunte \"como estou indo?\" e ele lê suas sequências reais. 61 ferramentas nativas entre hábitos, metas, calendário e memória, além de voz e imagem.",
+          body: "Diga \"corri hoje\" e o Astra registra; pergunte \"como estou indo?\" e ele lê suas sequências reais. 63 ferramentas nativas entre hábitos, metas, calendário e memória, além de voz e imagem.",
         },
         {
           label: "02 · Protocolo aberto",
           title: "Controle o Orbit por qualquer IA",
-          body: "O Orbit expõe um servidor Model Context Protocol completo (79 ferramentas, OAuth e chaves com escopo) para Claude, ChatGPT ou qualquer cliente MCP cuidar dos seus hábitos de onde você já conversa.",
+          body: "O Orbit expõe um servidor Model Context Protocol completo (81 ferramentas, OAuth e chaves com escopo) para Claude, ChatGPT ou qualquer cliente MCP cuidar dos seus hábitos de onde você já conversa.",
         },
         {
           label: "03 · Social",
