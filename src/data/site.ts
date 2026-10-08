@@ -8,7 +8,7 @@ import todayImage from "../assets/orbit/today.png";
 export const siteConfig = {
   siteUrl: "https://thomas-luizon-portfolio.vercel.app",
   name: "Thomas Luizon",
-  role: "Software Engineer",
+  role: "Senior Full-Stack Engineer",
   location: "Sao Paulo, Brazil",
   email: "thomaslrgregorio@gmail.com",
   linkedin: "https://www.linkedin.com/in/thomas-luizon",
