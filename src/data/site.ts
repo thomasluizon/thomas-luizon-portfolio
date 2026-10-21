@@ -1,9 +1,6 @@
 import profileImage from "../assets/images/profile.png";
-import astraChatImage from "../assets/orbit/astra-chat.png";
-import calendarImage from "../assets/orbit/calendar.png";
-import logoNoBgImage from "../assets/orbit/logo-no-bg.png";
-import socialImage from "../assets/orbit/social.png";
-import todayImage from "../assets/orbit/today.png";
+import orbitLogo from "../assets/orbit/orbit-lockup.svg";
+import productPreview from "../assets/orbit/product-preview.png";
 
 export const siteConfig = {
   siteUrl: "https://thomas-luizon-portfolio.vercel.app",
@@ -49,25 +46,8 @@ export const orbitCaseStudy = {
     "https://play.google.com/store/apps/details?id=org.useorbit.app",
   role: "Founder & solo developer",
   assets: {
-    logo: logoNoBgImage,
-    screens: [
-      {
-        id: "astra-chat",
-        image: astraChatImage,
-      },
-      {
-        id: "today",
-        image: todayImage,
-      },
-      {
-        id: "calendar",
-        image: calendarImage,
-      },
-      {
-        id: "social",
-        image: socialImage,
-      },
-    ],
+    logo: orbitLogo,
+    preview: productPreview,
   },
   stack: [
     ".NET",

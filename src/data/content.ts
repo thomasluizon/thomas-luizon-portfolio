@@ -51,17 +51,14 @@ export interface LocaleContent {
     subtitle: string;
     roleValue: string;
     intro: string;
-    stats: Array<{
-      value: string;
-      label: string;
-    }>;
     pillars: Array<{
       label: string;
       title: string;
       body: string;
     }>;
     stackLabel: string;
-    screensAlt: string[];
+    previewAlt: string;
+    previewCaption: string;
     links: {
       play: string;
       app: string;
@@ -165,45 +162,35 @@ export const content: Record<Locale, LocaleContent> = {
     orbit: {
       label: "Featured project",
       title: "Orbit",
-      subtitle: "An AI habit coach that acts, an open protocol any assistant can drive, and a support-first social layer.",
+      subtitle: "An AI that tracks habits.",
       roleValue: "Founder & solo developer",
       intro:
-        "Orbit is an AI habit coach for web and Android. It is built on Next.js, Expo, and a .NET API on PostgreSQL. It has an AI coach with 63 tools and an MCP server with 81 tools. The screens here come from the real app, and this section uses its design language.",
-      stats: [
-        { value: "63", label: "Astra tools" },
-        { value: "81", label: "MCP tools" },
-        { value: "2", label: "platforms" },
-        { value: "1", label: "developer" },
-      ],
+        "I built Orbit for adults who know what they want to do but struggle to keep a routine. Astra puts AI on the main path, helping people track and adjust habits with less admin.",
       pillars: [
         {
-          label: "01 · AI coach",
-          title: "Astra acts, not just chats",
-          body: "Say \"I ran today\" and Astra logs it; ask \"how am I doing?\" and it reads your real streaks. 63 built-in tools across habits, goals, calendar, and memory, plus voice and photo input.",
+          label: "Astra",
+          title: "A request becomes an action",
+          body: "Describe the habit you want to build. Astra proposes the change so you can review it before saving. AI is part of the routine, from the first request.",
         },
         {
-          label: "02 · Open protocol",
-          title: "Drive Orbit from any AI",
-          body: "Orbit has a full Model Context Protocol server (81 tools, OAuth and scoped keys), so Claude, ChatGPT, or any MCP client can manage your habits from wherever you already chat.",
+          label: "Routines",
+          title: "Make room for starting again",
+          body: "Habits, goals, reminders, and a calendar share one routine. The design helps people return after a missed day without turning the system into more work.",
         },
         {
-          label: "03 · Social",
-          title: "Accountability, not leaderboards",
-          body: "Opt in for accountability buddies, co-op challenges, cheers, and invite links. Deliberately no leaderboards (encouragement over competition), and off by default until you choose to share.",
+          label: "Engineering",
+          title: "One product, web and Android",
+          body: "Next.js and Expo / React Native share a .NET API and PostgreSQL data model. I build and maintain the path from the interface to the data.",
         },
         {
-          label: "04 · Core tracker",
-          title: "A serious tracker underneath",
-          body: "Flexible scheduling, sub-habits, checklists, goals with velocity metrics, a color-coded calendar with Google import, XP and streaks with freeze protection, and an Android home-screen widget.",
+          label: "Ownership",
+          title: "From decision to release",
+          body: "I own product decisions, interface design, AI flows, infrastructure, and delivery. Orbit brings my engineering work and product thinking into the same place.",
         },
       ],
       stackLabel: "Built with",
-      screensAlt: [
-        "Astra AI coach chat offering to summarize the day or adjust a habit",
-        "Today screen with the habit list, streak, and daily progress",
-        "Color-coded monthly habit calendar with completion status",
-        "Social screen with friends, co-op challenges, and cheers",
-      ],
+      previewAlt: "Orbit website demo showing Astra proposing a morning walk for approval",
+      previewCaption: "Product demo from useorbit.org",
       links: {
         play: "Get it on Google Play",
         app: "Open the web app",
@@ -307,45 +294,35 @@ export const content: Record<Locale, LocaleContent> = {
     orbit: {
       label: "Projeto em destaque",
       title: "Orbit",
-      subtitle: "Um coach de hábitos com IA que age, um protocolo aberto que qualquer assistente controla e uma camada social feita para apoiar.",
+      subtitle: "Uma IA que acompanha seus hábitos.",
       roleValue: "Fundador e desenvolvedor solo",
       intro:
-        "O Orbit é um coach de hábitos com IA para web e Android. Ele é feito com Next.js, Expo e uma API .NET sobre PostgreSQL. Tem um coach de IA com 63 ferramentas e um servidor MCP com 81 ferramentas. As telas aqui são do app real, e a seção usa a mesma linguagem visual do produto.",
-      stats: [
-        { value: "63", label: "ferramentas do Astra" },
-        { value: "81", label: "ferramentas MCP" },
-        { value: "2", label: "plataformas" },
-        { value: "1", label: "desenvolvedor" },
-      ],
+        "Criei o Orbit para adultos que sabem o que querem fazer, mas têm dificuldade para manter uma rotina. A Astra coloca a IA no caminho principal e ajuda a registrar e ajustar hábitos com menos trabalho.",
       pillars: [
         {
-          label: "01 · Coach com IA",
-          title: "O Astra age, não só conversa",
-          body: "Diga \"corri hoje\" e o Astra registra; pergunte \"como estou indo?\" e ele lê suas sequências reais. 63 ferramentas nativas entre hábitos, metas, calendário e memória, além de voz e imagem.",
+          label: "Astra",
+          title: "Um pedido vira uma ação",
+          body: "Descreva o hábito que quer criar. A Astra propõe a mudança para você revisar antes de salvar. A IA participa da rotina desde o primeiro pedido.",
         },
         {
-          label: "02 · Protocolo aberto",
-          title: "Controle o Orbit por qualquer IA",
-          body: "O Orbit expõe um servidor Model Context Protocol completo (81 ferramentas, OAuth e chaves com escopo) para Claude, ChatGPT ou qualquer cliente MCP cuidar dos seus hábitos de onde você já conversa.",
+          label: "Rotinas",
+          title: "Espaço para recomeçar",
+          body: "Hábitos, metas, lembretes e calendário fazem parte da mesma rotina. O design ajuda a voltar depois de um dia perdido sem transformar o sistema em mais trabalho.",
         },
         {
-          label: "03 · Social",
-          title: "Apoio, não ranking",
-          body: "Ative parceiros de responsabilidade, desafios em grupo, incentivos e links de convite. De propósito sem ranking (incentivo em vez de competição), e desligado até você decidir compartilhar.",
+          label: "Engenharia",
+          title: "Um produto, web e Android",
+          body: "Next.js e Expo / React Native compartilham uma API .NET e um modelo de dados PostgreSQL. Construo e mantenho o caminho da interface até os dados.",
         },
         {
-          label: "04 · Tracker de verdade",
-          title: "Um tracker sério por baixo",
-          body: "Agendamento flexível, sub-hábitos, checklists, metas com métricas de ritmo, calendário colorido com import do Google, XP e sequências com proteção de congelamento, e um widget na tela inicial do Android.",
+          label: "Responsabilidade",
+          title: "Da decisão ao lançamento",
+          body: "Cuido das decisões de produto, interface, fluxos de IA, infraestrutura e entrega. O Orbit reúne meu trabalho de engenharia e minha visão de produto.",
         },
       ],
       stackLabel: "Feito com",
-      screensAlt: [
-        "Chat da IA Astra oferecendo resumir o dia ou ajustar um hábito",
-        "Tela de hoje com a lista de hábitos, sequência e progresso do dia",
-        "Calendário mensal de hábitos colorido com status de conclusão",
-        "Tela social com amigos, desafios em grupo e incentivos",
-      ],
+      previewAlt: "Demonstração do site do Orbit com a Astra propondo uma caminhada para aprovação",
+      previewCaption: "Demonstração do produto em useorbit.org",
       links: {
         play: "Baixe no Google Play",
         app: "Abrir o app web",
